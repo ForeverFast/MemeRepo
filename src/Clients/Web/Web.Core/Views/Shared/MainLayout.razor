@@ -1,0 +1,97 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider IsDarkMode="isDarkMode" Theme="_themeService.GetTheme()" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<div class="page">
+    <header>
+    </header>
+
+    <main class="h-100">
+        <MudPaper Class="main-container h-100 d-flex flex-row">
+
+            <MudSwipeArea Class="@($"main-container__side-menu d-flex flex-column align-items-center {BuildTreeViewCssClass()}")"
+                          OnSwipe="OnSwipe">
+                <MudPaper Class="struct-view-switcher w-100 row">
+                    <button @onclick="_ => _isFolderView = false" class="@(!_isFolderView ? "selected-view-struct" : "")">
+                        <MudIcon Icon="@Icons.Filled.Tag" Size="Size.Small" Style="margin-bottom: 2px; margin-right: 2px;" /> Теги
+                    </button>
+                    <button @onclick="_ => _isFolderView = true" class="@(_isFolderView ? "selected-view-struct" : "")">
+                        <MudIcon Icon="@Icons.Filled.Folder" Size="Size.Small" Style="margin-bottom: 2px;" /> Папки
+                    </button>
+                </MudPaper>
+                <MudPaper Class="struct-content" Width="100%">
+                    @if (_isFolderView && FolderTree?.Count > 0)
+                    {
+                        <MudTreeView Items="FolderTree" T="FolderTreeViewModel" CanHover="true" Dense="true" ExpandOnClick="true"
+                                     Style="height: 100%;" Color="Color.Primary">
+                            <ItemTemplate>
+                                <MudTreeViewItem Value="@context" Items="context.InnerFolders"
+                                                 @bind-Activated="context.IsActivated"
+                                                 @bind-Expanded="context.IsExpanded"
+                                                 Class="struct-tree-item"
+                                                 OnClick="_ => OnFolderTreeViewItemClick(context)">
+                                    <Content>
+                                        <MudMenu ActivationEvent="@MouseEvent.RightClick"
+                                                 AnchorOrigin="Origin.BottomRight" TransformOrigin="Origin.BottomRight">
+                                            <ActivatorContent>
+                                                <MudTreeViewItemToggleButton @bind-Expanded="@context.IsExpanded" Visible="@context.HasChild" />
+                                                <MudIcon Icon="@(context.IsExpanded || (context == SelectedFolder && context.IsActivated)
+                                                    ? Icons.Filled.FolderOpen
+                                                    : Icons.Filled.Folder)" />
+                                                <MudText Class="ms-1">@context.Title</MudText>
+                                            </ActivatorContent>
+                                            <ChildContent>
+                                                <MudMenuItem>Profile</MudMenuItem>
+                                                <MudMenuItem>Theme</MudMenuItem>
+                                                <MudMenuItem>Usage</MudMenuItem>
+                                                <MudMenuItem>Sign Out</MudMenuItem>
+                                            </ChildContent>
+                                        </MudMenu>
+                                    </Content>
+                                </MudTreeViewItem>
+                            </ItemTemplate>
+                        </MudTreeView>
+                    }
+                    else
+                    {
+
+                    }
+                </MudPaper>
+
+            </MudSwipeArea>
+
+            <MudSwipeArea Class="@($"main-container__content {(_navigationManager.IsCurrentUrlFolder() ? "folder-page" : "")}")"
+                          OnSwipe="OnSwipe">
+                @if (_navigationManager.IsCurrentUrlFolder())
+                {
+                    <MudBreadcrumbs Items="GetFolderBreadcrumbItems()" Class="folder-breadcrumbs"></MudBreadcrumbs>
+                }
+                @Body
+            </MudSwipeArea>
+
+        </MudPaper>
+    </main>
+
+    <footer>
+    </footer>
+</div>
+
+@code {
+    bool isDarkMode = true;
+    //MudTheme MyCustomTheme = new MudTheme()
+    //{
+    //    Palette = new Palette()
+    //    {
+    //        Primary = Colors.Blue.Default,
+    //        Secondary = Colors.Green.Accent4,
+    //        AppbarBackground = Colors.Red.Default,
+    //    },
+    //    PaletteDark = new Palette()
+    //    {
+    //        Dark
+    //        Primary = Colors.Blue.Lighten1
+    //    },
+    //};
+}

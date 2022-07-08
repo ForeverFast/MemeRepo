@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Hybrid.Maui"
+             xmlns:wr="clr-namespace:Web.Core;assembly=Web.Core"
+             x:Class="Hybrid.Maui.MainPage"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+
+    <BlazorWebView HostPage="wwwroot/index.html">
+        <BlazorWebView.RootComponents>
+            <RootComponent x:Name="BlazorWebViewRoot" Selector="#app" ComponentType="{x:Type wr:App}"/>
+        </BlazorWebView.RootComponents>
+    </BlazorWebView>
+
+</ContentPage>

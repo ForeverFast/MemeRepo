@@ -348,3 +348,32 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+**/packages/
+**/bin/
+**/obj/
+**/node_modules/
+**/wwwroot/css/app.*.css
+**/wwwroot/css/app.*.gz
+**/wwwroot/css/app.css
+
+**/Pages/*.css
+**/Pages/**/*.css
+**/Pages/*.css.map
+**/Pages/**/*.css.map
+**/Pages/*.gz
+**/Pages/**/*.gz
+
+**/Shared/*.css
+**/Shared/**/*.css
+**/Shared/*.css.map
+**/Shared/**/*.css.map
+**/Shared/*.gz
+**/Shared/**/*.gz
+
+**/Components/*.css
+**/Components/**/*.css
+**/Components/*.css.map
+**/Components/**/*.css.map
+**/Components/*.gz
+**/Components/**/*.gz

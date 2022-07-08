@@ -1,0 +1,28 @@
+﻿<!-- d-flex flex-wrap justify-content-around align-content-start-->
+
+<div class="folder-page-inner">
+    @if (FolderObjects?.Count > 0)
+    {
+        <MudButton OnClick="Test">Говно</MudButton>
+        <div class="folder-container">
+            @foreach (var item in FolderObjects)
+            {
+                <div class="folder-object d-flex flex-column align-items-center">
+                    <img src="_content/Web.Core/imgs/MhKwfM2V05Y.jpg" />
+                    <p>@item.Title</p>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="folder-empty-message">
+            <MudText Style="font-size: 50px">
+                <MudIcon Icon="@Icons.Filled.FolderOpen" Style="height: 70px; width: 70px;" /> Мемчиков нема
+            </MudText>
+            <MudText Class="mt-0">Наполни меня (͡° ͜ʖ ͡°)</MudText>
+        </div>
+    }
+</div>
+
+

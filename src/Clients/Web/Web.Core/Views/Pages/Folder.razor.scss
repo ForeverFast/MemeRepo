@@ -1,0 +1,45 @@
+﻿@import '../../wwwroot/css/_variables.scss';
+
+.folder-page-inner {
+    @include default-container;
+
+    .folder-container {
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 0px 25px 0px 5px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 135px);
+        grid-gap: 1rem;
+        align-content: flex-start;
+        justify-content: space-between;
+        margin: 20px 0px;
+        width: 100%;
+
+        .folder-object {
+            width: 150px;
+            height: 150px;
+            margin: 3px;
+
+            img {
+                width: 150px;
+                height: 130px;
+            }
+
+            p {
+                height: 20px;
+                padding: 2px 0px;
+                font-size: 16px;
+            }
+            /* &:last-child {
+        margin-right: auto
+    }*/
+        }
+    }
+
+    .folder-empty-message {
+        @include default-container;
+        position: absolute;
+        top: 45%;
+        background-color: transparent;
+    }
+}
