@@ -1,0 +1,29 @@
+﻿@inherits FluxorComponent
+
+<ContextMenuTrigger MenuId="folder-treeview-context-menu" CssClass="h-100">
+    <MudTreeView Items="_appState!.Value.Folders" T="FolderTreeViewModel" CanHover="true" Dense="true" ExpandOnClick="true"
+                 Style="height: 100%;" Color="Color.Secondary">
+        <ItemTemplate>
+            <MudTreeViewItem Value="@context" Items="context.Folders" Class="struct-tree-item"
+                             @bind-Expanded="context.IsExpanded"
+                             OnClick="_ => OnFolderTreeViewItemClick(context)">
+                <Content>
+                    <MudTreeViewItemToggleButton @bind-Expanded="@context.IsExpanded" Visible="@context.HasChild" />
+                    <MudIcon Icon="@((context.IsExpanded && context.HasChild)
+                                     || context.PathFlag ? Icons.Filled.FolderOpen : Icons.Filled.Folder)"
+                             Color="@(context.PathFlag ? Color.Primary : Color.Default)" />
+                    <MudText Class="ms-1" Color="@(context.PathFlag ? Color.Primary : Color.Default)">
+                        @context.Title
+                    </MudText>
+                </Content>
+            </MudTreeViewItem>
+        </ItemTemplate>
+    </MudTreeView>
+</ContextMenuTrigger>
+
+<ContextMenu Id="folder-treeview-context-menu" AutoHide="true">
+    <Item OnClick="OnTreeViewContextMenuCreateFolderClick">Создать папку</Item>
+</ContextMenu>
+
+
+

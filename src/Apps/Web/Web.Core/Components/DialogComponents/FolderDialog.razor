@@ -1,0 +1,20 @@
+﻿<EditForm Model="@Folder" OnValidSubmit="Create">
+    <DataAnnotationsValidator />
+    <MudDialog>
+        <DialogContent>
+            <MudGrid>
+                <MudItem xs="6">
+                    <MudIcon Icon="@Icons.Filled.Folder" Style="height: 100%; width: 100%" />
+                </MudItem>
+                <MudItem xs="6">
+                    <MudTextField Label="Название" @bind-Value="Folder.Title" For="@(() => Folder.Title)" />
+                    <MudTextField Label="Описание" @bind-Value="Folder.Description" For="@(() => Folder.Description)" Lines="5" />
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton OnClick="Cancel">Отмена</MudButton>
+            <MudButton ButtonType="ButtonType.Submit">Создать</MudButton>
+        </DialogActions>
+    </MudDialog>
+</EditForm>

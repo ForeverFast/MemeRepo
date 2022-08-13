@@ -1,0 +1,71 @@
+﻿@inherits LayoutComponentBase
+
+@using Web.Core.Views.Shared.SideMenuComponents;
+
+<MudThemeProvider IsDarkMode="isDarkMode" Theme="_themeService.GetTheme()" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<div>
+    <MudLayout Class="page">
+        <MemeRepoStateContainer State="@State">
+
+            <LoadingFragment>
+                <MemeRepoLoading/>
+            </LoadingFragment>
+
+            <ContentFragment>
+                <MudPaper Class="page__header">
+
+                </MudPaper>
+
+                <MudMainContent Class="page__content">
+                    <MudSwipeArea Class="main-container d-flex flex-row" OnSwipe="OnSwipe">
+
+                        <MudPaper Class="@SideMenuClassname">
+                            <MudPaper Class="struct-view-switcher d-flex flex-row" Width="100%">
+                                <button @onclick="_ => _isFolderView = false" class="@(!_isFolderView ? "selected-view-struct" : "")">
+                                    <MudIcon Icon="@Icons.Filled.Tag" Size="Size.Small" Style="margin-bottom: 2px; margin-right: 2px;" /> Теги
+                                </button>
+                                <button @onclick="_ => _isFolderView = true" class="@(_isFolderView ? "selected-view-struct" : "")">
+                                    <MudIcon Icon="@Icons.Filled.Folder" Size="Size.Small" Style="margin-bottom: 2px;" /> Папки
+                                </button>
+                            </MudPaper>
+                            <MudPaper Class="struct-content" Width="100%">
+                                @if (_isFolderView)
+                                {
+                                    <MemeRepoSideMenuFolderTreeView />
+                                }
+                                else
+                                {
+
+                                }
+                            </MudPaper>
+                            <MudPaper Class="struct-bottom-panel" Width="100%">
+
+                            </MudPaper>
+                        </MudPaper>
+
+                        <MudPaper Class="@ContentClassname">
+                            @Body
+                        </MudPaper>
+
+                    </MudSwipeArea>
+                </MudMainContent>
+
+            </ContentFragment>
+
+            <ErrorFragment>
+
+            </ErrorFragment>
+
+        </MemeRepoStateContainer>
+
+
+    </MudLayout>
+</div>
+
+
+@code {
+    bool isDarkMode = true;
+}

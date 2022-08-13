@@ -1,0 +1,62 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <Target Name="ToolRestore" BeforeTargets="PreBuildEvent">
+    <Exec Command="dotnet tool restore" StandardOutputImportance="high" />
+  </Target>
+
+  <Target Name="PreBuild" AfterTargets="ToolRestore">
+    <Exec Command="dotnet webcompiler -r ..\..\. -c .\webcompilerconfiguration.json" StandardOutputImportance="high" />
+  </Target>
+
+  <ItemGroup>
+    <Watch Include="..\**\*.scss" />
+    <Watch Include="..\**\*.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Blazor.ContextMenu" Version="1.14.0" />
+    <PackageReference Include="Fluxor" Version="5.4.0" />
+    <PackageReference Include="Fluxor.Blazor.Web" Version="5.4.0" />
+    <PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="5.4.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.6" />
+    <PackageReference Include="MudBlazor" Version="6.0.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\imgs\MhKwfM2V05Y.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\ViewServices\" />
+    <Folder Include="Store\AppData\Actions\FolderActions\UpdateFolderActions\" />
+    <Folder Include="Store\AppData\Actions\MemeActions\CreateMemeActions\" />
+    <Folder Include="Store\AppData\Actions\MemeActions\DeleteMemeActions\" />
+    <Folder Include="Store\AppData\Actions\MemeActions\UpdateMemeActions\" />
+    <Folder Include="Store\AppData\Actions\TagActions\CreateTagActions\" />
+    <Folder Include="Store\AppData\Actions\TagActions\DeleteTagActions\" />
+    <Folder Include="Store\AppData\Actions\TagActions\UpdateTagActions\" />
+    <Folder Include="Store\AppData\Effects\ChangeStateActionsEffects\" />
+    <Folder Include="Store\Shared\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\base.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BLL\Business.Core\Business.Core.csproj" />
+  </ItemGroup>
+
+</Project>

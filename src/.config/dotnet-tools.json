@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "isRoot": true,
+  "tools": {
+    "excubo.webcompiler": {
+      "version": "3.3.54-preview.1",
+      "commands": [
+        "webcompiler"
+      ]
+    },
+    "dotnet-ef": {
+      "version": "6.0.7",
+      "commands": [
+        "dotnet-ef"
+      ]
+    }
+  }
+}

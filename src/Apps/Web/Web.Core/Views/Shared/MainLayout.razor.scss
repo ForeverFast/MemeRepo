@@ -1,0 +1,119 @@
+﻿@import "../../wwwroot/css/variables";
+
+::deep .page {
+    height: 100vh;
+    max-height: 100vh;
+    overflow-y: hidden;
+    overflow-x: hidden;
+
+    &__header {
+        @include d-border-top;
+        height: 40px;
+        background-color: $SecondaryDarken;
+    }
+
+    &__content {
+        @include d-border-top;
+        padding: 0px;
+    }
+}
+
+$heightCalc: calc(100vh - 40px);
+
+::deep .main-container {
+    $struct-view-switcher-height: 27px;
+    $struct-bottom-panel: 20px;
+
+    height: $heightCalc;
+
+    &__side-menu {
+        @include d-border-right;
+        height: $heightCalc;
+        width: 300px;
+        background-color: $Secondary;
+
+        &.mobile-app {
+            width: 0% !important;
+            position: absolute;
+            bottom: 0px;
+            top: 40px;
+            z-index: 200;
+
+            .struct-view-switcher {
+                display: none;
+            }
+
+            &.active {
+                width: 300px !important;
+
+                .struct-view-switcher {
+                    display: flex;
+                }
+            }
+        }
+
+        .struct-view-switcher {
+            @include d-border-bottom;
+            height: 27px;
+
+            button {
+                width: 50%;
+                font-size: 16px;
+
+                &:hover {
+                    color: $Primary !important;
+                }
+
+                &:nth-child(2) {
+                    @include d-border-left;
+                }
+
+                &.selected-view-struct {
+                    color: $Primary;
+                }
+            }
+        }
+
+        .struct-content {
+            @include d-border-bottom;
+            height: calc($heightCalc - $struct-view-switcher-height - $struct-bottom-panel);
+            overflow-y: auto;
+            padding: 10px 0px;
+
+            .struct-tree-item {
+                cursor: pointer;
+
+                .mud-treeview-item-content.mud-treeview-item-selected {
+                    background-color: transparent;
+                }
+
+                .mud-treeview-item-icon,
+                .mud-treeview-item-arrow {
+
+                    svg {
+                        color: $StandartLightColor2 !important;
+                    }
+                }
+            }
+        }
+
+        .struct-bottom-panel {
+            height: 20px;
+        }
+    }
+
+    &__content {
+        height: $heightCalc;
+        width: 100%;
+        background-color: $SecondaryLighten;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+       /* &.folder-page {
+            &::-webkit-scrollbar-track {
+                margin-top: 60px !important;
+            }
+        }*/
+    }
+}
+

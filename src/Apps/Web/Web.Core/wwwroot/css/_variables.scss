@@ -1,0 +1,42 @@
+﻿$PrimaryDarken: var(--mud-palette-primary-darken);
+$Primary: var(--mud-palette-primary);
+$PrimaryLighten: var(--mud-palette-primary-lighten);
+
+$SecondaryDarken: var(--mud-palette-secondary-darken);
+$Secondary: var(--mud-palette-secondary);
+$SecondaryLighten: var(--mud-palette-secondary-lighten);
+
+$TertiaryDarken: var(--mud-palette-tertiary-darken);
+$Tertiary: var(--mud-palette-tertiary);
+$TertiaryLighten: var(--mud-palette-tertiary-lighten);
+
+$GrayLVL0: #4D4D51;
+$GrayLVL1: #2D2D30;
+$GrayLVL2: #252527;
+$GrayLVL3: #1A1A1B;
+$GrayLVL4: #121213;
+
+$LightLVL0: #8A8A93;
+
+$StandartLightColor: #CCC5C5;
+$StandartLightColor2: #F0E7E7;
+$StandartLightColor3: #FFFFFF;
+
+@mixin default-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@mixin d-border-top {
+    border-top: 1px solid $Tertiary;
+}
+@mixin d-border-bottom {
+    border-bottom: 1px solid $Tertiary;
+}
+@mixin d-border-right {
+    border-right: 1px solid $Tertiary;
+}
+@mixin d-border-left {
+    border-left: 1px solid $Tertiary;
+}

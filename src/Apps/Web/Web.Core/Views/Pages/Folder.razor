@@ -1,0 +1,53 @@
+﻿@inherits MemeRepoContainerWithStateBaseComponent
+
+<div class="folder-page">
+    <MemeRepoStateContainer State="@State">
+
+        <LoadingFragment>
+            <MemeRepoLoading />
+        </LoadingFragment>
+
+        <ContentFragment>
+
+            <MudBreadcrumbs Items="@FolderBreadcrumbItems" Class="folder-breadcrumbs">
+                <ItemTemplate Context="item">
+                    <MudText Class="custom-breadcrumb-item" @onclick="_ => OnFolderBreadcrumbItemClick(item.Href)">@item.Text</MudText>
+                </ItemTemplate>
+            </MudBreadcrumbs>
+
+            <button @onclick="OpenFilePicker">OpenFilePicker</button>
+            <button @onclick="OpenFolderPicker">OpenFolderPicker</button>
+            <ContextMenuTrigger MenuId="folder-context-menu" CssClass="h-100">
+                @if (FolderObjects?.Count > 0)
+                {
+                    <div class="folder-container">
+                        @foreach (var fo in FolderObjects)
+                        {
+                            <MemeRepoItem Data="fo" />
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="folder-empty-message">
+                        <MudText Style="font-size: 50px">
+                            <MudIcon Icon="@Icons.Filled.FolderOpen" Style="height: 70px; width: 70px;" /> Мемчиков нема
+                        </MudText>
+                        <MudText Class="mt-0">Наполни меня (͡° ͜ʖ ͡°)</MudText>
+                    </div>
+                }
+
+            </ContextMenuTrigger>
+
+        </ContentFragment>
+
+        <ErrorFragment>
+
+        </ErrorFragment>
+
+    </MemeRepoStateContainer>
+</div>
+
+<ContextMenu Id="folder-context-menu" AutoHide="true">
+    <Item>Создать папку</Item>
+</ContextMenu>

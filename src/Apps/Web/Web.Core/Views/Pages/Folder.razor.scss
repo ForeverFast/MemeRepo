@@ -1,0 +1,58 @@
+﻿@import '../../wwwroot/css/_variables.scss';
+
+.folder-page {
+    @include default-container;
+
+    &::-webkit-scrollbar-track {
+        margin-top: 60px !important;
+    }
+
+    .folder-breadcrumbs {
+        @include d-border-bottom;
+        position: sticky;
+        width: 100%;
+        background-color: $SecondaryLighten;
+        top: 0;
+
+        .mud-breadcrumb-item {
+            &:last-child {
+                pointer-events: none;
+                cursor: default;
+                color: $Primary;
+            }
+        }
+    }
+
+    .folder-container {
+        padding: 10px 15px 10px 5px;
+        display: grid;
+        grid-column-gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        width: 100%;
+        /*.folder-object {
+            width: 150px;
+            height: 150px;
+
+            img {
+                width: 150px;
+                height: 130px;
+            }
+
+            p {
+                height: 20px;
+                padding: 2px 0px;
+                font-size: 16px;
+            }*/
+        /* &:last-child {
+        margin-right: auto
+    }*/
+        /*}*/
+    }
+
+    .folder-empty-message {
+        @include default-container;
+        position: absolute;
+        top: 45%;
+        background-color: transparent;
+    }
+}
