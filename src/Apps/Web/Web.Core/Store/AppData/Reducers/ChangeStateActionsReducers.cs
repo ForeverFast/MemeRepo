@@ -2,7 +2,7 @@
 
 namespace Web.Core.Store.AppData.Reducers
 {
-    public static class ChangeStateActionsReducers
+    internal static class ChangeStateActionsReducers
     {
         [ReducerMethod]
         public static AppDataState ReduceSetCurrentFolderAction(AppDataState state, SetCurrentFolderAction action)

@@ -13,6 +13,12 @@
       "commands": [
         "dotnet-ef"
       ]
+    },
+    "linq2db.cli": {
+      "version": "4.1.1",
+      "commands": [
+        "dotnet-linq2db"
+      ]
     }
   }
 }

@@ -11,6 +11,15 @@ namespace Domain.Data.Extensions
             .NotNullable()
             .PrimaryKey();
 
+        public static ICreateTableColumnOptionOrWithColumnSyntax WithCreateTimeColumn(this ICreateTableWithColumnSyntax tableWithColumnSyntax)
+          => tableWithColumnSyntax
+            .WithColumn("CreatedAt").AsDateTime2();
+
+        public static ICreateTableColumnOptionOrWithColumnSyntax WithObservebleColumns(this ICreateTableWithColumnSyntax tableWithColumnSyntax)
+         => tableWithColumnSyntax
+            .WithColumn("CreatedAt").AsDateTime2()
+            .WithColumn("UpdatedAt").AsDateTime2();
+
         public static ICreateTableColumnOptionOrWithColumnSyntax WithFolderObjectColumns(this ICreateTableWithColumnSyntax tableWithColumnSyntax)
            => tableWithColumnSyntax
             .WithColumn("Title").AsString()

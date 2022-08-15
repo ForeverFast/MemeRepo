@@ -1,6 +1,6 @@
 ﻿namespace Web.Core.Store.AppData
 {
-    public class AppDataFeatureState : Feature<AppDataState>
+    internal class AppDataFeatureState : Feature<AppDataState>
     {
         public override string GetName() => nameof(AppDataState);
 

@@ -18,7 +18,32 @@ namespace Web.Core.Helpers
                 }
             }
                 
-            return source.ToHashSet();
+            return source.Where(x => x.ParentFolderId == null).ToHashSet();
         }
+
+        //public static HashSet<T> ToTree<T, F>(this IEnumerable<T> source,
+        //    Func<T, F> keyFunc,
+        //    Func<T, F> parentKeyFunc,
+        //    Func<T, List<T>> childFunc,
+        //    Func<T, T, T> parentFunc) where T : class
+        //{
+        //    var childsHash = source.ToLookup(parentKeyFunc);
+
+        //    foreach (var cat in source)
+        //    {
+        //        childFunc(cat).ToList().Clear();
+        //        foreach (var folder in childsHash[keyFunc(cat)])
+        //        {
+        //            parentFunc(folder)
+        //            var parent = parentFunc.Invoke();
+
+        //            parent = cat;
+
+        //            childFunc(cat).Add(folder);
+        //        }
+        //    }
+
+        //    return source.Where(x => x.ParentFolderId == null).ToHashSet();
+        //}
     }
 }

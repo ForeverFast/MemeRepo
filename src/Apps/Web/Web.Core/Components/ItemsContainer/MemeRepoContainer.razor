@@ -1,0 +1,20 @@
+﻿
+<div class="memerepo-container">
+    <Condition Evaluation="@(Items.Count > 0)">
+        <Match>
+            <Iterations T="MemeRepoItemViewModel" Items="@Items">
+                <MemeRepoContainerItem Data="context" />
+            </Iterations>
+        </Match>
+        <NotMatch>
+            <Condition Evaluation="@(EmptyContent != null)">
+                <Match>
+                    @EmptyContent
+                </Match>
+                <NotMatch>
+                    <MudText>По вашему запросу ничего не найдено</MudText>
+                </NotMatch>
+            </Condition>
+        </NotMatch>
+    </Condition>
+</div>

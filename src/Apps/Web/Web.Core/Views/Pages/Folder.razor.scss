@@ -2,6 +2,7 @@
 
 .folder-page {
     @include default-container;
+    height: 100%;
 
     &::-webkit-scrollbar-track {
         margin-top: 60px !important;
@@ -23,36 +24,11 @@
         }
     }
 
-    .folder-container {
-        padding: 10px 15px 10px 5px;
-        display: grid;
-        grid-column-gap: 10px;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        width: 100%;
-        /*.folder-object {
-            width: 150px;
-            height: 150px;
-
-            img {
-                width: 150px;
-                height: 130px;
-            }
-
-            p {
-                height: 20px;
-                padding: 2px 0px;
-                font-size: 16px;
-            }*/
-        /* &:last-child {
-        margin-right: auto
-    }*/
-        /*}*/
-    }
-
     .folder-empty-message {
         @include default-container;
         position: absolute;
         top: 45%;
+        left: 40%;
         background-color: transparent;
     }
 }

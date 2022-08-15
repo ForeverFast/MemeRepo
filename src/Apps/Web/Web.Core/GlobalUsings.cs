@@ -1,6 +1,6 @@
 ﻿global using Microsoft.AspNetCore.Components;
 
-global using Domain.Core.Models;
+global using Domain.Core.Extensions;
 global using Domain.Data.Context;
 
 global using Web.Core.Helpers;

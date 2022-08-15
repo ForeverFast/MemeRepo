@@ -11,10 +11,12 @@ namespace Domain.Data.Migrations
         {
             Create.Table("Tags")
                 .WithIdGuidColumn()
+                .WithCreateTimeColumn()
                 .WithColumn("Title").AsString();
 
             Create.Table("Folders")
                 .WithIdGuidColumn()
+                .WithObservebleColumns()
                 .WithFolderObjectColumns();
 
             Create.Table("FolderTags")
@@ -25,6 +27,7 @@ namespace Domain.Data.Migrations
 
             Create.Table("Memes")
                 .WithIdGuidColumn()
+                .WithObservebleColumns()
                 .WithFolderObjectColumns();
 
             Create.Table("MemeTags")

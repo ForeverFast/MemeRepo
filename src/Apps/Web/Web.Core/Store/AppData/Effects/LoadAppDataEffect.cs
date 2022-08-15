@@ -1,5 +1,4 @@
-﻿using Business.Core.Dtos;
-using Business.Core.Utils.MediatR.Queries.GlobalQueries;
+﻿using AutoMapper;
 using DALQueryChain.Interfaces;
 using Web.Core.Base.Store.Effects;
 using Web.Core.Models;
@@ -12,7 +11,7 @@ namespace Web.Core.Store.AppData.Effects
     {
         #region Ctors
 
-        public LoadAppDataEffect(IDALQueryChain<MemeRepoClientContext> dal, IMapper mapper) : base(dal, mapper)
+        public LoadAppDataEffect(IDALQueryChain<MemeRepoDbContext> dal, IMapper mapper) : base(dal, mapper)
         {
         }
 
@@ -22,7 +21,7 @@ namespace Web.Core.Store.AppData.Effects
         {
             try
             {
-                var folders = await _dal.For<Folder>().Get.LoadWith(x => x.Tags).ToListAsync();
+                var folders = await _dal.For<Folder>().Get.LoadWith(x => x.FolderTags).ToListAsync();
                 var tags = await _dal.For<Tag>().Get.ToListAsync();
 
                 var folderVMs = _mapper.Map<HashSet<FolderTreeViewModel>>(folders).ToTree();

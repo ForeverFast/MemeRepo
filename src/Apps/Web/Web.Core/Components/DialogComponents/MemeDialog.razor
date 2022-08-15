@@ -1,0 +1,32 @@
+﻿
+<EditForm Model="@Meme" OnValidSubmit="Save">
+
+    <DataAnnotationsValidator />
+    <MudDialog>
+        <DialogContent>
+            <MudGrid>
+                <MudItem xs="6">
+                    <Condition Evaluation="@(!string.IsNullOrEmpty(Meme.Path))">
+                        <Match>
+                            <MudImage Src="@Meme.Path" Style="height: 100%; width: 100%" @onclick="ChooseFile" />
+                        </Match>
+                        <NotMatch>
+                            <MudPaper>
+                                <MudIcon Icon="@Icons.Filled.Image" Style="height: 100%; width: 100%" @onclick="ChooseFile" />
+                            </MudPaper>
+                        </NotMatch>
+                    </Condition>
+                </MudItem>
+                <MudItem xs="6">
+                    <MudTextField Label="Название" @bind-Value="Meme.Title" For="@(() => Meme.Title)" />
+                    <MudTextField Label="Описание" @bind-Value="Meme.Description" For="@(() => Meme.Description)" Lines="5" />
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton OnClick="Cancel">Отмена</MudButton>
+            <MudButton ButtonType="ButtonType.Submit">@(_isEditMode ? "Сохранить" : "Создать")</MudButton>
+            </DialogActions>
+        </MudDialog>
+
+    </EditForm>

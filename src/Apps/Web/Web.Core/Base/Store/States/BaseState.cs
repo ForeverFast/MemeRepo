@@ -1,6 +1,6 @@
 ﻿namespace Web.Core.Base.Store.States
 {
-    public abstract record BaseState
+    internal abstract record BaseState
     {
         public bool IsLoading { get; init; }
 

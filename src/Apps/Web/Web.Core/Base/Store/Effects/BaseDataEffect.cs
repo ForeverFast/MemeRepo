@@ -7,14 +7,14 @@ namespace Web.Core.Base.Store.Effects
     {
         #region Injects
 
-        protected readonly IDALQueryChain<MemeRepoClientContext> _dal;
+        protected readonly IDALQueryChain<MemeRepoDbContext> _dal;
         protected readonly IMapper _mapper;
 
         #endregion
 
         #region Ctors
 
-        protected BaseDataEffect(IDALQueryChain<MemeRepoClientContext> dal,
+        protected BaseDataEffect(IDALQueryChain<MemeRepoDbContext> dal,
                                  IMapper mapper)
         {
             _dal = dal;

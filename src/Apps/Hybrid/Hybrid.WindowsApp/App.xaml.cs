@@ -1,5 +1,4 @@
-﻿using Business.Core;
-using Domain.Data;
+﻿using Domain.Data;
 using FluentMigrator.Runner;
 using Fluxor;
 using MediatR;
@@ -24,7 +23,6 @@ namespace Hybrid.WindowsApp
                 {
                     var assemblies = new Assembly[]
                     {
-                        typeof(BusinessCoreEntryPoint).Assembly,
                         typeof(HybridWindowsAppEntryPoint).Assembly,
                         typeof(WebCoreEntryPoint).Assembly,
                     };
@@ -41,11 +39,10 @@ namespace Hybrid.WindowsApp
                     });
 
                     services.AddDAL(connectionString);
-                    services.AddBLL();
-
+                    
                     services.AddDesktopUI();
-                    services.AddWpfBlazorWebView();
                     services.AddWebUI();
+                    services.AddWpfBlazorWebView();
 #if DEBUG
                     services.AddBlazorWebViewDeveloperTools();
 #endif

@@ -3,7 +3,7 @@
     public interface IFileStorageDialogProvider
     {
         void ShowFolder(string path);
-        string OpenFilePicker(string extension = null);
+        string OpenFilePicker(string? extension = null);
         string OpenFolderPicker();
     }
 }

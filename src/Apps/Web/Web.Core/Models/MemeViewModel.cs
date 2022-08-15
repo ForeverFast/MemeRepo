@@ -10,7 +10,6 @@
         public string Path { get; init; } = string.Empty;
         public uint Position { get; init; }
 
-        public FolderViewModel? ParentFolder { get; set; }
         public HashSet<TagViewModel> Tags { get; set; } = new HashSet<TagViewModel>();
     }
 }

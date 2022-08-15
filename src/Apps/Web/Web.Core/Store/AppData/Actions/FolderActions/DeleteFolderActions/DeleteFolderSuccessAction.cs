@@ -4,11 +4,11 @@ namespace Web.Core.Store.AppData.Actions.FolderActions.DeleteFolderActions
 {
     internal record DeleteFolderSuccessAction : BaseSuccessAction
     {
-        public DeleteFolderSuccessAction(Guid deletedFolder)
+        public DeleteFolderSuccessAction(Guid deletedFolderId)
         {
-            DeletedFolder = deletedFolder;
+            DeletedFolderId = deletedFolderId;
         }
 
-        public Guid DeletedFolder { get; }
+        public Guid DeletedFolderId { get; }
     }
 }

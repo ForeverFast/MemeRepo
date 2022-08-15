@@ -15,7 +15,7 @@ namespace Web.Core.Base.Store.Effects
 
         public override Task HandleAsync(T action, IDispatcher dispatcher)
         {
-            if (string.IsNullOrEmpty(action.SuccessMessage))
+            if (!string.IsNullOrEmpty(action.SuccessMessage))
             {
                 _snackbar.Add(action.SuccessMessage, Severity.Success);
             }

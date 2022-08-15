@@ -24,12 +24,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Blazor.ContextMenu" Version="1.14.0" />
     <PackageReference Include="Fluxor" Version="5.4.0" />
     <PackageReference Include="Fluxor.Blazor.Web" Version="5.4.0" />
     <PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="5.4.0" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
+    <PackageReference Include="MediatR.Courier" Version="5.0.0" />
+    <PackageReference Include="MediatR.Courier.DependencyInjection" Version="5.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.6" />
     <PackageReference Include="MudBlazor" Version="6.0.11" />
+    <PackageReference Include="PrettyBlazor" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,24 +46,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\ViewServices\" />
-    <Folder Include="Store\AppData\Actions\FolderActions\UpdateFolderActions\" />
-    <Folder Include="Store\AppData\Actions\MemeActions\CreateMemeActions\" />
-    <Folder Include="Store\AppData\Actions\MemeActions\DeleteMemeActions\" />
-    <Folder Include="Store\AppData\Actions\MemeActions\UpdateMemeActions\" />
     <Folder Include="Store\AppData\Actions\TagActions\CreateTagActions\" />
     <Folder Include="Store\AppData\Actions\TagActions\DeleteTagActions\" />
     <Folder Include="Store\AppData\Actions\TagActions\UpdateTagActions\" />
     <Folder Include="Store\AppData\Effects\ChangeStateActionsEffects\" />
-    <Folder Include="Store\Shared\" />
+    <Folder Include="Store\AppData\Effects\MemeActionsEffects\DeleteMemeActionsEffects\" />
+    <Folder Include="Store\AppData\Reducers\MemeActionsReducers\" />
+    <Folder Include="Store\ContentData\Actions\" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\css\base.scss" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\BLL\Business.Core\Business.Core.csproj" />
+    <ProjectReference Include="..\..\..\DAL\Domain.Data\Domain.Data.csproj" />
   </ItemGroup>
 
 </Project>

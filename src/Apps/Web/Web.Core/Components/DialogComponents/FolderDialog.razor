@@ -1,4 +1,4 @@
-﻿<EditForm Model="@Folder" OnValidSubmit="Create">
+﻿<EditForm Model="@Folder" OnValidSubmit="Save">
     <DataAnnotationsValidator />
     <MudDialog>
         <DialogContent>
@@ -14,7 +14,7 @@
         </DialogContent>
         <DialogActions>
             <MudButton OnClick="Cancel">Отмена</MudButton>
-            <MudButton ButtonType="ButtonType.Submit">Создать</MudButton>
+            <MudButton ButtonType="ButtonType.Submit">@(_isEditMode ? "Сохранить" : "Создать")</MudButton>
         </DialogActions>
     </MudDialog>
 </EditForm>

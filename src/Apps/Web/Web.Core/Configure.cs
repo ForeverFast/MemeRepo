@@ -1,7 +1,8 @@
-﻿using Fluxor;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using MudBlazor.Services;
+using Web.Core.Interfaces.Services.ViewServices;
 using Web.Core.Services;
+using Web.Core.Services.ViewServices;
 
 namespace Web.Core
 {
@@ -9,7 +10,13 @@ namespace Web.Core
     {
         public static IServiceCollection AddWebUI(this IServiceCollection services)
         {
-            services.AddMudServices();
+            services.AddMudServices(optionts =>
+            {
+                optionts.SnackbarConfiguration = new SnackbarConfiguration
+                {
+                    PositionClass = Defaults.Classes.Position.BottomRight,
+                };
+            });
 
             services.AddBlazorContextMenu(options =>
             {
@@ -20,7 +27,9 @@ namespace Web.Core
                 });
             });
 
+            services.AddSingleton<AppInitializerService>();
             services.AddSingleton<ThemeService>();
+            services.AddScoped<IDataViewService, DataViewService>();
 
             return services;
         }

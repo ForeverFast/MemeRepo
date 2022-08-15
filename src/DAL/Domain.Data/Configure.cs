@@ -1,10 +1,8 @@
 ﻿using DALQueryChain.Linq2Db;
-using Domain.Data.Context;
 using FluentMigrator.Runner;
 using LinqToDB.AspNet;
 using LinqToDB.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
 
 namespace Domain.Data
 {
@@ -12,7 +10,7 @@ namespace Domain.Data
     {
         public static IServiceCollection AddDAL(this IServiceCollection services, string connectionString)
         {
-            services.AddLinqToDBContext<MemeRepoClientContext>((provider, options) =>
+            services.AddLinqToDBContext<MemeRepoDbContext>((provider, options) =>
             {
                 options.UseSQLite(connectionString);
             });
@@ -25,7 +23,7 @@ namespace Domain.Data
                 .AddLogging(lb => lb.AddFluentMigratorConsole())
                 .BuildServiceProvider();
 
-            services.AddQueryChain(Assembly.GetExecutingAssembly());
+            services.AddQueryChain(typeof(DomainDataEntryPoint).Assembly);
 
             return services;
         }

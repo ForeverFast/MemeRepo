@@ -1,12 +1,11 @@
-﻿using Domain.Core.Extensions;
-using Fluxor;
-using Fluxor.Blazor.Web.Components;
-using Microsoft.AspNetCore.Components.Routing;
-using Web.Core.Components.DialogComponents;
+﻿using Fluxor.Blazor.Web.Components;
 using Web.Core.Models.Components;
 using Web.Core.Store.AppData;
 using Web.Core.Store.AppData.Actions.ChangeStateActionsEffects;
 using Web.Core.Store.AppData.Actions.FolderActions.CreateFolderActions;
+using Web.Core.Store.AppData.Actions.FolderActions.DeleteFolderActions;
+using Web.Core.Store.AppData.Actions.FolderActions.UpdateFolderActions;
+using Web.Core.Store.AppData.Actions.MemeActions.CreateMemeActions;
 
 namespace Web.Core.Views.Shared.SideMenuComponents
 {
@@ -17,11 +16,7 @@ namespace Web.Core.Views.Shared.SideMenuComponents
         [Inject] IState<AppDataState>? _appState { get; init; }
         [Inject] IDispatcher? _dispatcher { get; init; }
         [Inject] IActionSubscriber? _actionSubscriber { get; init; }
-
         [Inject] NavigationManager? _navigationManager { get; init; }
-        [Inject] IDialogService? _dialogService { get; init; }
-
-        [Inject] IMapper? _mapper { get; init; }
 
         #endregion
 
@@ -35,20 +30,22 @@ namespace Web.Core.Views.Shared.SideMenuComponents
 
         #region State methods
 
+        protected override Task OnAfterRenderAsync(bool firstRender)
+        {
+            return base.OnAfterRenderAsync(firstRender);
+        }
+
         protected override async Task OnInitializedAsync()
         {
             SubscribeToAction<SetCurrentFolderAction>(OnSetCurrentFolderAction);
+            SubscribeToAction<CreateFolderSuccessAction>((action) => InvokeAsync(() => this.StateHasChanged()));
+            SubscribeToAction<UpdateFolderSuccessAction>((action) => InvokeAsync(() => this.StateHasChanged()));
+            SubscribeToAction<DeleteFolderSuccessAction>((action) => InvokeAsync(() => this.StateHasChanged()));
 
             TryInitializeElement();
             _isComponentInitialized = true;
 
             await base.OnInitializedAsync();
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            _actionSubscriber!.UnsubscribeFromAllActions(this);
-            base.Dispose(disposing);
         }
 
         #endregion
@@ -66,28 +63,22 @@ namespace Web.Core.Views.Shared.SideMenuComponents
 
         #region Internal Events
 
-        protected void OnFolderTreeViewItemClick(FolderTreeViewModel context) => _navigationManager!.NavigateToFolder(context.Id);
-        protected Task OnTreeViewContextMenuCreateFolderClick() => CreateFolderAsync(null);
-        protected Task OnTreeViewItemContextMenuCreateFolderClick(Guid? parentFolderId) => CreateFolderAsync(parentFolderId);
+        protected void OnFolderTreeViewItemClick(FolderTreeViewModel context)
+            => _navigationManager!.NavigateToFolder(context.Id);
+        protected void OnTreeViewContextMenuCreateFolderClick() 
+            => _dispatcher!.Dispatch(new CreateFolderAction(null));
+        protected void OnTreeViewItemContextMenuCreateFolderClick(Guid? parentFolderId)
+            => _dispatcher!.Dispatch(new CreateFolderAction(parentFolderId));
+        protected void OnTreeViewItemContextMenuCreateMemeClick(Guid parentFolderId)
+            => _dispatcher!.Dispatch(new CreateMemeAction(parentFolderId));
+        protected void OnTreeViewItemContextMenuUpdateFolderClick(Guid folderId)
+            => _dispatcher!.Dispatch(new UpdateFolderAction(folderId));
+        protected void OnTreeViewItemContextMenuDeleteFolderClick(Guid folderId)
+            => _dispatcher!.Dispatch(new DeleteFolderAction(folderId));
 
         #endregion
 
         #region Private methods
-
-        protected async Task CreateFolderAsync(Guid? parentFolderId)
-        {
-            var dialog = _dialogService!.Show<FolderDialog>("Создать папку", FolderDialog.DialogOptions);
-            var result = await dialog.Result;
-
-            if (!result.Cancelled)
-            {
-                var folder = (FolderDialogViewModel)result.Data;
-                folder.ParentFolderId = parentFolderId;
-
-                var action = _mapper!.Map<CreateFolderAction>(folder);
-                _dispatcher!.Dispatch(action);
-            }
-        }
 
         protected bool TryInitializeElement()
         {

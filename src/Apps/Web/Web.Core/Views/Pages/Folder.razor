@@ -1,6 +1,6 @@
 ﻿@inherits MemeRepoContainerWithStateBaseComponent
 
-<div class="folder-page">
+<div class="folder-page justify-space-between">
     <MemeRepoStateContainer State="@State">
 
         <LoadingFragment>
@@ -14,29 +14,18 @@
                     <MudText Class="custom-breadcrumb-item" @onclick="_ => OnFolderBreadcrumbItemClick(item.Href)">@item.Text</MudText>
                 </ItemTemplate>
             </MudBreadcrumbs>
-
-            <button @onclick="OpenFilePicker">OpenFilePicker</button>
-            <button @onclick="OpenFolderPicker">OpenFolderPicker</button>
-            <ContextMenuTrigger MenuId="folder-context-menu" CssClass="h-100">
-                @if (FolderObjects?.Count > 0)
-                {
-                    <div class="folder-container">
-                        @foreach (var fo in FolderObjects)
-                        {
-                            <MemeRepoItem Data="fo" />
-                        }
-                    </div>
-                }
-                else
-                {
-                    <div class="folder-empty-message">
-                        <MudText Style="font-size: 50px">
-                            <MudIcon Icon="@Icons.Filled.FolderOpen" Style="height: 70px; width: 70px;" /> Мемчиков нема
-                        </MudText>
-                        <MudText Class="mt-0">Наполни меня (͡° ͜ʖ ͡°)</MudText>
-                    </div>
-                }
-
+            <ContextMenuTrigger MenuId="folder-context-menu" CssClass="w-100 h-100">
+                <MemeRepoContainer Items="FolderObjects">
+                    <EmptyContent>
+                        <div class="folder-empty-message">
+                            <div class="d-flex flex-row align-center">
+                                <MudIcon Icon="@Icons.Filled.FolderOpen" Style="height: 70px; width: 70px;" />
+                                <MudText Style="font-size: 70px"> Мемчиков нема</MudText>
+                            </div>
+                            <MudText Class="mt-0">Наполни меня (͡° ͜ʖ ͡°)</MudText>
+                        </div>
+                    </EmptyContent>
+                </MemeRepoContainer>
             </ContextMenuTrigger>
 
         </ContentFragment>

@@ -1,4 +1,8 @@
-﻿<StoreInitializer />
+﻿@using Web.Core.Services
+
+@inject AppInitializerService _appInitializerService
+
+<StoreInitializer />
 
 <CascadingValue TValue="bool" Name="IsMobileApp" Value="@IsMobileApp">
     <Router AppAssembly="@typeof(App).Assembly">
@@ -18,4 +22,11 @@
 @code
 {
     [Parameter] public bool IsMobileApp { get; set; }// = true;
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await _appInitializerService.InitApp();
+
+        await base.SetParametersAsync(parameters);
+    }
 }

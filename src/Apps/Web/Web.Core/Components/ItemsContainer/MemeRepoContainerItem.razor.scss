@@ -1,0 +1,18 @@
+﻿::deep .memerepo-container-item {
+    width: 150px;
+    height: 150px;
+    object-fit: scale-down;
+
+    &__inner-container {
+        img {
+            width: 150px;
+            height: 120px;
+        }
+
+        p {
+            height: 30px;
+            padding: 2px 0px;
+            font-size: 16px;
+        }
+    }
+}

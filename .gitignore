@@ -349,13 +349,18 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
+# js and css
+
 **/packages/
 **/bin/
 **/obj/
 **/node_modules/
-**/wwwroot/css/app.*.css
-**/wwwroot/css/app.*.gz
-**/wwwroot/css/app.css
+**/wwwroot/css/*.*.css
+**/wwwroot/css/**/*.*.css
+**/wwwroot/css/*.*.gz
+**/wwwroot/css/**/*.*.gz
+**/wwwroot/css/*.css
+**/wwwroot/css/**/*.css
 
 **/Pages/*.css
 **/Pages/**/*.css
@@ -377,3 +382,7 @@ MigrationBackup/
 **/Components/**/*.css.map
 **/Components/*.gz
 **/Components/**/*.gz
+
+# Other
+
+**/*.db

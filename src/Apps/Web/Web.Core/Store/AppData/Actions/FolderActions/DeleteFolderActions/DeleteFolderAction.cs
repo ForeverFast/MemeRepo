@@ -2,11 +2,11 @@
 {
     internal record DeleteFolderAction
     {
-        public DeleteFolderAction(Guid folderId)
+        public DeleteFolderAction(Guid id)
         {
-            FolderId = folderId;
+            Id = id;
         }
 
-        public Guid FolderId { get; init; }
+        public Guid Id { get; }
     }
 }

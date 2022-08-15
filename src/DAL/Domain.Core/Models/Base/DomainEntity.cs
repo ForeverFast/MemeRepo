@@ -2,9 +2,8 @@
 
 namespace Domain.Core.Models.Base
 {
-    public abstract class DomainEntity : IDomainEntity, IDbModelBase
+    public abstract class DomainEntity : IDbModelBase
     {
-        public Guid Id { get; set; }
-        public DateTime? DeletedAt { get; set; }
+        //public DateTimeOffset? DeletedAt { get; set; }
     }
 }

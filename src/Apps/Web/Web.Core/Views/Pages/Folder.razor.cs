@@ -1,7 +1,10 @@
 ﻿using Domain.Core.Interfaces;
 using Web.Core.Enums.Components.StateContainer;
+using Web.Core.Interfaces.Services.ViewServices;
 using Web.Core.Models.Components;
+using Web.Core.Services.ViewServices;
 using Web.Core.Store.AppData;
+using Web.Core.Store.AppData.Actions.ChangeStateActionsEffects;
 
 namespace Web.Core.Views.Pages
 {
@@ -18,13 +21,12 @@ namespace Web.Core.Views.Pages
 
         [Inject] IState<AppDataState>? _appState { get; init; }
         [Inject] IDispatcher? _dispatcher { get; init; }
-
         [Inject] NavigationManager? _navigationManager { get; init; }
-
-        [Inject] IMediator? _mediator { get; init; }
-
         [Inject] IFileStorageProvider? _nativeFileStorageProvider { get; init; }
         [Inject] IFileStorageDialogProvider? _fileStorageDialogProvider { get; init; }
+        [Inject] IDataViewService? _dataViewService { get; init; }  
+
+        [Inject] IMapper? _mapper { get; init; }  
 
         #endregion
 
@@ -36,14 +38,7 @@ namespace Web.Core.Views.Pages
 
         #endregion
 
-        #region Internal Events
-
-        protected void OnFolderBreadcrumbItemClick(string folderId) => _navigationManager!.NavigateToFolder(Guid.Parse(folderId));
-
-        #endregion
-
-        
-
+        #region State methods
 
         protected override async Task OnParametersSetAsync()
         {
@@ -52,107 +47,31 @@ namespace Web.Core.Views.Pages
 
             if (_currentFolderId != Id)
             {
-                FolderObjects.Clear();
+                _currentFolderId = Id;
 
+                FolderObjects.Clear();
+                var memes = await _dataViewService!.LoadFolderMemesByFolderId(_currentFolderId);
+                var folderItems = _mapper!.Map<List<MemeRepoItemViewModel>>(memes);
+                folderItems.ForEach(x => x.Path = _appState!.Value.GetFileRelativePath(_currentFolderId, x.Path));
+                FolderObjects = folderItems;
             }
 
             State = ComponentState.Content;
+
+            this.StateHasChanged();
+
+            _dispatcher!.Dispatch(new SetCurrentFolderAction
+            {
+                Folder = _appState!.Value.FolderList.First(x => x.Id == _currentFolderId)
+            });
         }
 
+        #endregion
 
-        private string GetImageAnotherName(string parentFolderPath, string imagePath)
-        {
-            string newMemePath = @$"{parentFolderPath}\{Path.GetFileName(imagePath)}";
-            if (!File.Exists(newMemePath))
-            {
-                return newMemePath;
-            }
+        #region Internal Events
 
-            int num = 2;
-            while (true)
-            {
-                newMemePath = @$"{parentFolderPath}\{Path.GetFileNameWithoutExtension(imagePath)} ({num++}){Path.GetExtension(imagePath)}";
-                if (!File.Exists(newMemePath))
-                {
-                    return newMemePath;
-                }
-            }
-        }
+        protected void OnFolderBreadcrumbItemClick(string folderId) => _navigationManager!.NavigateToFolder(Guid.Parse(folderId));
 
-
-        async Task OpenFolderPicker()
-        {
-            try
-            {
-                //await _bsm!.Folders.CreateFolderAsync(new FolderDto
-                //{
-                //    Title = "test folder",
-                //});
-
-                //var result = _nativeFileStorageProvider.OpenFolderPicker();
-
-
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-        void OpenFilePicker()
-        {
-            try
-            {
-                //if (!Directory.Exists(parentFolderPath))
-                //    Directory.CreateDirectory(parentFolderPath);
-
-                //var imagePath = _fileStorageDialogProvider.OpenFilePicker();
-                //string title = null;
-                //string newImagePath = string.Empty;
-                //if (!string.IsNullOrEmpty(title))
-                //{
-                //    newImagePath = Path.Combine(parentFolderPath, $@"{title}{Path.GetExtension(imagePath)}");
-                //}
-                //else
-                //{
-                //    newImagePath = Path.Combine(parentFolderPath, Path.GetFileName(imagePath));
-                //}
-
-                //newImagePath = GetImageAnotherName(parentFolderPath, newImagePath);
-                //File.Copy(imagePath, newImagePath);
-
-                //var correctPath = newImagePath.Replace(parentFolderPath + "\\", "\\user-files\\");
-                //var obj = new MemeRepoItemViewModel
-                //{
-                //    Title = "Object 1",
-                //    Path = correctPath
-                //};
-
-
-                //for (int i = 0; i < 150; i++)
-                //    FolderObjects.Add(obj);
-
-                this.StateHasChanged();
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
-
-        void Test()
-        {
-            try
-            {
-                //_nativeFileStorageProvider.OpenFolderPicker();
-
-                //Directory.CreateDirectory("D:\\test");
-                //using var file = File.Create($"D:\\test.txt");
-            }
-            catch (Exception ex)
-            {
-
-            }
-        }
+        #endregion
     }
 }
