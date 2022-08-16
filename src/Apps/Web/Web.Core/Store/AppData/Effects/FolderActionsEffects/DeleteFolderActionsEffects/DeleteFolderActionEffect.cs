@@ -44,16 +44,16 @@ namespace Web.Core.Store.AppData.Effects.FolderActionsEffects.DeleteFolderAction
             {
                 dispatcher.Dispatch(new DeleteFolderFailureAction
                 {
-                    FailureMessage = "Не удалось удалить папку.",
                     ErrorMessage = ex.Message,
+                    Exception = ex,
                 });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 dispatcher.Dispatch(new DeleteFolderFailureAction
                 {
-                    FailureMessage = "Не удалось удалить папку.",
-                    ErrorMessage = "",
+                    ErrorMessage = "Не удалось удалить папку.",
+                    Exception = ex,
                 });
             }
         }

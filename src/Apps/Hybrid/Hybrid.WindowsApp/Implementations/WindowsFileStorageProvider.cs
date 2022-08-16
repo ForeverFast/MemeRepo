@@ -6,7 +6,7 @@ namespace Hybrid.WindowsApp.Implementations
 {
     internal class WindowsFileStorageProvider : IFileStorageProvider
     {
-        public string RootPath => Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "user-files");
+        public string RootPath => Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
         public string TmpPath => Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "tmp");
 
         public string GetAbsolutePath(string path) => Path.Combine(RootPath, path);
@@ -22,7 +22,7 @@ namespace Hybrid.WindowsApp.Implementations
         public string CreateFolderPath(string? parentFolderPath = null, string? title = null)
         {
             title ??= "Новая папка";
-            parentFolderPath ??= RootPath;
+            parentFolderPath ??= Path.Combine(RootPath,"user-files");
 
             string newPath = Path.Combine(parentFolderPath, title);
             string tmpPath = newPath;
@@ -73,15 +73,15 @@ namespace Hybrid.WindowsApp.Implementations
         {
             var targetTmpFolder = Path.Combine(TmpPath, Guid.NewGuid().ToString());
             this.CreateFolder(targetTmpFolder);
-            var resultFileName = Path.GetFileName(sourceFile).Replace(" ","");
+            var resultFileName = Path.GetFileName(sourceFile).Replace(" ", "");
             var newPath = Path.Combine(targetTmpFolder, resultFileName);
             File.Copy(sourceFile, newPath);
-            return newPath; 
+            return newPath;
         }
 
         public void CopyFileToNewFile(string sourceFile, string targetFile)
         {
-            File.Copy(sourceFile, targetFile); 
+            File.Copy(sourceFile, targetFile);
         }
 
         public void CopyDirectoryTo(string sourceDirectory, string targetDirectory)

@@ -49,10 +49,7 @@
     <Folder Include="Store\AppData\Actions\TagActions\CreateTagActions\" />
     <Folder Include="Store\AppData\Actions\TagActions\DeleteTagActions\" />
     <Folder Include="Store\AppData\Actions\TagActions\UpdateTagActions\" />
-    <Folder Include="Store\AppData\Effects\ChangeStateActionsEffects\" />
-    <Folder Include="Store\AppData\Effects\MemeActionsEffects\DeleteMemeActionsEffects\" />
-    <Folder Include="Store\AppData\Reducers\MemeActionsReducers\" />
-    <Folder Include="Store\ContentData\Actions\" />
+    <Folder Include="Store\Content\Actions\" />
   </ItemGroup>
 
   <ItemGroup>

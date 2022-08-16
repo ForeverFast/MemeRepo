@@ -8,7 +8,7 @@
         margin-top: 60px !important;
     }
 
-    .folder-breadcrumbs {
+    ::deep .folder-breadcrumbs {
         @include d-border-bottom;
         position: sticky;
         width: 100%;

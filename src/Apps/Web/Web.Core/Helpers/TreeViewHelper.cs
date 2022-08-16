@@ -17,7 +17,7 @@ namespace Web.Core.Helpers
                     cat.Folders.Add(folder);
                 }
             }
-                
+
             return source.Where(x => x.ParentFolderId == null).ToHashSet();
         }
 

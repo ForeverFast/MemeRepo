@@ -1,5 +1,4 @@
 ﻿using DALQueryChain.Interfaces;
-using Domain.Data.Context;
 
 namespace Web.Core.Base.Store.Effects
 {

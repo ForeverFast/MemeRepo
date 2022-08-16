@@ -39,7 +39,7 @@ namespace Hybrid.WindowsApp
                     });
 
                     services.AddDAL(connectionString);
-                    
+
                     services.AddDesktopUI();
                     services.AddWebUI();
                     services.AddWpfBlazorWebView();

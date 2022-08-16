@@ -1,6 +1,5 @@
 ﻿using DALQueryChain.Interfaces;
 using Domain.Core.Interfaces;
-using Domain.Data.Context;
 using Web.Core.Base.Store.Effects;
 using Web.Core.Components.DialogComponents;
 using Web.Core.Exceptions;
@@ -80,16 +79,16 @@ namespace Web.Core.Store.AppData.Effects.FolderActionsEffects.UpdateFolderAction
             {
                 dispatcher.Dispatch(new UpdateFolderFailureAction
                 {
-                    FailureMessage = "При обновление папки возникла ошибка",
-                    ErrorMessage = ex.Message
+                    ErrorMessage = ex.Message,
+                    Exception = ex,
                 });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 dispatcher.Dispatch(new UpdateFolderFailureAction
                 {
-                    FailureMessage = "При обновление папки возникла ошибка",
-                    ErrorMessage = ""
+                    ErrorMessage = "При обновление папки возникла ошибка",
+                    Exception = ex,
                 });
             }
         }

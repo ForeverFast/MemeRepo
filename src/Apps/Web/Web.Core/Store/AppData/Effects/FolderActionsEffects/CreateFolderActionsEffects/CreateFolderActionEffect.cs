@@ -1,6 +1,5 @@
 ﻿using DALQueryChain.Interfaces;
 using Domain.Core.Interfaces;
-using Domain.Data.Context;
 using Web.Core.Base.Store.Effects;
 using Web.Core.Components.DialogComponents;
 using Web.Core.Models.Components;
@@ -64,12 +63,12 @@ namespace Web.Core.Store.AppData.Effects.FolderActionsEffects.CreateFolderAction
                 _fileStorageProvider.CreateFolder(Path.Combine(absoluteParentFolderPath, folder.Path));
                 dispatcher.Dispatch(new CreateFolderSuccessAction(result));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 dispatcher.Dispatch(new CreateFolderFailureAction
                 {
-                    FailureMessage = "Ошибка при создании папки",
-                    ErrorMessage = ""
+                    ErrorMessage = "Ошибка при создании папки",
+                    Exception = ex,
                 });
             }
         }

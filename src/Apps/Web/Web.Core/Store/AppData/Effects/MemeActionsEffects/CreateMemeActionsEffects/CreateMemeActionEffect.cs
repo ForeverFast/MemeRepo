@@ -1,6 +1,5 @@
 ﻿using DALQueryChain.Interfaces;
 using Domain.Core.Interfaces;
-using MudBlazor;
 using Web.Core.Base.Store.Effects;
 using Web.Core.Components.DialogComponents;
 using Web.Core.Models;
@@ -49,9 +48,10 @@ namespace Web.Core.Store.AppData.Effects.MemeActionsEffects.CreateMemeActionsEff
                 meme.ParentFolderId = action.ParentFolderId;
 
                 var absoluteTmpFilePath = meme.Path;
-
-                var absoluteParentFolderPath = _fileStorageProvider.GetAbsolutePath(_appDataState.Value.GetFolderRelativePath(action.ParentFolderId));
-                var absoluteFilePath = _fileStorageProvider.CreateFilePath(absoluteParentFolderPath, new FileInfo(absoluteTmpFilePath).Extension, meme.Title);
+                var folderRelativePath = _appDataState.Value.GetFolderRelativePath(action.ParentFolderId);
+                var absoluteParentFolderPath = _fileStorageProvider.GetAbsolutePath(folderRelativePath);
+                var absoluteFilePath = _fileStorageProvider.CreateFilePath(
+                    absoluteParentFolderPath, new FileInfo(absoluteTmpFilePath).Extension, meme.Title);
                 meme.Path = new FileInfo(absoluteFilePath).Name;
 
                 var createdMeme = await _dal.For<Meme>().Insert.InsertWithObjectAsync(meme);
@@ -70,12 +70,12 @@ namespace Web.Core.Store.AppData.Effects.MemeActionsEffects.CreateMemeActionsEff
                     SuccessMessage = "Мем успешно создан",
                 });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 dispatcher.Dispatch(new CreateMemeFailureAction
                 {
-                    FailureMessage = "Ошибка при создании мема",
-                    ErrorMessage = ""
+                    ErrorMessage = "Ошибка при создании мема",
+                    Exception = ex,
                 });
             }
         }

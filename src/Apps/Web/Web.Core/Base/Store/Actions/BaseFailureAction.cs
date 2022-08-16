@@ -2,7 +2,8 @@
 {
     public abstract record BaseFailureAction
     {
-        public string FailureMessage { get; init; } = "Произошла ошибка.";
-        public string ErrorMessage { get; init; } = string.Empty;
+        public bool ShowMessage { get; init; } = true;
+        public string ErrorMessage { get; init; } = "Произошла ошибка.";
+        public Exception? Exception { get; init; }
     }
 }

@@ -6,7 +6,7 @@ namespace Web.Core.Store.AppData.Reducers.FolderActionsReducers
     {
         [ReducerMethod]
         public static AppDataState ReduceDeleteFolderAction(AppDataState state, DeleteFolderAction _)
-            => state with 
+            => state with
             {
             };
 
@@ -30,7 +30,7 @@ namespace Web.Core.Store.AppData.Reducers.FolderActionsReducers
         }
 
         [ReducerMethod]
-        public static AppDataState ReduceDeleteFolderFailureAction(AppDataState state, DeleteFolderFailureAction action) 
+        public static AppDataState ReduceDeleteFolderFailureAction(AppDataState state, DeleteFolderFailureAction action)
             => state with
             {
                 CurrentErrorMessage = action.ErrorMessage

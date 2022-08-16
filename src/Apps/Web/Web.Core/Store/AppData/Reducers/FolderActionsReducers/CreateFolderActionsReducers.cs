@@ -1,5 +1,4 @@
-﻿using Domain.Core.Extensions;
-using Web.Core.Store.AppData.Actions.FolderActions.CreateFolderActions;
+﻿using Web.Core.Store.AppData.Actions.FolderActions.CreateFolderActions;
 
 namespace Web.Core.Store.AppData.Reducers.FolderActionsReducers
 {

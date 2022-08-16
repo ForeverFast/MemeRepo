@@ -18,12 +18,6 @@ namespace Web.Core.Components.ItemsContainer
 
         #endregion
 
-        #region Injects
-
-        [Inject] IDispatcher? _dispatcher { get; init; }
-
-        #endregion
-
         #region UI Fields
 
         #endregion
@@ -39,36 +33,6 @@ namespace Web.Core.Components.ItemsContainer
             .AddStyle("height", $"{Height}", !string.IsNullOrEmpty(Height))
             .AddStyle(Style)
             .Build();
-
-        #endregion
-
-        #region Internal methods
-
-        public void OnMemeRepoItemContextMenuUpdateMemeClick()
-        {
-            switch (Data.FolderObjectType)
-            {
-                case MemeRepoItemType.Folder:
-                    _dispatcher!.Dispatch(new UpdateMemeAction(Data.Id));
-                    break;
-                case MemeRepoItemType.Img:
-                    _dispatcher!.Dispatch(new UpdateFolderAction(Data.Id));
-                    break;
-            }
-        }
-
-        public void OnMemeRepoItemContextMenuDeleteDeleteClick()
-        {
-            switch (Data.FolderObjectType)
-            {
-                case MemeRepoItemType.Folder:
-                    _dispatcher!.Dispatch(new DeleteMemeAction(Data.Id));
-                    break;
-                case MemeRepoItemType.Img:
-                    _dispatcher!.Dispatch(new DeleteFolderAction(Data.Id));
-                    break;
-            }
-        }
 
         #endregion
     }

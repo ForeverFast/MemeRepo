@@ -2,9 +2,12 @@
 <div class="memerepo-container">
     <Condition Evaluation="@(Items.Count > 0)">
         <Match>
-            <Iterations T="MemeRepoItemViewModel" Items="@Items">
-                <MemeRepoContainerItem Data="context" />
-            </Iterations>
+            @if (shitFLag)
+            {
+                <Iterations T="MemeRepoItemViewModel" Items="@Items">
+                    <MemeRepoContainerItem Data="context" />
+                </Iterations>
+            }
         </Match>
         <NotMatch>
             <Condition Evaluation="@(EmptyContent != null)">
@@ -18,3 +21,8 @@
         </NotMatch>
     </Condition>
 </div>
+
+<ContextMenu Id="memerepo-item-context-menu" AutoHide="true">
+    <Item OnClick="_ => OnMemeRepoItemContextMenuUpdateMemeClick((MemeRepoItemViewModel)context.Data)">Изменить</Item>
+    <Item OnClick="_ => OnMemeRepoItemContextMenuDeleteDeleteClick((MemeRepoItemViewModel)context.Data)">Удалить</Item>
+</ContextMenu>

@@ -1,5 +1,4 @@
 ﻿using Domain.Core.Interfaces;
-using Web.Core.Interfaces.Services.ViewServices;
 using Web.Core.Models;
 using Web.Core.Models.Components.Dialogs;
 using Web.Core.Store.AppData;
@@ -45,12 +44,14 @@ namespace Web.Core.Components.DialogComponents
 
         #region State methods
 
-        protected override async Task OnParametersSetAsync()
+        protected override void OnInitialized()
         {
             if (Meme.Id != Guid.Empty)
             {
                 Meme.Path = _appDataState!.Value.GetFileRelativePath(Meme.ParentFolderId, Meme.Path);
             }
+
+            base.OnInitialized();
         }
 
         #endregion
@@ -67,10 +68,10 @@ namespace Web.Core.Components.DialogComponents
 
         protected void Cancel() => MudDialog!.Cancel();
 
-        protected void Save() 
+        protected void Save()
         {
             Meme.Path = absoluteTmpFilePath ?? string.Empty;
             MudDialog!.Close(DialogResult.Ok(Meme));
-        } 
+        }
     }
 }

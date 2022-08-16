@@ -20,40 +20,31 @@ namespace Web.Core.Utils.AutoMapper.AppDataMaps
                         innerFolder.ParentFolder = dst;
                 })
                 ;
-
+            CreateMap<Folder, MemeRepoItemViewModel>()
+                .ForMember(x => x.FolderObjectType, opt => opt.MapFrom(src => MemeRepoItemType.Folder))
+                ;
             CreateMap<Folder, FolderDialogViewModel>()
                 .ForMember(dst => dst.Tags, opt => opt.MapFrom(src => src.FolderTags.Select(x => x.TagId).ToList()))
                 .ReverseMap()
-                .ForMember(dst => dst.Id, opt => opt.Ignore())
-                .ForMember(dst => dst.ParentFolderId, opt => opt.Ignore())
-
                 .ForMember(dst => dst.Path, opt => opt.Ignore())
-
                 .ForMember(dst => dst.ParentFolder, opt => opt.Ignore())
                 .ForMember(dst => dst.Folders, opt => opt.Ignore())
                 .ForMember(dst => dst.FolderTags, opt => opt.Ignore())
                 .ForMember(dst => dst.Memes, opt => opt.Ignore())
                 ;
 
-            CreateMap<Meme, MemeViewModel>();
+            CreateMap<Meme, MemeViewModel>()
+                .ForMember(dst => dst.Tags, opt => opt.MapFrom(src => src.MemeTags.Select(x => x.TagId).ToList()));
             CreateMap<Meme, MemeRepoItemViewModel>()
                 .ForMember(x => x.FolderObjectType, opt => opt.MapFrom(src => MemeRepoItemType.Img))
-                .ReverseMap()
                 ;
-
             CreateMap<Meme, MemeDialogViewModel>()
                 .ForMember(dst => dst.Tags, opt => opt.MapFrom(src => src.MemeTags.Select(x => x.TagId).ToList()))
-                ;
-            CreateMap<MemeDialogViewModel, Meme>()
-                .ForMember(dst => dst.Id, opt => opt.Ignore())
-                .ForMember(dst => dst.ParentFolderId, opt => opt.Ignore())
-
-                .ForMember(dst => dst.Path, opt => opt.Ignore())
-
+                .ReverseMap()
                 .ForMember(dst => dst.ParentFolder, opt => opt.Ignore())
                 .ForMember(dst => dst.MemeTags, opt => opt.Ignore())
                 ;
-          
+
             CreateMap<Tag, TagViewModel>()
                 ;
         }

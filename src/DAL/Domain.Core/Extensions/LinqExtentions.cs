@@ -35,8 +35,8 @@
                 }
             }
         }
-       
-        public static IEnumerable<F> SelectManyRecursive<T,F>(this IEnumerable<T> source,
+
+        public static IEnumerable<F> SelectManyRecursive<T, F>(this IEnumerable<T> source,
             Func<T, IEnumerable<T>> recursiveFunc,
             Func<T, IEnumerable<F>> dataFunc)
         {

@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using MudBlazor.Services;
-using Web.Core.Interfaces.Services.ViewServices;
 using Web.Core.Services;
-using Web.Core.Services.ViewServices;
 
 namespace Web.Core
 {
@@ -29,7 +27,6 @@ namespace Web.Core
 
             services.AddSingleton<AppInitializerService>();
             services.AddSingleton<ThemeService>();
-            services.AddScoped<IDataViewService, DataViewService>();
 
             return services;
         }

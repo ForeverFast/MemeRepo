@@ -11,7 +11,7 @@ namespace Hybrid.WindowsApp
             services.AddSingleton<MainWindow>();
             services.AddSingleton<IFileStorageProvider, WindowsFileStorageProvider>();
             services.AddSingleton<IFileStorageDialogProvider, WindowsDialogProvider>();
-            
+
             return services;
         }
     }

@@ -1,11 +1,9 @@
-﻿global using Microsoft.AspNetCore.Components;
-
+﻿global using AutoMapper;
 global using Domain.Core.Extensions;
 global using Domain.Data.Context;
-
-global using Web.Core.Helpers;
-
-global using MudBlazor;
-global using MediatR;
-global using AutoMapper;
 global using Fluxor;
+global using Microsoft.AspNetCore.Components;
+global using MudBlazor;
+
+global using Web.Core.Enums;
+global using Web.Core.Helpers;

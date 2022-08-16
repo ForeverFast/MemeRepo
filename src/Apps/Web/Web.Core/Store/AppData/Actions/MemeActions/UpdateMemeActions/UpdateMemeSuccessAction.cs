@@ -5,11 +5,11 @@ namespace Web.Core.Store.AppData.Actions.MemeActions.UpdateMemeActions
 {
     internal record UpdateMemeSuccessAction : BaseSuccessAction
     {
-        public UpdateMemeSuccessAction(MemeViewModel newMeme)
+        public UpdateMemeSuccessAction(MemeViewModel updatedMeme)
         {
-            NewMeme = newMeme;
+            UpdatedMeme = updatedMeme;
         }
 
-        public MemeViewModel NewMeme { get; }
+        public MemeViewModel UpdatedMeme { get; }
     }
 }

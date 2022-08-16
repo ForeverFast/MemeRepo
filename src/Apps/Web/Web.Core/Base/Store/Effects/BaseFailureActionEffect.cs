@@ -14,7 +14,11 @@ namespace Web.Core.Base.Store.Effects
 
         public override Task HandleAsync(T action, IDispatcher dispatcher)
         {
-            _snackbar.Add($"{action.FailureMessage} {action.ErrorMessage}", Severity.Error);
+            if (action.ShowMessage)
+            {
+                _snackbar.Add(action.ErrorMessage, Severity.Error);
+            }
+
             return Task.CompletedTask;
         }
     }

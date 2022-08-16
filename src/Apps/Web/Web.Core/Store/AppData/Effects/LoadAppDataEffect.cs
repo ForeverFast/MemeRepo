@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using DALQueryChain.Interfaces;
+﻿using DALQueryChain.Interfaces;
 using Web.Core.Base.Store.Effects;
 using Web.Core.Models;
 using Web.Core.Models.Components;

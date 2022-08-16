@@ -1,5 +1,4 @@
-﻿using Web.Core.Interfaces.Services.ViewServices;
-using Web.Core.Models;
+﻿using Web.Core.Models;
 using Web.Core.Models.Components.Dialogs;
 using Web.Core.Store.AppData;
 
@@ -26,7 +25,6 @@ namespace Web.Core.Components.DialogComponents
         #region Injects
 
         [Inject] IState<AppDataState>? _appDataState { get; init; }
-        [Inject] IDataViewService? _dataViewService { get; init; }
 
         #endregion
 
@@ -35,18 +33,18 @@ namespace Web.Core.Components.DialogComponents
         private bool _isEditMode => Folder.Id != Guid.Empty;
 
         private List<TagViewModel> AllTags => _appDataState!.Value.Tags;
-        private List<TagViewModel> CurrentFolderTags = new(); 
-        private List<TagViewModel> SelectedFolderTags = new(); 
+        private List<TagViewModel> CurrentFolderTags = new();
+        private List<TagViewModel> SelectedFolderTags = new();
 
         #endregion
 
         #region State methods
 
-        protected override async Task OnParametersSetAsync()
+        protected override void OnParametersSet()
         {
             if (Folder.Id != Guid.Empty)
             {
-                CurrentFolderTags = await _dataViewService!.LoadFolderTagsByFolderId(Folder.Id);
+
             }
         }
 

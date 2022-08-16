@@ -76,9 +76,13 @@ namespace Web.Core.Store.AppData.Effects.MemeActionsEffects.UpdateMemeActionsEff
                         new FileInfo(absoluteTmpFilePath).Extension,
                         updatedFromDialogMeme.Title);
 
-                    meme.Path = new FileInfo(absoluteNewFilePath).Name;
+                    updatedFromDialogMeme.Path = new FileInfo(absoluteNewFilePath).Name;
 
                     newPathFlag = true;
+                }
+                else
+                {
+                    updatedFromDialogMeme.Path = meme.Path;
                 }
 
                 await _dal.For<Meme>().Update.UpdateAsync(updatedFromDialogMeme);
@@ -107,16 +111,16 @@ namespace Web.Core.Store.AppData.Effects.MemeActionsEffects.UpdateMemeActionsEff
             {
                 dispatcher.Dispatch(new UpdateMemeFailureAction
                 {
-                    FailureMessage = "При обновление мема возникла ошибка",
                     ErrorMessage = ex.Message,
+                    Exception = ex,
                 });
             }
             catch (Exception ex)
             {
                 dispatcher.Dispatch(new UpdateMemeFailureAction
                 {
-                    FailureMessage = "При обновление мема возникла ошибка",
-                    ErrorMessage = ex.Message,
+                    ErrorMessage = "При обновление мема возникла ошибка",
+                    Exception = ex,
                 });
             }
         }

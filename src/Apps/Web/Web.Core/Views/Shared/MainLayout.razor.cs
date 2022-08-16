@@ -85,5 +85,10 @@ namespace Web.Core.Views.Shared
             }
         }
 
+        protected void Test()
+        {
+            GC.Collect(); 
+            GC.WaitForPendingFinalizers(); 
+        }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-namespace Hybrid.Maui
+﻿namespace Hybrid.Maui
 {
     public partial class MainPage : ContentPage
     {
