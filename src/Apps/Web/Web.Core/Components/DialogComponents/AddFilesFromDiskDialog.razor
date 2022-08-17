@@ -1,0 +1,33 @@
+﻿@using Web.Core.Components.DialogComponents.Shared;
+@using Web.Core.Models.Components.Dialogs
+
+<MudDialog Style="overflow-y: hidden;">
+    <DialogContent>
+        <MudGrid>
+            <MudItem xs="12">
+                <MudGrid>
+                    <MudItem xs="6">
+                        <MudButton OnClick="AddFolders">Добавить папку(и)</MudButton>
+                        <div class="packs-container">
+                            <Iterations T="PathsPackViewModel" Items="@folders">
+                                <PathsPack Data="context" OnDeleteClick="@RemoveFolderPack"/>
+                            </Iterations>
+                        </div>
+                    </MudItem>
+                    <MudItem xs="6">
+                        <MudButton OnClick="AddMemes">Добавить файл(ы)</MudButton>
+                        <div class="packs-container">
+                            <Iterations T="PathsPackViewModel" Items="@memes">
+                                <PathsPack Data="context" OnDeleteClick="@RemoveMemePack" />
+                            </Iterations>
+                        </div>
+                    </MudItem>
+                </MudGrid>
+            </MudItem>
+        </MudGrid>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Отмена</MudButton>
+        <MudButton OnClick="Confirm">Загрузить</MudButton>
+    </DialogActions>
+</MudDialog>

@@ -8,8 +8,11 @@
         xmlns:blazor="clr-namespace:Microsoft.AspNetCore.Components.WebView.Wpf;assembly=Microsoft.AspNetCore.Components.WebView.Wpf"
         xmlns:ib="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:rc="clr-namespace:Web.Core;assembly=Web.Core"
+        xmlns:dd="urn:gong-wpf-dragdrop"
         xmlns:local="clr-namespace:Hybrid.WindowsApp"
         mc:Ignorable="d"
+        dd:DragDrop.IsDropTarget="True"
+        dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource Mode=Self}}"
         Title="MemeRepo"
         Height="768" Width="1024" MinHeight="768" MinWidth="715">
 
@@ -195,7 +198,8 @@
 
     </Window.Resources>
 
-    <Grid Background="{DynamicResource GrayLVL3}">
+    <Grid Background="{DynamicResource GrayLVL3}"
+          >
         <Grid Height="20" VerticalAlignment="Top" Background="{StaticResource GrayLVL4}">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button x:Name="MinimizeButton" WindowChrome.IsHitTestVisibleInChrome="True" Style="{StaticResource MinimizeWindowButton}"/>
@@ -203,7 +207,9 @@
                 <Button x:Name="CloseButton" WindowChrome.IsHitTestVisibleInChrome="True" Style="{StaticResource CloseWindowButton}"/>
             </StackPanel>
         </Grid>
-        <blazor:BlazorWebView HostPage="wwwroot\index.html" Services="{DynamicResource services}" Margin="0,20,0,0" Background="{DynamicResource GrayLVL3}">
+        <blazor:BlazorWebView HostPage="wwwroot\index.html"
+                              Services="{DynamicResource services}"
+                              Margin="0,20,0,0" Background="{DynamicResource GrayLVL3}">
             <blazor:BlazorWebView.RootComponents>
                 <blazor:RootComponent Selector="#app" x:Name="BlazorRootComponent" ComponentType="{x:Type rc:App}"   />
             </blazor:BlazorWebView.RootComponents>

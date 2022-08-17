@@ -48,7 +48,8 @@ namespace Web.Core.Store.AppData.Effects.FolderActionsEffects.CreateFolderAction
                 folder.ParentFolderId = action.ParentFolderId;
 
                 var absoluteParentFolderPath = _fileStorageProvider.GetAbsolutePath(_appDataState.Value.GetFolderRelativePath(action.ParentFolderId));
-                folder.Path = _fileStorageProvider.CreateFolderPath(absoluteParentFolderPath, folder.Title);
+                var absoluteNewFolderPath = _fileStorageProvider.CreateFolderPath(absoluteParentFolderPath, folder.Title);
+                folder.Path = new DirectoryInfo(absoluteNewFolderPath).Name;
 
                 var createdFolder = await _dal.For<Folder>().Insert.InsertWithObjectAsync(folder);
                 var newTagCollection = folderDialogResult.Tags.Select(x => new FolderTag
@@ -58,9 +59,10 @@ namespace Web.Core.Store.AppData.Effects.FolderActionsEffects.CreateFolderAction
                 });
                 await _dal.For<FolderTag>().Insert.BulkInsertAsync(newTagCollection);
 
+                _fileStorageProvider.CreateFolder(absoluteNewFolderPath);
+
                 var result = _mapper.Map<FolderTreeViewModel>(createdFolder);
 
-                _fileStorageProvider.CreateFolder(Path.Combine(absoluteParentFolderPath, folder.Path));
                 dispatcher.Dispatch(new CreateFolderSuccessAction(result));
             }
             catch (Exception ex)

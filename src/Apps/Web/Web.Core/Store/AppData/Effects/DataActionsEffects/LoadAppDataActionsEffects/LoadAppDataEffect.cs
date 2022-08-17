@@ -2,9 +2,9 @@
 using Web.Core.Base.Store.Effects;
 using Web.Core.Models;
 using Web.Core.Models.Components;
-using Web.Core.Store.AppData.Actions.LoadAppDataActions;
+using Web.Core.Store.AppData.Actions.DataActions.LoadAppDataActions;
 
-namespace Web.Core.Store.AppData.Effects
+namespace Web.Core.Store.AppData.Effects.DataActionsEffects.LoadAppDataActionsEffects
 {
     internal class LoadAppDataEffect : BaseDataEffect<LoadAppDataAction>
     {

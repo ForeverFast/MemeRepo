@@ -1,6 +1,10 @@
 ﻿using Domain.Core.Interfaces;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using Ookii.Dialogs.Wpf;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace Hybrid.WindowsApp.Implementations
 {
@@ -32,6 +36,18 @@ namespace Hybrid.WindowsApp.Implementations
                 return dlg.FileName;
             else
                 return string.Empty;
+        }
+
+        public IEnumerable<string> OpenMultiselectPicker(bool folderPickerMode = false)
+        {
+            var dlg = new CommonOpenFileDialog();
+            dlg.Multiselect = true;
+            dlg.IsFolderPicker = folderPickerMode;
+
+            if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
+                return dlg.FileNames;
+            else
+                return Enumerable.Empty<string>();
         }
     }
 }

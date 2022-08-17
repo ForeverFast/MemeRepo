@@ -41,7 +41,7 @@ namespace Web.Core.Store.AppData
         }
 
 
-        public string GetFileRelativePath(Guid parentFolderId, string filePath)
+        public string GetFileRelativePath(Guid? parentFolderId, string filePath)
             => Path.Combine(GetFolderRelativePath(parentFolderId), filePath);
 
 

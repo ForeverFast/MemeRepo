@@ -62,9 +62,10 @@ namespace Web.Core.Store.AppData.Effects.MemeActionsEffects.CreateMemeActionsEff
                 });
                 await _dal.For<MemeTag>().Insert.BulkInsertAsync(newTagCollection);
 
+                _fileStorageProvider.CopyFileToNewFile(absoluteTmpFilePath, absoluteFilePath);
+                
                 var result = _mapper.Map<MemeViewModel>(createdMeme);
 
-                _fileStorageProvider.CopyFileToNewFile(absoluteTmpFilePath, absoluteFilePath);
                 dispatcher.Dispatch(new CreateMemeSuccessAction(result)
                 {
                     SuccessMessage = "Мем успешно создан",

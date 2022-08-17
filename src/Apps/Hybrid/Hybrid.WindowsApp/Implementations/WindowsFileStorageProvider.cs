@@ -31,7 +31,7 @@ namespace Hybrid.WindowsApp.Implementations
             do
             {
                 if (!Directory.Exists(tmpPath))
-                    return new DirectoryInfo(tmpPath).Name;
+                    return tmpPath;
 
                 tmpPath = @$"{newPath}({num++})";
             }

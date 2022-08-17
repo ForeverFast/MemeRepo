@@ -25,11 +25,13 @@
 
 <ContextMenu Id="folder-treeview-context-menu" AutoHide="true">
     <Item OnClick="OnTreeViewContextMenuCreateFolderClick">Создать папку</Item>
+    <Item OnClick="OnTreeViewContextMenuAddFilesFromDiskClick">Добавить файлы с диска</Item>
 </ContextMenu>
 
 <ContextMenu Id="folder-treeview-item-context-menu" AutoHide="true">
     <Item OnClick="_ => OnTreeViewItemContextMenuCreateFolderClick(((FolderTreeViewModel)context.Data).Id)">Создать новую папку</Item>
-    <Item OnClick="_ => OnTreeViewItemContextMenuCreateMemeClick(((FolderTreeViewModel)context.Data).Id)">Добавить мем</Item>
+    <Item OnClick="_ => OnTreeViewItemContextMenuCreateMemeClick(((FolderTreeViewModel)context.Data).Id)">Создать мем</Item>
+    <Item OnClick="_ => OnTreeViewItemContextMenuAddFilesFromDiskClick(((FolderTreeViewModel)context.Data).Id)">Добавить файлы с диска</Item>
     <Item OnClick="_ => OnTreeViewItemContextMenuUpdateFolderClick(((FolderTreeViewModel)context.Data).Id)">Изменить</Item>
     <Item OnClick="_ => OnTreeViewItemContextMenuDeleteFolderClick(((FolderTreeViewModel)context.Data).Id)">Удалить</Item>
 </ContextMenu>

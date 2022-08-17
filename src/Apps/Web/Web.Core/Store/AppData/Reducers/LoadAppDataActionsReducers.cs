@@ -1,4 +1,4 @@
-﻿using Web.Core.Store.AppData.Actions.LoadAppDataActions;
+﻿using Web.Core.Store.AppData.Actions.DataActions.LoadAppDataActions;
 
 namespace Web.Core.Store.AppData.Reducers
 {

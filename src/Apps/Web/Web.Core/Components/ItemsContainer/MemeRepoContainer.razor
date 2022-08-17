@@ -2,12 +2,9 @@
 <div class="memerepo-container">
     <Condition Evaluation="@(Items.Count > 0)">
         <Match>
-            @if (shitFLag)
-            {
-                <Iterations T="MemeRepoItemViewModel" Items="@Items">
-                    <MemeRepoContainerItem Data="context" />
-                </Iterations>
-            }
+            <Iterations T="MemeRepoItemViewModel" Items="@Items">
+                <MemeRepoContainerItem Data="context" />
+            </Iterations>
         </Match>
         <NotMatch>
             <Condition Evaluation="@(EmptyContent != null)">

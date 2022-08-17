@@ -1,7 +1,7 @@
 ﻿using Web.Core.Models;
 using Web.Core.Models.Components;
 
-namespace Web.Core.Store.AppData.Actions.LoadAppDataActions
+namespace Web.Core.Store.AppData.Actions.DataActions.LoadAppDataActions
 {
     internal record LoadAppDataSuccessAction
     {

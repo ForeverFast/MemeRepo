@@ -22,8 +22,6 @@ namespace Web.Core.Components.ItemsContainer
 
         #endregion
 
-        bool shitFLag = true;
-
         #region Internal methods
 
         protected void OnMemeRepoItemContextMenuUpdateMemeClick(MemeRepoItemViewModel item)
@@ -41,9 +39,6 @@ namespace Web.Core.Components.ItemsContainer
 
         protected void OnMemeRepoItemContextMenuDeleteDeleteClick(MemeRepoItemViewModel item)
         {
-            //shitFLag = false;
-            //this.StateHasChanged();
-
             switch (item.FolderObjectType)
             {
                 case MemeRepoItemType.Folder:

@@ -1,17 +1,17 @@
-﻿using MudBlazor.Utilities;
+﻿using Fluxor.Blazor.Web.Components;
+using MudBlazor.Utilities;
 using Web.Core.Enums.Components.StateContainer;
 using Web.Core.Services;
-using Web.Core.Store.AppData.Actions.LoadAppDataActions;
+using Web.Core.Store.AppData.Actions.DataActions.AddFilesFromDiskActions;
+using Web.Core.Store.AppData.Actions.DataActions.LoadAppDataActions;
 
 namespace Web.Core.Views.Shared
 {
-    public partial class MainLayout
+    public partial class MainLayout : FluxorLayout
     {
         #region Params
 
         [CascadingParameter(Name = "IsMobileApp")] public bool IsMobileApp { get; set; }
-
-        [Parameter] public ComponentState State { get; set; } = ComponentState.Loading;
 
         #endregion
 
@@ -24,11 +24,11 @@ namespace Web.Core.Views.Shared
 
         #endregion
 
-        #region UI Fields/Props
+        #region UI Fields
 
-        protected bool _isPageLoaded = false;
-        protected bool _isFolderView = true;
-        protected bool _isShellOpen = true;
+        private ComponentState state = ComponentState.Loading;
+        private bool isFolderView = true;
+        private bool isShellOpen = true;
 
         #endregion
 
@@ -36,7 +36,7 @@ namespace Web.Core.Views.Shared
 
         protected virtual string SideMenuClassname => new CssBuilder("main-container__side-menu d-flex flex-column align-items-center")
             .AddClass("mobile-app", IsMobileApp)
-            .AddClass("active", _isShellOpen)
+            .AddClass("active", isShellOpen)
             .Build();
 
         protected virtual string ContentClassname => new CssBuilder("main-container__content")
@@ -45,35 +45,53 @@ namespace Web.Core.Views.Shared
 
         #endregion
 
+        #region State methods
+
         protected override void OnInitialized()
         {
+            SubscribeToAction<LoadAppDataSuccessAction>(OnLoadAppDataSuccessAction);
+            SubscribeToAction<LoadAppDataFailureAction>(OnLoadAppDataFailureAction);
+
             _dispatcher!.Dispatch(new LoadAppDataAction());
 
             base.OnInitialized();
         }
 
-        protected override void OnParametersSet()
-        {
-            State = ComponentState.Content;
+        #endregion
 
-            base.OnParametersSet();
-        }
+        #region External Events
+
+        private void OnLoadAppDataSuccessAction(LoadAppDataSuccessAction action)
+            => _ = InvokeAsync(() =>
+            {
+                state = ComponentState.Content;
+                this.StateHasChanged();
+            });
+
+        private void OnLoadAppDataFailureAction(LoadAppDataFailureAction action)
+           => _ = InvokeAsync(() =>
+           {
+               state = ComponentState.Error;
+               this.StateHasChanged();
+           });
+
+        #endregion
 
         protected void OnSwipe(SwipeDirection swipeDirection)
         {
             switch (swipeDirection)
             {
                 case SwipeDirection.LeftToRight:
-                    if (!_isShellOpen)
+                    if (!isShellOpen)
                     {
-                        _isShellOpen = true;
+                        isShellOpen = true;
                         this.StateHasChanged();
                     }
                     break;
                 case SwipeDirection.RightToLeft:
-                    if (_isShellOpen)
+                    if (isShellOpen)
                     {
-                        _isShellOpen = false;
+                        isShellOpen = false;
                         this.StateHasChanged();
                     }
                     break;
@@ -89,6 +107,7 @@ namespace Web.Core.Views.Shared
         {
             GC.Collect(); 
             GC.WaitForPendingFinalizers(); 
+            //_dispatcher!.Dispatch(new AddFilesFromDiskAction(null));
         }
     }
 }

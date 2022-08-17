@@ -1,0 +1,29 @@
+﻿@inherits MemeRepoBaseComponent
+
+<div class="paths-pack">
+    <MudTooltip>
+        <ChildContent>
+            <div class="paths-pack__inner-container d-flex flex-row align-center">
+                <Iterations T="string" Items="Data.Paths.Take(3)">
+                    <div class="paths-pack__item mr-3">
+                        <p>@(new DirectoryInfo(context).Name)</p>
+                    </div>
+                </Iterations>
+                <MudIcon Icon="@Icons.Filled.Close" @onclick="@(_ => OnDeleteClick.InvokeAsync())" />
+            </div>
+        </ChildContent>
+        <TooltipContent>
+            <div class="d-flex flex-column align-start">
+                <Iterations Items="Data.Paths.Take(10)">
+                    <MudText Typo="Typo.body2">@context</MudText>
+                </Iterations>
+                <Condition Evaluation="@(Data.Paths.Count() > 10)">
+                    <Match>
+                        <MudText Typo="Typo.body2">...</MudText>
+                    </Match>
+                </Condition>
+            </div>
+        </TooltipContent>
+    </MudTooltip>
+</div>
+

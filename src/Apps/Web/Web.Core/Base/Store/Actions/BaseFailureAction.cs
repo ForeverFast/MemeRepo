@@ -1,6 +1,6 @@
 ﻿namespace Web.Core.Base.Store.Actions
 {
-    public abstract record BaseFailureAction
+    public record BaseFailureAction
     {
         public bool ShowMessage { get; init; } = true;
         public string ErrorMessage { get; init; } = "Произошла ошибка.";

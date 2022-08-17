@@ -1,14 +1,14 @@
-﻿@inherits LayoutComponentBase
+﻿@inherits FluxorLayout
 
 @using Web.Core.Views.Shared.SideMenuComponents;
 
-<MudThemeProvider IsDarkMode="isDarkMode" Theme="_themeService.GetTheme()" />
+<MudThemeProvider IsDarkMode="isDarkMode" Theme="_themeService!.GetTheme()" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 <div>
     <MudLayout Class="page">
-        <MemeRepoStateContainer State="@State">
+        <MemeRepoStateContainer State="@state">
 
             <LoadingFragment>
                 <MemeRepoLoading/>
@@ -24,15 +24,15 @@
 
                         <MudPaper Class="@SideMenuClassname">
                             <MudPaper Class="struct-view-switcher d-flex flex-row" Width="100%">
-                                <button @onclick="_ => _isFolderView = false" class="@(!_isFolderView ? "selected-view-struct" : "")">
+                                <button @onclick="_ => isFolderView = false" class="@(!isFolderView ? "selected-view-struct" : "")">
                                     <MudIcon Icon="@Icons.Filled.Tag" Size="Size.Small" Style="margin-bottom: 2px; margin-right: 2px;" /> Теги
                                 </button>
-                                <button @onclick="_ => _isFolderView = true" class="@(_isFolderView ? "selected-view-struct" : "")">
+                                <button @onclick="_ => isFolderView = true" class="@(isFolderView ? "selected-view-struct" : "")">
                                     <MudIcon Icon="@Icons.Filled.Folder" Size="Size.Small" Style="margin-bottom: 2px;" /> Папки
                                 </button>
                             </MudPaper>
                             <MudPaper Class="struct-content" Width="100%">
-                                @if (_isFolderView)
+                                @if (isFolderView)
                                 {
                                     <MemeRepoSideMenuFolderTreeView />
                                 }

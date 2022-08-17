@@ -1,0 +1,12 @@
+﻿@import '../../../wwwroot/css/variables';
+
+
+::deep {
+    .paths-pack {
+        background-color: $SecondaryDarken;
+
+        &__inner-container {
+            background-color: $Secondary;
+        }
+    }
+}
