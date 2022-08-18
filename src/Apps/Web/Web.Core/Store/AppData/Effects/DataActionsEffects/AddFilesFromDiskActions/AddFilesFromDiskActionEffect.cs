@@ -54,7 +54,7 @@ namespace Web.Core.Store.AppData.Actions.DataActionsEffects.AddFilesFromDiskActi
                 }
                 else
                 {
-                    if (action.FilePaths?.Any() ?? false)
+                    if (!(action.FilePaths?.Any() ?? false))
                         return;
 
                     paths = action.FilePaths;

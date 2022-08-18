@@ -11,8 +11,7 @@
         xmlns:dd="urn:gong-wpf-dragdrop"
         xmlns:local="clr-namespace:Hybrid.WindowsApp"
         mc:Ignorable="d"
-        dd:DragDrop.IsDropTarget="True"
-        dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource Mode=Self}}"
+        x:Name="MainW"
         Title="MemeRepo"
         Height="768" Width="1024" MinHeight="768" MinWidth="715">
 
@@ -55,6 +54,7 @@
     <Window.Resources>
 
         <converters:WindowStateToWindowsStateConverter x:Key="wdtwd"/>
+        <converters:BoolToVisibilityConverter x:Key="btv"/>
 
         <Style x:Key="MinimizeWindowButton" TargetType="{x:Type Button}">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -198,22 +198,38 @@
 
     </Window.Resources>
 
-    <Grid Background="{DynamicResource GrayLVL3}"
-          >
-        <Grid Height="20" VerticalAlignment="Top" Background="{StaticResource GrayLVL4}">
+    <Grid>
+        <ib:Interaction.Triggers>
+            <ib:EventTrigger EventName="DragLeave">
+                <ib:InvokeCommandAction Command="{Binding DragLeaveCommand}" />
+            </ib:EventTrigger>
+        </ib:Interaction.Triggers>
+
+        <Grid Height="20" VerticalAlignment="Top" Background="{StaticResource GrayLVL4}" Margin="0,0,0,0">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button x:Name="MinimizeButton" WindowChrome.IsHitTestVisibleInChrome="True" Style="{StaticResource MinimizeWindowButton}"/>
                 <Button x:Name="ResizeButton" WindowChrome.IsHitTestVisibleInChrome="True" Style="{StaticResource ResizeWindowButton}"/>
                 <Button x:Name="CloseButton" WindowChrome.IsHitTestVisibleInChrome="True" Style="{StaticResource CloseWindowButton}"/>
             </StackPanel>
         </Grid>
-        <blazor:BlazorWebView HostPage="wwwroot\index.html"
-                              Services="{DynamicResource services}"
+        <ListBox ItemsSource="{Binding DropFiles}" Margin="0,20,0,0" Background="{DynamicResource GrayLVL3}" BorderThickness="0"
+                 VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                 dd:DragDrop.IsDropTarget="True" 
+                 dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext}"/>
+        <blazor:BlazorWebView x:Name="BlazorMainView" HostPage="wwwroot\index.html" Services="{DynamicResource services}"
                               Margin="0,20,0,0" Background="{DynamicResource GrayLVL3}">
+            <blazor:BlazorWebView.Visibility>
+                <MultiBinding Converter="{StaticResource btv}">
+                    <Binding ElementName="MainW" Path="DataContext.LocalDragAndDropFlag" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
+                    <Binding ElementName="MainW" Path="DataContext.ShowFileDropBlock" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>
+                </MultiBinding>
+            </blazor:BlazorWebView.Visibility>
             <blazor:BlazorWebView.RootComponents>
-                <blazor:RootComponent Selector="#app" x:Name="BlazorRootComponent" ComponentType="{x:Type rc:App}"   />
+                <blazor:RootComponent Selector="#app" x:Name="BlazorRootComponent" ComponentType="{x:Type rc:App}" />
             </blazor:BlazorWebView.RootComponents>
         </blazor:BlazorWebView>
     </Grid>
-    
 </Window>
+
+<!--Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
+                                                   AncestorType=Window}, Path=DataContext.ShowFileDropBlock, Converter={StaticResource btv}}"-->

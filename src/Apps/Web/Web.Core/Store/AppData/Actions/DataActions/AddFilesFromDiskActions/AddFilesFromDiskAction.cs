@@ -1,6 +1,6 @@
 ﻿namespace Web.Core.Store.AppData.Actions.DataActions.AddFilesFromDiskActions
 {
-    internal record AddFilesFromDiskAction
+    public record AddFilesFromDiskAction
     {
         public AddFilesFromDiskAction(Guid? parentFolderId, bool dialogFlag = true)
         {

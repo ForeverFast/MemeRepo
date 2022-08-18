@@ -1,10 +1,9 @@
 ﻿using DALQueryChain.Interfaces;
 using Web.Core.Base.Store.Effects;
-using Web.Core.Enums;
 using Web.Core.Models.Components;
-using Web.Core.Store.AppData.Actions.ChangeStateActions;
+using Web.Core.Store.AppData.Actions.ChangeStateActions.SetCurrentContentActions;
 
-namespace Web.Core.Store.AppData.Effects.ChangeStateActionsEffects
+namespace Web.Core.Store.AppData.Effects.ChangeStateActionsEffects.SetCurrentContentActionsEffect.cs
 {
     internal class SetCurrentContentActionEffect : BaseDataEffect<SetCurrentContentAction>
     {

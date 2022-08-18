@@ -1,6 +1,5 @@
-﻿using GongSolutions.Wpf.DragDrop;
+﻿using Hybrid.WindowsApp.ViewModels;
 using System;
-using System.Collections.ObjectModel;
 using System.Windows;
 
 namespace Hybrid.WindowsApp
@@ -8,38 +7,13 @@ namespace Hybrid.WindowsApp
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IDropTarget
+    public partial class MainWindow : Window
     {
-        #region Ctors
-
-        public MainWindow(IServiceProvider serviceProvider)
+        public MainWindow(IServiceProvider serviceProvider, MainWindowViewModel viewModel)
         {
             InitializeComponent();
             Resources.Add("services", serviceProvider);
-        }
-
-        #endregion
-
-        #region UI Fields
-
-        public ObservableCollection<string> dropFiles { get; set; } = new();    
-
-        #endregion
-
-        void IDropTarget.DragOver(IDropInfo dropInfo)
-        {
-            dropInfo.DropTargetAdorner = DropTargetAdorners.Insert;
-
-            var dataObject = dropInfo.Data as IDataObject;
-
-            dropInfo.Effects = dataObject != null && dataObject.GetDataPresent(DataFormats.FileDrop)
-                ? DragDropEffects.Copy
-                : DragDropEffects.Move;
-        }
-
-        void IDropTarget.Drop(IDropInfo dropInfo)
-        {
-            
+            DataContext = viewModel;
         }
     }
 }

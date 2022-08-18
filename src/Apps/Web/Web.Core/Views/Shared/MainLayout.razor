@@ -15,6 +15,7 @@
             </LoadingFragment>
 
             <ContentFragment>
+
                 <MudPaper Class="page__header">
                     <MudButton OnClick="Test">Test</MudButton>
                 </MudPaper>
@@ -46,7 +47,7 @@
                             </MudPaper>
                         </MudPaper>
 
-                        <MudPaper Class="@ContentClassname">
+                        <MudPaper Class="@ContentClassname" @ondragenter="OnDragEnter" @ondragleave="OnDragLeave" @ondragover="OnDragEnter">
                             @Body
                         </MudPaper>
 

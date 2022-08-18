@@ -1,6 +1,7 @@
-﻿@using Web.Core.Services
+﻿@using Web.Core.Utils.WebScopeManager
 
-@inject AppInitializerService _appInitializerService
+@inject IServiceProvider _serviceProvider
+@inject WebScopeManager _webScopeManager
 
 <StoreInitializer />
 
@@ -25,7 +26,7 @@
 
     public override async Task SetParametersAsync(ParameterView parameters)
     {
-        await _appInitializerService.InitApp();
+        await _webScopeManager.Init(_serviceProvider);
 
         await base.SetParametersAsync(parameters);
     }

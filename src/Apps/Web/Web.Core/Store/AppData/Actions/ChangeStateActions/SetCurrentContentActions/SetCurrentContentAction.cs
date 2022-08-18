@@ -1,7 +1,7 @@
 ﻿using Web.Core.Enums;
 using Web.Core.Models.Components.Search;
 
-namespace Web.Core.Store.AppData.Actions.ChangeStateActions
+namespace Web.Core.Store.AppData.Actions.ChangeStateActions.SetCurrentContentActions
 {
     internal record SetCurrentContentAction
     {

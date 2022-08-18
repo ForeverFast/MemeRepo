@@ -1,7 +1,7 @@
 ﻿using Fluxor.Blazor.Web.Components;
 using Web.Core.Models.Components;
 using Web.Core.Store.AppData;
-using Web.Core.Store.AppData.Actions.ChangeStateActions;
+using Web.Core.Store.AppData.Actions.ChangeStateActions.SetCurrentContentActions;
 using Web.Core.Store.AppData.Actions.DataActions.AddFilesFromDiskActions;
 using Web.Core.Store.AppData.Actions.FolderActions.CreateFolderActions;
 using Web.Core.Store.AppData.Actions.FolderActions.DeleteFolderActions;

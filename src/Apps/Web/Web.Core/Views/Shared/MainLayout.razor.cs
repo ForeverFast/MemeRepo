@@ -1,7 +1,9 @@
 ﻿using Fluxor.Blazor.Web.Components;
+using Microsoft.AspNetCore.Components.Web;
 using MudBlazor.Utilities;
 using Web.Core.Enums.Components.StateContainer;
 using Web.Core.Services;
+using Web.Core.Store.AppData.Actions.ChangeStateActions;
 using Web.Core.Store.AppData.Actions.DataActions.AddFilesFromDiskActions;
 using Web.Core.Store.AppData.Actions.DataActions.LoadAppDataActions;
 
@@ -77,7 +79,9 @@ namespace Web.Core.Views.Shared
 
         #endregion
 
-        protected void OnSwipe(SwipeDirection swipeDirection)
+        #region Internal events
+
+        private void OnSwipe(SwipeDirection swipeDirection)
         {
             switch (swipeDirection)
             {
@@ -103,11 +107,20 @@ namespace Web.Core.Views.Shared
             }
         }
 
-        protected void Test()
+
+        private void OnDragEnter(DragEventArgs e) => _dispatcher!.Dispatch(new ShowFileDropBlockAction { });
+
+        private void OnDragLeave(DragEventArgs e) =>_dispatcher!.Dispatch(new HideFileDropBlockAction { });
+
+
+        private void Test()
         {
             GC.Collect(); 
             GC.WaitForPendingFinalizers(); 
             //_dispatcher!.Dispatch(new AddFilesFromDiskAction(null));
         }
+
+        #endregion
+
     }
 }

@@ -2,7 +2,7 @@
 using Web.Core.Enums.Components.StateContainer;
 using Web.Core.Models.Components;
 using Web.Core.Store.AppData;
-using Web.Core.Store.AppData.Actions.ChangeStateActions;
+using Web.Core.Store.AppData.Actions.ChangeStateActions.SetCurrentContentActions;
 using Web.Core.Store.AppData.Actions.MemeActions.CreateMemeActions;
 using Web.Core.Store.AppData.Actions.MemeActions.DeleteMemeActions;
 using Web.Core.Store.AppData.Actions.MemeActions.UpdateMemeActions;

@@ -18,6 +18,8 @@ namespace Web.Core.Store.AppData
         public HashSet<FolderTreeViewModel> FolderPath { get; init; } = new();
         public FilterModel? Filter { get; init; } 
 
+        public bool ShowFileDropBlock { get; init; }
+
         #endregion
 
         public HashSet<FolderTreeViewModel> Folders { get; init; } = new();

@@ -1,7 +1,7 @@
 ﻿using Web.Core.Base.Store.Actions;
 using Web.Core.Models.Components;
 
-namespace Web.Core.Store.AppData.Effects.ChangeStateActionsEffects
+namespace Web.Core.Store.AppData.Effects.ChangeStateActionsEffects.SetCurrentContentActionsEffect.cs
 {
     internal record SetCurrentContentSuccessActionEffect : BaseSuccessAction
     {

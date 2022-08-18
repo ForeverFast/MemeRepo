@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using MudBlazor.Services;
 using Web.Core.Services;
+using Web.Core.Utils.WebScopeManager;
 
 namespace Web.Core
 {
@@ -25,7 +26,7 @@ namespace Web.Core
                 });
             });
 
-            services.AddSingleton<AppInitializerService>();
+            services.AddSingleton<WebScopeManager>();
             services.AddSingleton<ThemeService>();
 
             return services;
