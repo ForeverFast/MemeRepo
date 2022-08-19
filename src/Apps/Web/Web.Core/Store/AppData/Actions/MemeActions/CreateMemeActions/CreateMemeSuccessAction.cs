@@ -1,5 +1,4 @@
-﻿using Web.Core.Base.Store.Actions;
-using Web.Core.Models;
+﻿using Web.Core.Models;
 
 namespace Web.Core.Store.AppData.Actions.MemeActions.CreateMemeActions
 {

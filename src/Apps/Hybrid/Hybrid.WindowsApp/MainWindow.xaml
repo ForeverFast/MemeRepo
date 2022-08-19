@@ -19,7 +19,7 @@
         <Style TargetType="{x:Type Window}">
             <Setter Property="WindowChrome.WindowChrome">
                 <Setter.Value>
-                    <WindowChrome CaptionHeight="35"
+                    <WindowChrome CaptionHeight="7"
                                   CornerRadius="0"
                                   
                                   GlassFrameThickness="0"
@@ -205,26 +205,26 @@
             </ib:EventTrigger>
         </ib:Interaction.Triggers>
 
-        <Grid Height="20" VerticalAlignment="Top" Background="{StaticResource GrayLVL4}" Margin="0,0,0,0">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+        <Grid Height="7" VerticalAlignment="Top" Background="{StaticResource GrayLVL4}" Margin="0,0,0,0">
+            <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button x:Name="MinimizeButton" WindowChrome.IsHitTestVisibleInChrome="True" Style="{StaticResource MinimizeWindowButton}"/>
                 <Button x:Name="ResizeButton" WindowChrome.IsHitTestVisibleInChrome="True" Style="{StaticResource ResizeWindowButton}"/>
                 <Button x:Name="CloseButton" WindowChrome.IsHitTestVisibleInChrome="True" Style="{StaticResource CloseWindowButton}"/>
-            </StackPanel>
+            </StackPanel>-->
         </Grid>
-        <ListBox ItemsSource="{Binding DropFiles}" Margin="0,20,0,0" Background="{DynamicResource GrayLVL3}" BorderThickness="0" Opacity="0.1"
+        <ListBox ItemsSource="{Binding DropFiles}" Margin="0,7,0,0" Background="{DynamicResource GrayLVL3}" BorderThickness="0" Opacity="0.1"
                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                  dd:DragDrop.IsDropTarget="True" 
                  dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext}"/>
-        <Grid Margin="0,20,0,0">
+        <Grid Margin="0,7,0,0">
             <Border Margin="30" BorderThickness="2" BorderBrush="{DynamicResource StandartLightColor}">
-                <TextBox Text="Заполни меня" FontSize="44" Background="Transparent" Foreground="{DynamicResource StandartLightColor}"
+                <TextBox Text="Заполни меня (͡° ͜ʖ ͡°)" FontSize="44" Background="Transparent" Foreground="{DynamicResource StandartLightColor}"
                          BorderThickness="0"
                          VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Border>
         </Grid>
         <blazor:BlazorWebView x:Name="BlazorMainView" HostPage="wwwroot\index.html" Services="{DynamicResource services}"
-                              Margin="0,20,0,0" Background="{DynamicResource GrayLVL3}">
+                              Margin="0,7,0,0" Background="{DynamicResource GrayLVL3}">
             <blazor:BlazorWebView.Visibility>
                 <MultiBinding Converter="{StaticResource btv}">
                     <Binding ElementName="MainW" Path="DataContext.LocalDragAndDropFlag" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"/>

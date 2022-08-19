@@ -34,6 +34,7 @@ namespace Web.Core.Components.DialogComponents
         #region UI Fields
 
         private bool _isEditMode => Meme.Id != Guid.Empty;
+        private string saveButtonText => _isEditMode ? "Сохранить" : "Создать";
         private string absoluteTmpFilePath = string.Empty;
 
         private List<TagViewModel> AllTags => _appDataState!.Value.Tags;

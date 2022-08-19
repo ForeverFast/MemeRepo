@@ -1,5 +1,4 @@
 ﻿using Domain.Core.Interfaces;
-using System.Linq;
 using Web.Core.Models.Components.Dialogs;
 
 namespace Web.Core.Components.DialogComponents
@@ -9,7 +8,7 @@ namespace Web.Core.Components.DialogComponents
         #region Params
 
         [CascadingParameter] public MudDialogInstance? MudDialog { get; set; }
-        
+
 
 
         public static DialogOptions DialogOptions = new DialogOptions
@@ -52,7 +51,7 @@ namespace Web.Core.Components.DialogComponents
                 memes.Add(new PathsPackViewModel { Paths = pack });
         }
 
-        private void RemoveMemePack(PathsPackViewModel pack) => memes.Remove(pack); 
+        private void RemoveMemePack(PathsPackViewModel pack) => memes.Remove(pack);
 
         private void Cancel() => MudDialog!.Cancel();
 

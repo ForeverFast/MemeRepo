@@ -1,10 +1,8 @@
 ﻿using Domain.Core.Interfaces;
 using Microsoft.WindowsAPICodePack.Dialogs;
-using Ookii.Dialogs.Wpf;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Windows.Forms;
 
 namespace Hybrid.WindowsApp.Implementations
 {

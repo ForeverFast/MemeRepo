@@ -1,6 +1,4 @@
-﻿using Web.Core.Base.Store.Actions;
-
-namespace Web.Core.Base.Store.Effects
+﻿namespace Web.Core.Base.Store.Effects
 {
     internal abstract class BaseSuccessActionEffect<T> : BaseActionResultEffect<T> where T : BaseSuccessAction
     {

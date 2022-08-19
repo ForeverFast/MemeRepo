@@ -1,16 +1,16 @@
 ﻿using Web.Core.Store.AppData.Actions.DataActions.LoadAppDataActions;
 
-namespace Web.Core.Store.AppData.Reducers
+namespace Web.Core.Store.AppData.Reducers.DataActionsReducers
 {
     internal static class LoadAppDataActionsReducers
     {
         [ReducerMethod]
-        public static AppDataState ReduceLoadTodosAction(AppDataState state, LoadAppDataAction _) =>
-            state with { IsLoading = true };
+        public static AppDataState ReduceLoadTodosAction(AppDataState state, LoadAppDataAction _)
+            => state with { IsLoading = true };
 
         [ReducerMethod]
-        public static AppDataState ReduceLoadTodosSuccessAction(AppDataState state, LoadAppDataSuccessAction action) =>
-            state with
+        public static AppDataState ReduceLoadTodosSuccessAction(AppDataState state, LoadAppDataSuccessAction action)
+            => state with
             {
                 Folders = action.Folders,
                 Tags = action.Tags,
@@ -19,8 +19,8 @@ namespace Web.Core.Store.AppData.Reducers
             };
 
         [ReducerMethod]
-        public static AppDataState ReduceLoadTodosFailureAction(AppDataState state, LoadAppDataFailureAction action) =>
-            state with
+        public static AppDataState ReduceLoadTodosFailureAction(AppDataState state, LoadAppDataFailureAction action)
+            => state with
             {
                 IsLoading = false,
                 CurrentErrorMessage = action.ErrorMessage

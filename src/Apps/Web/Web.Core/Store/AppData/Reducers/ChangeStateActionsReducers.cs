@@ -1,5 +1,4 @@
-﻿using Web.Core.Enums;
-using Web.Core.Store.AppData.Actions.ChangeStateActions;
+﻿using Web.Core.Store.AppData.Actions.ChangeStateActions;
 using Web.Core.Store.AppData.Actions.ChangeStateActions.SetCurrentContentActions;
 
 namespace Web.Core.Store.AppData.Reducers

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Components.Web;
-using Web.Core.Models.Components.Dialogs;
+﻿using Web.Core.Models.Components.Dialogs;
 
 namespace Web.Core.Components.DialogComponents.Shared
 {

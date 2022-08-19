@@ -1,6 +1,4 @@
-﻿using Web.Core.Base.Store.Actions;
-using Web.Core.Enums;
-using Web.Core.Models.Components;
+﻿using Web.Core.Models.Components;
 
 namespace Web.Core.Store.AppData.Actions.ChangeStateActions.SetCurrentContentActions
 {

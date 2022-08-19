@@ -45,8 +45,9 @@ namespace Web.Core.Utils.AutoMapper.AppDataMaps
                 .ForMember(dst => dst.MemeTags, opt => opt.Ignore())
                 ;
 
-            CreateMap<Tag, TagViewModel>()
-                ;
+            CreateMap<Tag, TagViewModel>();
+            CreateMap<Tag, TagDialogViewModel>()
+                .ReverseMap();
         }
     }
 }

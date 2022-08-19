@@ -1,5 +1,4 @@
-﻿using Web.Core.Enums;
-using Web.Core.Models.Components.Search;
+﻿using Web.Core.Models.Components.Search;
 
 namespace Web.Core.Store.AppData.Actions.ChangeStateActions.SetCurrentContentActions
 {

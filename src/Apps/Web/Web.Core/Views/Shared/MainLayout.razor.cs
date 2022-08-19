@@ -1,12 +1,9 @@
-﻿using Fluxor.Blazor.Web.Components;
-using Microsoft.AspNetCore.Components.Web;
+﻿using Microsoft.AspNetCore.Components.Web;
 using MudBlazor.Utilities;
-using System.Linq;
 using Web.Core.Base.Components;
 using Web.Core.Enums.Components.StateContainer;
 using Web.Core.Services;
 using Web.Core.Store.AppData.Actions.ChangeStateActions;
-using Web.Core.Store.AppData.Actions.DataActions.AddFilesFromDiskActions;
 using Web.Core.Store.AppData.Actions.DataActions.LoadAppDataActions;
 
 namespace Web.Core.Views.Shared
@@ -111,7 +108,7 @@ namespace Web.Core.Views.Shared
 
 
         private void OnDragEnter(DragEventArgs e)
-        { 
+        {
             var inputDataTypes = e.DataTransfer.Types;
             if (!inputDataTypes.Except(new List<string> { "Files" }).Any() && inputDataTypes.Contains("Files"))
             {
@@ -119,17 +116,20 @@ namespace Web.Core.Views.Shared
             }
         }
 
-        private void OnDragLeave(DragEventArgs e) =>_dispatcher!.Dispatch(new HideFileDropBlockAction { });
+        private void OnDragLeave(DragEventArgs e) => _dispatcher!.Dispatch(new HideFileDropBlockAction { });
 
 
         private void Test()
         {
-            GC.Collect(); 
-            GC.WaitForPendingFinalizers(); 
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
             //_dispatcher!.Dispatch(new AddFilesFromDiskAction(null));
         }
 
         #endregion
 
+        #region MemeRepoItem context menu events
+
+        #endregion
     }
 }

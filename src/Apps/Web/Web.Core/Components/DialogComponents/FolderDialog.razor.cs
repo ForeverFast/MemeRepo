@@ -31,6 +31,7 @@ namespace Web.Core.Components.DialogComponents
         #region UI Fields
 
         private bool _isEditMode => Folder.Id != Guid.Empty;
+        private string saveButtonText => _isEditMode ? "Сохранить" : "Создать";
 
         private List<TagViewModel> AllTags => _appDataState!.Value.Tags;
         private List<TagViewModel> CurrentFolderTags = new();

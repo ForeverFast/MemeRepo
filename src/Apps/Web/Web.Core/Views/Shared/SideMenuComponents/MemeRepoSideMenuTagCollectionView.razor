@@ -1,0 +1,14 @@
+﻿@using Web.Core.Models
+@inherits MemeRepoBaseFluxorComponent
+
+<ContextMenuTrigger MenuId="memerepo-tag-collectionview-context-menu" CssClass="h-100">
+    <div class="tag-collectionview d-flex flex-wrap">
+        <Iterations T="TagViewModel" Items="@_appState!.Value.Tags">
+            <MemeRepoTag Data="@context"/>
+        </Iterations>
+    </div>
+</ContextMenuTrigger>
+
+<ContextMenu Id="memerepo-tag-collectionview-context-menu" AutoHide="true">
+    <Item OnClick="OnCollectionViewContextMenuCreateTagClick">Создать тег</Item>
+</ContextMenu>

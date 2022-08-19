@@ -1,0 +1,19 @@
+﻿<EditForm Model="@Tag" OnValidSubmit="Save">
+    <DataAnnotationsValidator />
+    <MudDialog>
+        <DialogContent>
+            <MudGrid>
+                <MudItem xs="6">
+                    <MudIcon Icon="@Icons.Filled.Tag" Style="height: 100%; width: 100%" />
+                </MudItem>
+                <MudItem xs="6">
+                    <MudTextField Label="Название" Class="mt-15 pt-7" @bind-Value="Tag.Title" For="@(() => Tag.Title)" Validation="@titleValidator" />
+                </MudItem>
+            </MudGrid>
+        </DialogContent>
+        <DialogActions>
+            <MudButton OnClick="Cancel">Отмена</MudButton>
+            <MudButton ButtonType="ButtonType.Submit">@saveButtonText</MudButton>
+        </DialogActions>
+    </MudDialog>
+</EditForm>

@@ -1,6 +1,4 @@
-﻿
-<EditForm Model="@Meme" OnValidSubmit="Save">
-
+﻿<EditForm Model="@Meme" OnValidSubmit="Save">
     <DataAnnotationsValidator />
     <MudDialog>
         <DialogContent>
@@ -25,8 +23,7 @@
         </DialogContent>
         <DialogActions>
             <MudButton OnClick="Cancel">Отмена</MudButton>
-            <MudButton ButtonType="ButtonType.Submit">@(_isEditMode ? "Сохранить" : "Создать")</MudButton>
-            </DialogActions>
-        </MudDialog>
-
-    </EditForm>
+            <MudButton ButtonType="ButtonType.Submit">@saveButtonText</MudButton>
+        </DialogActions>
+    </MudDialog>
+</EditForm>

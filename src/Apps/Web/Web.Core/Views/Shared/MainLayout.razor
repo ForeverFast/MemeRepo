@@ -11,13 +11,27 @@
         <MemeRepoStateContainer State="@state">
 
             <LoadingFragment>
-                <MemeRepoLoading/>
+                <MemeRepoLoading />
             </LoadingFragment>
 
             <ContentFragment>
 
-                <MudPaper Class="page__header">
-                    <MudButton OnClick="Test">Test</MudButton>
+                <MudPaper Class="page__header d-flex flex-row align-start">
+                    <MudPaper Class="info-block">
+                         <MudButton OnClick="Test">Test</MudButton>
+                    </MudPaper>
+                    <MudPaper Class="navigation-block">
+                        <MudButton Class="header-button"><MudIcon Icon="@Icons.Filled.ChevronLeft" Size="Size.Large" /></MudButton>
+                        <MudButton Class="header-button"><MudIcon Icon="@Icons.Filled.ChevronRight" Size="Size.Large" /></MudButton>
+                    </MudPaper>
+                    <MudPaper Class="tools-block ms-auto me-2">
+                        <MudButton Class="header-button"><MudIcon Icon="@Icons.Filled.Menu" /></MudButton>
+                    </MudPaper>
+                    <MudPaper Class="window-buttons-block mt-1">
+                        <MudButton Class="header-button"><MudIcon Icon="@Icons.Filled.Minimize" /></MudButton>
+                        <MudButton Class="header-button"><MudIcon Icon="@Icons.Filled.OpenInNew" /></MudButton>
+                        <MudButton Class="header-button"><MudIcon Icon="@Icons.Filled.Close" /></MudButton>
+                    </MudPaper>
                 </MudPaper>
 
                 <MudMainContent Class="page__content">
@@ -33,14 +47,14 @@
                                 </button>
                             </MudPaper>
                             <MudPaper Class="struct-content" Width="100%">
-                                @if (isFolderView)
-                                {
-                                    <MemeRepoSideMenuFolderTreeView />
-                                }
-                                else
-                                {
-
-                                }
+                                <Condition Evaluation=@isFolderView>
+                                    <Match>
+                                        <MemeRepoSideMenuFolderTreeView />
+                                    </Match>
+                                    <NotMatch>
+                                        <MemeRepoSideMenuTagCollectionView />
+                                    </NotMatch>
+                                </Condition>
                             </MudPaper>
                             <MudPaper Class="struct-bottom-panel" Width="100%">
 

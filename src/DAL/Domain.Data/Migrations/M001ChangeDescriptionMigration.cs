@@ -1,6 +1,4 @@
-﻿using FluentMigrator;
-
-namespace Domain.Data.Migrations
+﻿namespace Domain.Data.Migrations
 {
     //[Migration(2)]
     //public class M001ChangeDescriptionMigration : Migration

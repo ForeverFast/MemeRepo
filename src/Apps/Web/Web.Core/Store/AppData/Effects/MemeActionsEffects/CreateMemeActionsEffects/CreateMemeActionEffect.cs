@@ -1,6 +1,5 @@
 ﻿using DALQueryChain.Interfaces;
 using Domain.Core.Interfaces;
-using Web.Core.Base.Store.Effects;
 using Web.Core.Components.DialogComponents;
 using Web.Core.Models;
 using Web.Core.Models.Components.Dialogs;
@@ -63,7 +62,7 @@ namespace Web.Core.Store.AppData.Effects.MemeActionsEffects.CreateMemeActionsEff
                 await _dal.For<MemeTag>().Insert.BulkInsertAsync(newTagCollection);
 
                 _fileStorageProvider.CopyFileToNewFile(absoluteTmpFilePath, absoluteFilePath);
-                
+
                 var result = _mapper.Map<MemeViewModel>(createdMeme);
 
                 dispatcher.Dispatch(new CreateMemeSuccessAction(result)

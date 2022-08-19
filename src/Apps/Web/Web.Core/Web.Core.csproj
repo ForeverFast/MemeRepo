@@ -27,6 +27,7 @@
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Blazor.ContextMenu" Version="1.14.0" />
+    <PackageReference Include="FluentValidation" Version="11.2.0" />
     <PackageReference Include="Fluxor" Version="5.4.0" />
     <PackageReference Include="Fluxor.Blazor.Web" Version="5.4.0" />
     <PackageReference Include="Fluxor.Blazor.Web.ReduxDevTools" Version="5.4.0" />
@@ -46,8 +47,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Store\AppData\Actions\TagActions\DeleteTagActions\" />
-    <Folder Include="Store\AppData\Actions\TagActions\UpdateTagActions\" />
     <Folder Include="Store\Content\Actions\" />
   </ItemGroup>
 

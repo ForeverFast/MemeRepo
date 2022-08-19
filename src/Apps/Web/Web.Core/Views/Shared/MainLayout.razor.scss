@@ -7,9 +7,32 @@
     overflow-x: hidden;
 
     &__header {
-        @include d-border-top;
+        /* @include d-border-top;*/
         height: 40px;
         background-color: $SecondaryDarken;
+
+        .info-block {
+            width: 235px;
+            background-color: $SecondaryDarken;
+        }
+
+        .navigation-block {
+            background-color: $SecondaryDarken;
+        }
+
+        .tools-block {
+            margin-top: 7px;
+            background-color: $SecondaryDarken;
+        }
+
+        .window-buttons-block {
+            background-color: $SecondaryDarken;
+        }
+
+        .header-button {
+            min-width: 30px;
+            padding: 0px;
+        }
     }
 
     &__content {
@@ -29,7 +52,7 @@ $heightCalc: calc(100vh - 40px);
     &__side-menu {
         @include d-border-right;
         height: $heightCalc;
-        width: 300px;
+        width: 235px;
         background-color: $Secondary;
 
         &.mobile-app {
@@ -104,16 +127,14 @@ $heightCalc: calc(100vh - 40px);
 
     &__content {
         height: $heightCalc;
-        width: 100%;
+        width: calc(100% - 235px);
         background-color: $SecondaryLighten;
         overflow-y: auto;
         overflow-x: hidden;
-
-       /* &.folder-page {
+        /* &.folder-page {
             &::-webkit-scrollbar-track {
                 margin-top: 60px !important;
             }
         }*/
     }
 }
-

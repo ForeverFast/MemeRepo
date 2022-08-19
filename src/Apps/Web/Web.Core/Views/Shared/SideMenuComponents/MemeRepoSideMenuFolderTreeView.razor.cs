@@ -1,5 +1,4 @@
-﻿using Fluxor.Blazor.Web.Components;
-using Web.Core.Base.Components;
+﻿using Web.Core.Base.Components;
 using Web.Core.Models.Components;
 using Web.Core.Store.AppData;
 using Web.Core.Store.AppData.Actions.ChangeStateActions.SetCurrentContentActions;

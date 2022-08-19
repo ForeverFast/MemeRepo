@@ -5,8 +5,8 @@ namespace Web.Core.Store.AppData.Reducers.FolderActionsReducers
     internal static class CreateFolderActionsReducers
     {
         [ReducerMethod]
-        public static AppDataState ReduceCreateFolderAction(AppDataState state, CreateFolderAction _) =>
-           state with { };
+        public static AppDataState ReduceCreateFolderAction(AppDataState state, CreateFolderAction _)
+            => state with { };
 
         [ReducerMethod]
         public static AppDataState ReduceCreateFolderSuccessAction(AppDataState state, CreateFolderSuccessAction action)
@@ -24,8 +24,8 @@ namespace Web.Core.Store.AppData.Reducers.FolderActionsReducers
         }
 
         [ReducerMethod]
-        public static AppDataState ReduceCreateFolderFailureAction(AppDataState state, CreateFolderFailureAction action) =>
-            state with
+        public static AppDataState ReduceCreateFolderFailureAction(AppDataState state, CreateFolderFailureAction action)
+            => state with
             {
                 CurrentErrorMessage = action.ErrorMessage
             };

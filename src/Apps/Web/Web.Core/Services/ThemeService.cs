@@ -1,6 +1,4 @@
-﻿using Web.Core.Enums;
-
-namespace Web.Core.Services
+﻿namespace Web.Core.Services
 {
     public class ThemeService
     {

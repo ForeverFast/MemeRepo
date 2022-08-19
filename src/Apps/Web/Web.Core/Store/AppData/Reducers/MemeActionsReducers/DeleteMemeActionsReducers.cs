@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Web.Core.Store.AppData.Actions.MemeActions.DeleteMemeActions;
+﻿using Web.Core.Store.AppData.Actions.MemeActions.DeleteMemeActions;
 
 namespace Web.Core.Store.AppData.Reducers.MemeActionsReducers
 {
@@ -14,9 +13,9 @@ namespace Web.Core.Store.AppData.Reducers.MemeActionsReducers
         [ReducerMethod]
         public static AppDataState ReduceDeleteFolderSuccessAction(AppDataState state, DeleteMemeSuccessAction action)
         {
-            var targetMeme = state.Items.First(x => x.Id == action.DeletedFolderId);
+            var targetMeme = state.Items.First(x => x.Id == action.DeletedMemeId);
             state.Items.Remove(targetMeme);
-            
+
             return state;
         }
 

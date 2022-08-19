@@ -1,7 +1,6 @@
-﻿using Web.Core.Base.Store.Effects;
-using Web.Core.Store.AppData.Actions.MemeActions.DeleteMemeActions;
+﻿using Web.Core.Store.AppData.Actions.MemeActions.DeleteMemeActions;
 
-namespace Web.Core.Store.AppData.Effects.FolderActionsEffects.DeleteMemeActionsEffects
+namespace Web.Core.Store.AppData.Effects.MemeActionsEffects.DeleteMemeActionsEffects
 {
     internal class DeleteMemeSuccessActionEffect : BaseSuccessActionEffect<DeleteMemeSuccessAction>
     {

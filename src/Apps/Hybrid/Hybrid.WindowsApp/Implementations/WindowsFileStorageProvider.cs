@@ -22,7 +22,7 @@ namespace Hybrid.WindowsApp.Implementations
         public string CreateFolderPath(string? parentFolderPath = null, string? title = null)
         {
             title ??= "Новая папка";
-            parentFolderPath ??= Path.Combine(RootPath,"user-files");
+            parentFolderPath ??= Path.Combine(RootPath, "user-files");
 
             string newPath = Path.Combine(parentFolderPath, title);
             string tmpPath = newPath;

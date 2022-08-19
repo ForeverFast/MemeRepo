@@ -7,8 +7,8 @@ namespace Web.Core.Store.AppData.Reducers.MemeActionsReducers
     internal static class CreateMemeActionsReducers
     {
         [ReducerMethod]
-        public static AppDataState ReduceCreateFolderAction(AppDataState state, CreateMemeAction _) =>
-           state with { };
+        public static AppDataState ReduceCreateFolderAction(AppDataState state, CreateMemeAction _)
+            => state with { };
 
         [ReducerMethod]
         public static AppDataState ReduceCreateFolderSuccessAction(AppDataState state, CreateMemeSuccessAction action)
@@ -33,8 +33,8 @@ namespace Web.Core.Store.AppData.Reducers.MemeActionsReducers
         }
 
         [ReducerMethod]
-        public static AppDataState ReduceCreateFolderFailureAction(AppDataState state, CreateMemeFailureAction action) =>
-            state with
+        public static AppDataState ReduceCreateFolderFailureAction(AppDataState state, CreateMemeFailureAction action)
+            => state with
             {
                 CurrentErrorMessage = action.ErrorMessage
             };

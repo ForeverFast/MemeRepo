@@ -1,6 +1,5 @@
 ﻿using DALQueryChain.Interfaces;
 using Domain.Core.Interfaces;
-using Web.Core.Base.Store.Effects;
 using Web.Core.Components.DialogComponents;
 using Web.Core.Models;
 using Web.Core.Models.Components;
@@ -58,7 +57,7 @@ namespace Web.Core.Store.AppData.Actions.DataActionsEffects.AddFilesFromDiskActi
                     paths = action.FilePaths;
                 }
 
-              
+
 
                 var topLevelMemes = new List<string>();
                 var topLevelFolders = new List<string>();
@@ -109,7 +108,7 @@ namespace Web.Core.Store.AppData.Actions.DataActionsEffects.AddFilesFromDiskActi
                 var createdFolder = await _dal.For<Folder>().Insert.InsertWithObjectAsync(folder);
                 _fileStorageProvider.CreateFolder(absoluteNewFolderPath);
                 var resultFolder = _mapper.Map<FolderTreeViewModel>(createdFolder);
-               
+
                 var innersFiles = Directory.EnumerateFiles(folderPath, "*.*", SearchOption.AllDirectories)
                     .Where(s => s.EndsWith(".jpg") || s.EndsWith(".jpeg") || s.EndsWith(".png") || s.EndsWith(".gif")).ToArray();
                 _ = await CreateMemesAsync(innersFiles, resultFolder.Id, absoluteNewFolderPath);
@@ -138,7 +137,7 @@ namespace Web.Core.Store.AppData.Actions.DataActionsEffects.AddFilesFromDiskActi
                 var newFileInfo = new FileInfo(absoluteNewFilePath);
                 var meme = new Meme
                 {
-                    Title = newFileInfo.Name,
+                    Title = Path.GetFileNameWithoutExtension(absoluteNewFilePath),
                     Path = newFileInfo.Name,
                     ParentFolderId = parentFolderId,
                 };

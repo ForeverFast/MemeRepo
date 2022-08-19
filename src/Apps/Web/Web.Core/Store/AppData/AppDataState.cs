@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using Web.Core.Base.Store.States;
-using Web.Core.Enums;
-using Web.Core.Models;
+﻿using Web.Core.Models;
 using Web.Core.Models.Components;
 using Web.Core.Models.Components.Search;
 
@@ -16,7 +13,7 @@ namespace Web.Core.Store.AppData
         public List<MemeRepoItemViewModel> Items { get; init; } = new();
 
         public HashSet<FolderTreeViewModel> FolderPath { get; init; } = new();
-        public FilterModel? Filter { get; init; } 
+        public FilterModel? Filter { get; init; }
 
         public bool ShowFileDropBlock { get; init; }
 
@@ -65,7 +62,7 @@ namespace Web.Core.Store.AppData
                 return false;
             }
 
-           
+
         }
     }
 }
