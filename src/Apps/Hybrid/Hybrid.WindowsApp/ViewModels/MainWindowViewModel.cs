@@ -80,12 +80,12 @@ namespace Hybrid.WindowsApp.ViewModels
         }
 
         void IDropTarget.DragOver(IDropInfo dropInfo)
-        {           
+        {
             LocalDragAndDropFlag = true;
 
-            dropInfo.DropTargetAdorner = DropTargetAdorners.Insert;
+            var dataObject = dropInfo.Data as DataObject;
 
-            var dataObject = dropInfo.Data as IDataObject;
+            dropInfo.DropTargetAdorner = DropTargetAdorners.Insert;
 
             dropInfo.Effects = dataObject != null && dataObject.GetDataPresent(DataFormats.FileDrop)
                 ? DragDropEffects.Copy

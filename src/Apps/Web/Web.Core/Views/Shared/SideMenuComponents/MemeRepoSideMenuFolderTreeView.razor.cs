@@ -1,4 +1,5 @@
 ﻿using Fluxor.Blazor.Web.Components;
+using Web.Core.Base.Components;
 using Web.Core.Models.Components;
 using Web.Core.Store.AppData;
 using Web.Core.Store.AppData.Actions.ChangeStateActions.SetCurrentContentActions;
@@ -10,7 +11,7 @@ using Web.Core.Store.AppData.Actions.MemeActions.CreateMemeActions;
 
 namespace Web.Core.Views.Shared.SideMenuComponents
 {
-    public partial class MemeRepoSideMenuFolderTreeView : FluxorComponent
+    public partial class MemeRepoSideMenuFolderTreeView : MemeRepoBaseFluxorComponent
     {
         #region Injects
 
@@ -28,10 +29,11 @@ namespace Web.Core.Views.Shared.SideMenuComponents
 
         protected override void OnInitialized()
         {
-            SubscribeToAction<SetCurrentContentAction>((action) => InvokeAsync(() => this.StateHasChanged()));
-            SubscribeToAction<CreateFolderSuccessAction>((action) => InvokeAsync(() => this.StateHasChanged()));
-            SubscribeToAction<UpdateFolderSuccessAction>((action) => InvokeAsync(() => this.StateHasChanged()));
-            SubscribeToAction<DeleteFolderSuccessAction>((action) => InvokeAsync(() => this.StateHasChanged()));
+            SubscribeToAction<SetCurrentContentAction>(BaseUpdateUIAction);
+            SubscribeToAction<CreateFolderSuccessAction>(BaseUpdateUIAction);
+            SubscribeToAction<UpdateFolderSuccessAction>(BaseUpdateUIAction);
+            SubscribeToAction<DeleteFolderSuccessAction>(BaseUpdateUIAction);
+            SubscribeToAction<AddFilesFromDiskSuccessAction>(BaseUpdateUIAction);
 
             base.OnInitialized();
         }

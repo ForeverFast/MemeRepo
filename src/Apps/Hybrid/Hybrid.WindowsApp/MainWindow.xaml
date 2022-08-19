@@ -198,7 +198,7 @@
 
     </Window.Resources>
 
-    <Grid>
+    <Grid Background="{DynamicResource GrayLVL3}">
         <ib:Interaction.Triggers>
             <ib:EventTrigger EventName="DragLeave">
                 <ib:InvokeCommandAction Command="{Binding DragLeaveCommand}" />
@@ -212,10 +212,17 @@
                 <Button x:Name="CloseButton" WindowChrome.IsHitTestVisibleInChrome="True" Style="{StaticResource CloseWindowButton}"/>
             </StackPanel>
         </Grid>
-        <ListBox ItemsSource="{Binding DropFiles}" Margin="0,20,0,0" Background="{DynamicResource GrayLVL3}" BorderThickness="0"
+        <ListBox ItemsSource="{Binding DropFiles}" Margin="0,20,0,0" Background="{DynamicResource GrayLVL3}" BorderThickness="0" Opacity="0.1"
                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                  dd:DragDrop.IsDropTarget="True" 
                  dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext}"/>
+        <Grid Margin="0,20,0,0">
+            <Border Margin="30" BorderThickness="2" BorderBrush="{DynamicResource StandartLightColor}">
+                <TextBox Text="Заполни меня" FontSize="44" Background="Transparent" Foreground="{DynamicResource StandartLightColor}"
+                         BorderThickness="0"
+                         VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Border>
+        </Grid>
         <blazor:BlazorWebView x:Name="BlazorMainView" HostPage="wwwroot\index.html" Services="{DynamicResource services}"
                               Margin="0,20,0,0" Background="{DynamicResource GrayLVL3}">
             <blazor:BlazorWebView.Visibility>

@@ -23,7 +23,7 @@ namespace Domain.Data.Extensions
         public static ICreateTableColumnOptionOrWithColumnSyntax WithFolderObjectColumns(this ICreateTableWithColumnSyntax tableWithColumnSyntax)
            => tableWithColumnSyntax
             .WithColumn("Title").AsString()
-            .WithColumn("Description").AsString()
+            .WithColumn("Description").AsString().Nullable()
             .WithColumn("Path").AsString()
             .WithColumn("Position").AsInt64()
             .WithColumn("ParentFolderId").AsGuid().Nullable().ForeignKey("Folders", "Id");

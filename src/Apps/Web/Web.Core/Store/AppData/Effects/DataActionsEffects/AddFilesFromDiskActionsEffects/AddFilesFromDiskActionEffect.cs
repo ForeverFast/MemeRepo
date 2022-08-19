@@ -1,15 +1,13 @@
 ﻿using DALQueryChain.Interfaces;
 using Domain.Core.Interfaces;
-using Domain.Data.Context;
 using Web.Core.Base.Store.Effects;
 using Web.Core.Components.DialogComponents;
 using Web.Core.Models;
 using Web.Core.Models.Components;
 using Web.Core.Models.Components.Dialogs;
 using Web.Core.Store.AppData.Actions.DataActions.AddFilesFromDiskActions;
-using static MudBlazor.CategoryTypes;
 
-namespace Web.Core.Store.AppData.Actions.DataActionsEffects.AddFilesFromDiskActions
+namespace Web.Core.Store.AppData.Actions.DataActionsEffects.AddFilesFromDiskActionsEffects
 {
     internal class AddFilesFromDiskActionEffect : BaseDataEffect<AddFilesFromDiskAction>
     {
@@ -112,7 +110,8 @@ namespace Web.Core.Store.AppData.Actions.DataActionsEffects.AddFilesFromDiskActi
                 _fileStorageProvider.CreateFolder(absoluteNewFolderPath);
                 var resultFolder = _mapper.Map<FolderTreeViewModel>(createdFolder);
                
-                var innersFiles = Directory.GetFiles(folderPath, "*.jpg;*.png");
+                var innersFiles = Directory.EnumerateFiles(folderPath, "*.*", SearchOption.AllDirectories)
+                    .Where(s => s.EndsWith(".jpg") || s.EndsWith(".jpeg") || s.EndsWith(".png") || s.EndsWith(".gif")).ToArray();
                 _ = await CreateMemesAsync(innersFiles, resultFolder.Id, absoluteNewFolderPath);
 
                 var innerFoldersPaths = Directory.GetDirectories(folderPath);
@@ -134,7 +133,7 @@ namespace Web.Core.Store.AppData.Actions.DataActionsEffects.AddFilesFromDiskActi
             foreach (var filePath in filesPaths)
             {
                 var absoluteNewFilePath = _fileStorageProvider.CreateFilePath(
-                    absoluteParentFolderPath, new FileInfo(filePath).Extension, new FileInfo(filePath).Name);
+                    absoluteParentFolderPath, new FileInfo(filePath).Extension, Path.GetFileNameWithoutExtension(filePath));
 
                 var newFileInfo = new FileInfo(absoluteNewFilePath);
                 var meme = new Meme

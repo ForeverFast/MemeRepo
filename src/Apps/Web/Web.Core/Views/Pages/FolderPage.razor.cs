@@ -1,8 +1,10 @@
 ﻿using Fluxor.Blazor.Web.Components;
+using Web.Core.Base.Components;
 using Web.Core.Enums.Components.StateContainer;
 using Web.Core.Models.Components;
 using Web.Core.Store.AppData;
 using Web.Core.Store.AppData.Actions.ChangeStateActions.SetCurrentContentActions;
+using Web.Core.Store.AppData.Actions.DataActions.AddFilesFromDiskActions;
 using Web.Core.Store.AppData.Actions.MemeActions.CreateMemeActions;
 using Web.Core.Store.AppData.Actions.MemeActions.DeleteMemeActions;
 using Web.Core.Store.AppData.Actions.MemeActions.UpdateMemeActions;
@@ -10,7 +12,7 @@ using Web.Core.Store.AppData.Actions.MemeActions.UpdateMemeActions;
 namespace Web.Core.Views.Pages
 {
     [Route("folder/{Id:guid}")]
-    public partial class FolderPage : FluxorComponent
+    public partial class FolderPage : MemeRepoBaseFluxorComponent
     {
         #region Params
 
@@ -41,9 +43,10 @@ namespace Web.Core.Views.Pages
 
         protected override void OnInitialized()
         {
-            SubscribeToAction<CreateMemeSuccessAction>((action) => InvokeAsync(() => this.StateHasChanged()));
-            SubscribeToAction<UpdateMemeSuccessAction>((action) => InvokeAsync(() => this.StateHasChanged()));
-            SubscribeToAction<DeleteMemeSuccessAction>((action) => InvokeAsync(() => this.StateHasChanged()));
+            SubscribeToAction<CreateMemeSuccessAction>(BaseUpdateUIAction);
+            SubscribeToAction<UpdateMemeSuccessAction>(BaseUpdateUIAction);
+            SubscribeToAction<DeleteMemeSuccessAction>(BaseUpdateUIAction);
+            SubscribeToAction<AddFilesFromDiskSuccessAction>(BaseUpdateUIAction);
             SubscribeToAction<SetCurrentContentSuccessAction>(OnSetCurrentContentSuccessAction);
             SubscribeToAction<SetCurrentContentFailureAction>(OnSetCurrentContentFailureAction);
 

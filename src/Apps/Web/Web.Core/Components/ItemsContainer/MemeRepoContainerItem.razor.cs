@@ -1,4 +1,5 @@
-﻿using MudBlazor.Utilities;
+﻿using Fluxor;
+using MudBlazor.Utilities;
 using Web.Core.Enums.Components;
 using Web.Core.Models.Components;
 using Web.Core.Store.AppData.Actions.FolderActions.DeleteFolderActions;
@@ -20,6 +21,10 @@ namespace Web.Core.Components.ItemsContainer
 
         #region UI Fields
 
+        private static int numC = 1;
+
+        private int Num = numC++;
+
         #endregion
 
         #region Component Css/Style
@@ -35,5 +40,14 @@ namespace Web.Core.Components.ItemsContainer
             .Build();
 
         #endregion
+
+        protected override void OnInitialized()
+        {
+            //var abslPath = Path.Combine("wwwroot", state.GetFileRelativePath(x.ParentFolderId!.Value, x.Path));
+            //x.Path = "data:image/png;base64, " + Convert.ToBase64String(File.ReadAllBytes(abslPath));
+            
+            Console.WriteLine(Num);
+            base.OnInitialized();
+        }
     }
 }

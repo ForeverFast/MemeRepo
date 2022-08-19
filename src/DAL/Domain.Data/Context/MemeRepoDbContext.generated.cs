@@ -84,7 +84,7 @@ namespace Domain.Data.Context
 		[Column("CreatedAt"                           )] public DateTime CreatedAt      { get; set; } // datetime
 		[Column("UpdatedAt"                           )] public DateTime UpdatedAt      { get; set; } // datetime
 		[Column("Title"         , CanBeNull    = false)] public string   Title          { get; set; } = null!; // text(max)
-		[Column("Description"   , CanBeNull    = false)] public string   Description    { get; set; } = null!; // text(max)
+		[Column("Description"                         )] public string?  Description    { get; set; } // text(max)
 		[Column("Path"          , CanBeNull    = false)] public string   Path           { get; set; } = null!; // text(max)
 		[Column("Position"                            )] public long     Position       { get; set; } // integer
 		[Column("ParentFolderId"                      )] public Guid?    ParentFolderId { get; set; } // uniqueidentifier
@@ -144,7 +144,7 @@ namespace Domain.Data.Context
 		[Column("CreatedAt"                           )] public DateTime CreatedAt      { get; set; } // datetime
 		[Column("UpdatedAt"                           )] public DateTime UpdatedAt      { get; set; } // datetime
 		[Column("Title"         , CanBeNull    = false)] public string   Title          { get; set; } = null!; // text(max)
-		[Column("Description"   , CanBeNull    = false)] public string   Description    { get; set; } = null!; // text(max)
+		[Column("Description"                         )] public string?  Description    { get; set; } // text(max)
 		[Column("Path"          , CanBeNull    = false)] public string   Path           { get; set; } = null!; // text(max)
 		[Column("Position"                            )] public long     Position       { get; set; } // integer
 		[Column("ParentFolderId"                      )] public Guid?    ParentFolderId { get; set; } // uniqueidentifier

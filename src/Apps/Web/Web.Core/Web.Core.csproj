@@ -46,7 +46,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Store\AppData\Actions\TagActions\CreateTagActions\" />
     <Folder Include="Store\AppData\Actions\TagActions\DeleteTagActions\" />
     <Folder Include="Store\AppData\Actions\TagActions\UpdateTagActions\" />
     <Folder Include="Store\Content\Actions\" />

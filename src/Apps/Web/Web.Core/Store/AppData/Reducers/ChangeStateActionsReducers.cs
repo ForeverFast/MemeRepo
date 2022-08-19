@@ -54,8 +54,8 @@ namespace Web.Core.Store.AppData.Reducers
                         break;
                     case Enums.Components.MemeRepoItemType.Img:
                     default:
-                        var abslPath = Path.Combine("wwwroot", state.GetFileRelativePath(x.ParentFolderId!.Value, x.Path));
-                        x.Path = "data:image/png;base64, " + Convert.ToBase64String(File.ReadAllBytes(abslPath));
+                        var abslPath = state.GetFileRelativePath(x.ParentFolderId!.Value, x.Path);
+                        x.Path = abslPath;//"data:image/png;base64, " + Convert.ToBase64String(File.ReadAllBytes(abslPath));
                         break;
                 }
             });
