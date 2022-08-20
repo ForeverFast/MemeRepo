@@ -1,8 +1,8 @@
 ﻿@inherits MemeRepoBaseComponent
 
-<div class="memerepo-tag @Classname" style="@Stylename" @attributes="UserAttributes">
+<div class="memerepo-tag  @Classname" style="@Stylename" @attributes="UserAttributes">
     <ContextMenuTrigger MenuId="memerepo-tag-context-menu" CssClass="context-menu-trigger-block d-flex flex-column align-center" Data="Data">
-        <div class="inner-container d-flex flex-row align-center">
+        <div class="inner-container border-2 rounded-xl px-1 d-flex flex-row align-center">
             <MudIcon Icon="@Icons.Filled.Tag" />
             <p class="marquee"><span>@Data.Title</span></p>
         </div>

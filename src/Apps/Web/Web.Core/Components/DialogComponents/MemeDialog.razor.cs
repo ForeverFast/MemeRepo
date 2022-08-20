@@ -1,7 +1,6 @@
 ﻿using Domain.Core.Interfaces;
-using Web.Core.Models;
 using Web.Core.Models.Components.Dialogs;
-using Web.Core.Store.AppData;
+using Web.Core.Store.App;
 
 namespace Web.Core.Components.DialogComponents
 {
@@ -19,13 +18,15 @@ namespace Web.Core.Components.DialogComponents
             MaxWidth = MaxWidth.Small,
             FullWidth = true,
             CloseButton = true,
+            CloseOnEscapeKey = true, 
         };
 
         #endregion
 
         #region Injects
 
-        [Inject] IState<AppDataState>? _appDataState { get; init; }
+        [Inject] IState<AppState>? _appState { get; init; }
+
         [Inject] IFileStorageProvider? _fileStorageProvider { get; init; }
         [Inject] IFileStorageDialogProvider? _fileStorageDialogProvider { get; init; }
 
@@ -37,9 +38,7 @@ namespace Web.Core.Components.DialogComponents
         private string saveButtonText => _isEditMode ? "Сохранить" : "Создать";
         private string absoluteTmpFilePath = string.Empty;
 
-        private List<TagViewModel> AllTags => _appDataState!.Value.Tags;
-        private List<TagViewModel> CurrentFolderTags = new();
-        private List<TagViewModel> SelectedFolderTags = new();
+        private List<ItemTagViewModel> selectedTags = new();
 
         #endregion
 
@@ -49,7 +48,7 @@ namespace Web.Core.Components.DialogComponents
         {
             if (Meme.Id != Guid.Empty)
             {
-                Meme.Path = _appDataState!.Value.GetFileRelativePath(Meme.ParentFolderId, Meme.Path);
+                Meme.Path = _appState!.Value.GetFileRelativePath(Meme.ParentFolderId, Meme.Path);
             }
 
             base.OnInitialized();
@@ -57,7 +56,7 @@ namespace Web.Core.Components.DialogComponents
 
         #endregion
 
-        protected void ChooseFile()
+        private void ChooseFile()
         {
             var absoluteFilePath = _fileStorageDialogProvider!.OpenFilePicker();
             if (string.IsNullOrEmpty(absoluteFilePath))
@@ -67,11 +66,12 @@ namespace Web.Core.Components.DialogComponents
             Meme.Path = _fileStorageProvider!.GetRelativePath(absoluteTmpFilePath);
         }
 
-        protected void Cancel() => MudDialog!.Cancel();
+        private void Cancel() => MudDialog!.Cancel();
 
-        protected void Save()
+        private void Save()
         {
             Meme.Path = absoluteTmpFilePath ?? string.Empty;
+            Meme.Tags = selectedTags.Select(x => x.Id).ToList();
             MudDialog!.Close(DialogResult.Ok(Meme));
         }
     }

@@ -28,9 +28,9 @@
                         <MudButton Class="header-button"><MudIcon Icon="@Icons.Filled.Menu" /></MudButton>
                     </MudPaper>
                     <MudPaper Class="window-buttons-block mt-1">
-                        <MudButton Class="header-button"><MudIcon Icon="@Icons.Filled.Minimize" /></MudButton>
-                        <MudButton Class="header-button"><MudIcon Icon="@Icons.Filled.OpenInNew" /></MudButton>
-                        <MudButton Class="header-button"><MudIcon Icon="@Icons.Filled.Close" /></MudButton>
+                        <MudButton Class="header-button" OnClick="OnMinimizeWindowButtonClick"><MudIcon Icon="@Icons.Filled.Minimize" /></MudButton>
+                        <MudButton Class="header-button" OnClick="OnResizeWindowButtonClick"><MudIcon Icon="@Icons.Filled.OpenInNew" Class="@ResizeIconClassname" /></MudButton>
+                        <MudButton Class="header-button" OnClick="OnCloseWindowButtonClick"><MudIcon Icon="@Icons.Filled.Close" /></MudButton>
                     </MudPaper>
                 </MudPaper>
 

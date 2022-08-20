@@ -1,12 +1,12 @@
 ﻿using Web.Core.Base.Components;
 using Web.Core.Enums.Components.StateContainer;
 using Web.Core.Models.Components;
-using Web.Core.Store.AppData;
-using Web.Core.Store.AppData.Actions.ChangeStateActions.SetCurrentContentActions;
-using Web.Core.Store.AppData.Actions.DataActions.AddFilesFromDiskActions;
-using Web.Core.Store.AppData.Actions.MemeActions.CreateMemeActions;
-using Web.Core.Store.AppData.Actions.MemeActions.DeleteMemeActions;
-using Web.Core.Store.AppData.Actions.MemeActions.UpdateMemeActions;
+using Web.Core.Store.App;
+using Web.Core.Store.App.Actions.DataActions.AddFilesFromDiskActions;
+using Web.Core.Store.App.Actions.DataActions.SetCurrentContentActions;
+using Web.Core.Store.App.Actions.MemeActions.CreateMemeActions;
+using Web.Core.Store.App.Actions.MemeActions.DeleteMemeActions;
+using Web.Core.Store.App.Actions.MemeActions.UpdateMemeActions;
 
 namespace Web.Core.Views.Pages
 {
@@ -21,7 +21,7 @@ namespace Web.Core.Views.Pages
 
         #region Injects
 
-        [Inject] IState<AppDataState>? _appState { get; init; }
+        [Inject] IState<AppState>? _appState { get; init; }
         [Inject] IDispatcher? _dispatcher { get; init; }
         [Inject] NavigationManager? _navigationManager { get; init; }
 

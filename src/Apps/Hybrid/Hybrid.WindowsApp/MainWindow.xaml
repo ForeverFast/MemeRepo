@@ -13,7 +13,8 @@
         mc:Ignorable="d"
         x:Name="MainW"
         Title="MemeRepo"
-        Height="768" Width="1024" MinHeight="768" MinWidth="715">
+        Height="768" Width="1024" MinHeight="768" MinWidth="715"
+        WindowState="{Binding WindowState, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
 
     <Window.Style>
         <Style TargetType="{x:Type Window}">
@@ -55,150 +56,11 @@
 
         <converters:WindowStateToWindowsStateConverter x:Key="wdtwd"/>
         <converters:BoolToVisibilityConverter x:Key="btv"/>
-
-        <Style x:Key="MinimizeWindowButton" TargetType="{x:Type Button}">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Name="ButtonBorder"
-                            Background="Transparent"
-                            Height="20" Width="20">
-                            <md:PackIcon Name="Icon" Kind="HorizontalLine"
-                                     Width="20" Height="20"
-                                     VerticalAlignment="Center"
-                                     HorizontalAlignment="Center"
-                                     Margin="0,10,0,0"/>
-
-                            <ib:Interaction.Triggers>
-                                <ib:EventTrigger EventName="MouseLeftButtonDown">
-                                    <ib:ChangePropertyAction PropertyName="WindowState" Value="Minimized"
-                                                          TargetObject="{Binding RelativeSource={RelativeSource
-                                                                                 Mode=FindAncestor,
-                                                                                 AncestorType=Window}}" />
-                                </ib:EventTrigger>
-                            </ib:Interaction.Triggers>
-
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Foreground" Value="{DynamicResource StandartLightColor2}"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="False">
-                                <Setter Property="Foreground" Value="{DynamicResource StandartLightColor}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-
-        </Style>
-
-        <Style x:Key="ResizeWindowButton" TargetType="{x:Type Button}">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Name="ButtonBorder"
-                            Background="Transparent"
-                            Height="20" Width="20">
-                            <md:PackIcon Name="Icon"
-                                     RenderTransformOrigin="0.5,0.5"
-                                     Width="20" Height="20"
-                                     VerticalAlignment="Center"
-                                     HorizontalAlignment="Center"
-                                     Margin="0,0,0,0">
-                                <md:PackIcon.RenderTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform/>
-                                        <SkewTransform/>
-                                        <RotateTransform Angle="-180"/>
-                                        <TranslateTransform/>
-                                    </TransformGroup>
-                                </md:PackIcon.RenderTransform>
-                            </md:PackIcon>
-
-                            <ib:Interaction.Triggers>
-                                <ib:EventTrigger EventName="MouseLeftButtonDown">
-                                    <ib:ChangePropertyAction PropertyName="WindowState" Value="{Binding RelativeSource={RelativeSource
-                                                  Mode=FindAncestor,
-                                                  AncestorType=Window}, Path=WindowState, Converter={StaticResource wdtwd}}"
-                                                        TargetObject="{Binding RelativeSource={RelativeSource
-                                                                              Mode=FindAncestor,
-                                                                              AncestorType=Window}}" />
-                                </ib:EventTrigger>
-                            </ib:Interaction.Triggers>
-
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
-                                                       AncestorType=Window}, Path=WindowState}"  Value="Normal">
-                                <Setter TargetName="Icon" Property="Kind" Value="CropSquare"/>
-                                <Setter TargetName="Icon" Property="Margin" Value="0,0,0,0"/>
-                                <Setter TargetName="Icon" Property="Width" Value="20"/>
-                                <Setter TargetName="Icon" Property="Height" Value="20"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor,
-                                                       AncestorType=Window}, Path=WindowState}"  Value="Maximized">
-                                <Setter TargetName="Icon" Property="Kind" Value="ImageFilterNone"/>
-                                <Setter TargetName="Icon" Property="Margin" Value="0,0,0,0"/>
-                                <Setter TargetName="Icon" Property="Width" Value="17"/>
-                                <Setter TargetName="Icon" Property="Height" Value="17"/>
-                            </DataTrigger>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Foreground" Value="{DynamicResource StandartLightColor2}"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="False">
-                                <Setter Property="Foreground" Value="{DynamicResource StandartLightColor}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-
-        </Style>
-
-        <Style x:Key="CloseWindowButton" TargetType="{x:Type Button}">
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Name="ButtonBorder"
-                            Background="Transparent"
-                            Height="20" Width="20">
-                            <md:PackIcon Name="Icon" Kind="Close"
-                                     Width="25" Height="20"
-                                     VerticalAlignment="Center"
-                                     HorizontalAlignment="Center"
-                                     Margin="0"/>
-
-                            <ib:Interaction.Triggers>
-                                <ib:EventTrigger EventName="MouseLeftButtonDown">
-                                    <ib:CallMethodAction MethodName="Close"
-                           TargetObject="{Binding RelativeSource={RelativeSource
-                                                  Mode=FindAncestor,
-                                                  AncestorType=Window}}" />
-                                </ib:EventTrigger>
-                            </ib:Interaction.Triggers>
-
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Foreground" Value="Red"/>
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="False">
-                                <Setter Property="Foreground" Value="{DynamicResource StandartLightColor}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-
-        </Style>
-
+        
     </Window.Resources>
 
     <Grid Background="{DynamicResource GrayLVL3}">
+        
         <ib:Interaction.Triggers>
             <ib:EventTrigger EventName="DragLeave">
                 <ib:InvokeCommandAction Command="{Binding DragLeaveCommand}" />
@@ -206,16 +68,14 @@
         </ib:Interaction.Triggers>
 
         <Grid Height="7" VerticalAlignment="Top" Background="{StaticResource GrayLVL4}" Margin="0,0,0,0">
-            <!--<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="MinimizeButton" WindowChrome.IsHitTestVisibleInChrome="True" Style="{StaticResource MinimizeWindowButton}"/>
-                <Button x:Name="ResizeButton" WindowChrome.IsHitTestVisibleInChrome="True" Style="{StaticResource ResizeWindowButton}"/>
-                <Button x:Name="CloseButton" WindowChrome.IsHitTestVisibleInChrome="True" Style="{StaticResource CloseWindowButton}"/>
-            </StackPanel>-->
+         
         </Grid>
+        
         <ListBox ItemsSource="{Binding DropFiles}" Margin="0,7,0,0" Background="{DynamicResource GrayLVL3}" BorderThickness="0" Opacity="0.1"
                  VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                  dd:DragDrop.IsDropTarget="True" 
                  dd:DragDrop.DropHandler="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Path=DataContext}"/>
+       
         <Grid Margin="0,7,0,0">
             <Border Margin="30" BorderThickness="2" BorderBrush="{DynamicResource StandartLightColor}">
                 <TextBox Text="Заполни меня (͡° ͜ʖ ͡°)" FontSize="44" Background="Transparent" Foreground="{DynamicResource StandartLightColor}"
@@ -223,6 +83,7 @@
                          VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </Border>
         </Grid>
+        
         <blazor:BlazorWebView x:Name="BlazorMainView" HostPage="wwwroot\index.html" Services="{DynamicResource services}"
                               Margin="0,7,0,0" Background="{DynamicResource GrayLVL3}">
             <blazor:BlazorWebView.Visibility>
@@ -232,10 +93,12 @@
                 </MultiBinding>
             </blazor:BlazorWebView.Visibility>
             <blazor:BlazorWebView.RootComponents>
-                <blazor:RootComponent Selector="#app" x:Name="BlazorRootComponent" ComponentType="{x:Type rc:App}" />
+                <blazor:RootComponent Selector="#app" x:Name="BlazorRootComponent" ComponentType="{x:Type rc:AppRoot}" />
             </blazor:BlazorWebView.RootComponents>
         </blazor:BlazorWebView>
+        
     </Grid>
+    
 </Window>
 
 <!--Visibility="{Binding RelativeSource={RelativeSource Mode=FindAncestor,

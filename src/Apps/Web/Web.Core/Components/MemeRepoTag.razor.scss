@@ -1,6 +1,27 @@
 ﻿@import "../wwwroot/css/variables";
 
-.memerepo-tag
-{
+.memerepo-tag {
+    max-width: 210px;
 
+    .inner-container {
+        width: 100%;
+
+        .marquee {
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .marquee span:hover {
+            display: inline-block;
+            -webkit-animation: scroll 10s infinite linear;
+            -moz-animation: scroll 10s infinite linear;
+            animation: scroll 10s infinite linear;
+        }
+
+        p {
+            margin-top: 1.01px;
+        }
+    }
 }

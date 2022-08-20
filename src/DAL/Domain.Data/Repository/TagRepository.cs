@@ -25,5 +25,41 @@ namespace Domain.Data.Repository
             OnBeforeInsert(model);
             return Task.CompletedTask;
         }
+
+        protected override async Task OnBeforeDeleteAsync(Tag model)
+        {
+            OnBeforeDelete(model);
+
+            var tagQC = GetQueryChain<Tag>();
+            var memeTagsQC = GetQueryChain<MemeTag>();
+            var folderTagsQC = GetQueryChain<FolderTag>();
+
+            var fullModel = await tagQC.Get
+                .LoadWith(x => x.MemeTags)
+                .LoadWith(x => x.FolderTags)
+                .FirstAsync(x => x.Id == model.Id);
+
+            await memeTagsQC.Delete.BulkDeleteAsync(fullModel.MemeTags);
+            await folderTagsQC.Delete.BulkDeleteAsync(fullModel.FolderTags);
+        }
+
+        protected override async Task OnBeforeBulkDeleteAsync(IEnumerable<Tag> models)
+        {
+            OnBeforeBulkDelete(models);
+            foreach (var model in models)
+            {
+                var tagQC = GetQueryChain<Tag>();
+                var memeTagsQC = GetQueryChain<MemeTag>();
+                var folderTagsQC = GetQueryChain<FolderTag>();
+
+                var fullModel = await tagQC.Get
+                    .LoadWith(x => x.MemeTags)
+                    .LoadWith(x => x.FolderTags)
+                    .FirstAsync(x => x.Id == model.Id);
+
+                await memeTagsQC.Delete.BulkDeleteAsync(fullModel.MemeTags);
+                await folderTagsQC.Delete.BulkDeleteAsync(fullModel.FolderTags);
+            }
+        }
     }
 }

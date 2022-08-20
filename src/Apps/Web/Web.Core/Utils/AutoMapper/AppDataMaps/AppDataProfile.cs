@@ -48,6 +48,8 @@ namespace Web.Core.Utils.AutoMapper.AppDataMaps
             CreateMap<Tag, TagViewModel>();
             CreateMap<Tag, TagDialogViewModel>()
                 .ReverseMap();
+
+            CreateMap<TagViewModel, ItemTagViewModel>();
         }
     }
 }

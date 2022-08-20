@@ -1,0 +1,13 @@
+﻿@import '../../../wwwroot/css/variables';
+
+.tag-picker {
+    .search-input {
+        background-color: transparent;
+        color: $StandartLightColor2;
+        border-color: $StandartLightColor2;
+
+        &:focus-visible {
+            outline: none;
+        }
+    }
+}

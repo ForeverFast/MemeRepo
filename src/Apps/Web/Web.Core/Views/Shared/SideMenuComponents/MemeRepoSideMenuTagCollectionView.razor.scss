@@ -1,0 +1,43 @@
+﻿@import '../../../wwwroot/css/variables';
+
+.tag-collectionview {
+    height: 100%;
+    overflow: hidden;
+
+    $tag-view-switcher-height: 25px;
+
+    ::deep .memerepo-tag-view-switcher {
+        @include d-border-bottom;
+        position: sticky;
+        width: 100%;
+        height: $tag-view-switcher-height;
+
+        .btn-tag-sort {
+            position: relative;
+            height: 100%;
+            width: 40px;
+
+            > svg {
+                position: absolute;
+            }
+
+            .rotate-arrow {
+                left: -5px;
+                transform: rotate(90deg);
+            }
+
+            .sort-icon {
+                left: 12px;
+            }
+
+            &__by-alphv {
+            }
+        }
+    }
+
+    .inner-container {
+        overflow-y: auto;
+        height: calc(100% - $tag-view-switcher-height);
+        align-content: flex-start;
+    }
+}

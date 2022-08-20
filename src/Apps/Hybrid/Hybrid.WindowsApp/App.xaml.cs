@@ -57,7 +57,7 @@ namespace Hybrid.WindowsApp
 
             _host.Start();
 
-            _host.Services.GetRequiredService<MainWindow>().Show();
+            _host.Services.GetRequiredService<Window>().Show();
         }
     }
 }

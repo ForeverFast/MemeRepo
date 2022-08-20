@@ -42,13 +42,20 @@ namespace Domain.Data.Repository
         protected override async Task OnBeforeDeleteAsync(Folder model)
         {
             OnBeforeDelete(model);
-            var fullModel = await GetQueryChain<Folder>().Get
+
+            var memeQC = GetQueryChain<Meme>();
+            var folderQC = GetQueryChain<Folder>();
+            var folderTagsQC = GetQueryChain<FolderTag>();
+
+            var fullModel = await folderQC.Get
                 .LoadWith(x => x.Memes)
                 .LoadWith(x => x.Folders)
+                .LoadWith(x => x.FolderTags)
                 .FirstAsync(x => x.Id == model.Id);
 
-            await GetQueryChain<Meme>().Delete.BulkDeleteAsync(fullModel.Memes);
-            await GetQueryChain<Folder>().Delete.BulkDeleteAsync(fullModel.Folders);
+            await memeQC.Delete.BulkDeleteAsync(fullModel.Memes);
+            await folderQC.Delete.BulkDeleteAsync(fullModel.Folders);
+            await folderTagsQC.Delete.BulkDeleteAsync(fullModel.FolderTags);
         }
 
         protected override async Task OnBeforeBulkDeleteAsync(IEnumerable<Folder> models)
@@ -56,16 +63,19 @@ namespace Domain.Data.Repository
             OnBeforeBulkDelete(models);
             foreach (var model in models)
             {
-                var folderQC = GetQueryChain<Folder>();
                 var memeQC = GetQueryChain<Meme>();
+                var folderQC = GetQueryChain<Folder>();
+                var folderTagsQC = GetQueryChain<FolderTag>();
 
                 var fullModel = await folderQC.Get
                     .LoadWith(x => x.Memes)
                     .LoadWith(x => x.Folders)
+                    .LoadWith(x => x.FolderTags)
                     .FirstAsync(x => x.Id == model.Id);
 
                 await memeQC.Delete.BulkDeleteAsync(fullModel.Memes);
                 await folderQC.Delete.BulkDeleteAsync(fullModel.Folders);
+                await folderTagsQC.Delete.BulkDeleteAsync(fullModel.FolderTags);
             }
         }
     }

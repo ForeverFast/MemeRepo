@@ -1,0 +1,15 @@
+﻿<div Class="tag-picker d-flex flex-column">
+    <MudPaper Class="d-flex flex-wrap">
+        <Iterations T="ItemTagViewModel" Items="SelectedTags" Context="selectedTagContext">
+            <ItemTag Class="ms-2 mt-1" Data="selectedTagContext" OnActionButtonClick="OnItemTagClick" />
+        </Iterations>
+    </MudPaper>
+    <MudPaper>
+        <input class="search-input border-b w-100 mt-2" @bind-value="@filterTitle" @bind-value:event="oninput" />
+    </MudPaper>
+    <MudPaper Class="d-flex flex-wrap mt-5">
+        <Iterations T="ItemTagViewModel" Items="otherTagsFiltered" Context="otherTagContext">
+            <ItemTag Class="ms-2 mt-1" Data="otherTagContext" OnActionButtonClick="OnItemTagClick" />
+        </Iterations>
+    </MudPaper>
+</div>

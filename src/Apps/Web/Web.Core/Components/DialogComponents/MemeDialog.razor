@@ -6,7 +6,7 @@
                 <MudItem xs="6">
                     <Condition Evaluation="@(!string.IsNullOrEmpty(Meme.Path))">
                         <Match>
-                            <MudImage Src="@Meme.Path" Style="height: 100%; width: 100%" @onclick="ChooseFile" />
+                            <MudImage Src="@Meme.Path" Style="height: 250px; width: 250px" @onclick="ChooseFile" />
                         </Match>
                         <NotMatch>
                             <MudPaper>
@@ -18,6 +18,9 @@
                 <MudItem xs="6">
                     <MudTextField Label="Название" @bind-Value="Meme.Title" For="@(() => Meme.Title)" />
                     <MudTextField Label="Описание" @bind-Value="Meme.Description" For="@(() => Meme.Description)" Lines="7" Class="mt-1" />
+                </MudItem>
+                <MudItem xs="12">
+                    <TagPicker SelectedTags="@selectedTags" CurrentItemTags="@Meme.Tags" />
                 </MudItem>
             </MudGrid>
         </DialogContent>

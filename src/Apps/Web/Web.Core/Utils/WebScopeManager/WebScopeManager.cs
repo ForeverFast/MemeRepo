@@ -1,6 +1,6 @@
 ﻿using Domain.Core.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
-using Web.Core.Store.AppData;
+using Web.Core.Store.App;
 
 namespace Web.Core.Utils.WebScopeManager
 {
@@ -23,7 +23,7 @@ namespace Web.Core.Utils.WebScopeManager
 
         #region Fields
 
-        private IState<AppDataState>? appDataState;
+        private IState<AppState>? appDataState;
         private IDispatcher? dispatcher;
         private IActionSubscriber? actionSubscriber;
 
@@ -31,7 +31,7 @@ namespace Web.Core.Utils.WebScopeManager
 
         #region Props
 
-        public Guid? CurrentContentId => appDataState?.Value?.CurrentContentId ?? throw OnNotInitializedException();
+        public Guid? CurrentContentId => appDataState?.Value?.CurrentContentId;
         public IDispatcher Dispatcher => dispatcher ?? throw OnNotInitializedException();
         public IActionSubscriber ActionSubscriber => actionSubscriber ?? throw OnNotInitializedException();
 
@@ -47,7 +47,7 @@ namespace Web.Core.Utils.WebScopeManager
 
         public ValueTask Init(IServiceProvider serviceProvider)
         {
-            appDataState = serviceProvider.GetRequiredService<IState<AppDataState>>();
+            appDataState = serviceProvider.GetRequiredService<IState<AppState>>();
             dispatcher = serviceProvider.GetRequiredService<IDispatcher>();
             actionSubscriber = serviceProvider.GetRequiredService<IActionSubscriber>();
 

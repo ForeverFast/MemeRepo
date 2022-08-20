@@ -1,6 +1,6 @@
 ﻿using Web.Core.Models;
 using Web.Core.Models.Components.Dialogs;
-using Web.Core.Store.AppData;
+using Web.Core.Store.App;
 
 namespace Web.Core.Components.DialogComponents
 {
@@ -24,7 +24,7 @@ namespace Web.Core.Components.DialogComponents
 
         #region Injects
 
-        [Inject] IState<AppDataState>? _appDataState { get; init; }
+        [Inject] IState<AppState>? _appState { get; init; }
 
         #endregion
 
@@ -33,7 +33,7 @@ namespace Web.Core.Components.DialogComponents
         private bool _isEditMode => Folder.Id != Guid.Empty;
         private string saveButtonText => _isEditMode ? "Сохранить" : "Создать";
 
-        private List<TagViewModel> AllTags => _appDataState!.Value.Tags;
+        private List<TagViewModel> AllTags => _appState!.Value.Tags;
         private List<TagViewModel> CurrentFolderTags = new();
         private List<TagViewModel> SelectedFolderTags = new();
 

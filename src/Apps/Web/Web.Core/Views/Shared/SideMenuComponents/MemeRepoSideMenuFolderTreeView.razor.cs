@@ -1,12 +1,12 @@
 ﻿using Web.Core.Base.Components;
 using Web.Core.Models.Components;
-using Web.Core.Store.AppData;
-using Web.Core.Store.AppData.Actions.ChangeStateActions.SetCurrentContentActions;
-using Web.Core.Store.AppData.Actions.DataActions.AddFilesFromDiskActions;
-using Web.Core.Store.AppData.Actions.FolderActions.CreateFolderActions;
-using Web.Core.Store.AppData.Actions.FolderActions.DeleteFolderActions;
-using Web.Core.Store.AppData.Actions.FolderActions.UpdateFolderActions;
-using Web.Core.Store.AppData.Actions.MemeActions.CreateMemeActions;
+using Web.Core.Store.App;
+using Web.Core.Store.App.Actions.DataActions.AddFilesFromDiskActions;
+using Web.Core.Store.App.Actions.DataActions.SetCurrentContentActions;
+using Web.Core.Store.App.Actions.FolderActions.CreateFolderActions;
+using Web.Core.Store.App.Actions.FolderActions.DeleteFolderActions;
+using Web.Core.Store.App.Actions.FolderActions.UpdateFolderActions;
+using Web.Core.Store.App.Actions.MemeActions.CreateMemeActions;
 
 namespace Web.Core.Views.Shared.SideMenuComponents
 {
@@ -14,7 +14,7 @@ namespace Web.Core.Views.Shared.SideMenuComponents
     {
         #region Injects
 
-        [Inject] IState<AppDataState>? _appState { get; init; }
+        [Inject] IState<AppState>? _appState { get; init; }
         [Inject] IDispatcher? _dispatcher { get; init; }
         [Inject] NavigationManager? _navigationManager { get; init; }
 

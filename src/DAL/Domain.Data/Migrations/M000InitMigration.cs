@@ -20,6 +20,7 @@ namespace Domain.Data.Migrations
                 .WithFolderObjectColumns();
 
             Create.Table("FolderTags")
+                .WithIdGuidColumn()
                 .WithColumn("FolderId").AsGuid().NotNullable().ForeignKey("Folders", "Id")
                 .WithColumn("TagId").AsGuid().NotNullable().ForeignKey("Tags", "Id");
 
@@ -31,6 +32,7 @@ namespace Domain.Data.Migrations
                 .WithFolderObjectColumns();
 
             Create.Table("MemeTags")
+               .WithIdGuidColumn()
                .WithColumn("MemeId").AsGuid().NotNullable().ForeignKey("Memes", "Id")
                .WithColumn("TagId").AsGuid().NotNullable().ForeignKey("Tags", "Id");
 

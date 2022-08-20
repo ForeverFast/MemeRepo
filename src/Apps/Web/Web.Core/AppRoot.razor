@@ -1,0 +1,32 @@
+﻿@using Web.Core.Utils.WebScopeManager
+
+@inject IServiceProvider _serviceProvider
+@inject WebScopeManager _webScopeManager
+
+<StoreInitializer />
+
+<CascadingValue TValue="bool" Name="IsMobileApp" Value="@IsMobileApp">
+    <Router AppAssembly="@typeof(WebCoreEntryPoint).Assembly">
+        <Found Context="routeData">
+            <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+            <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+        </Found>
+        <NotFound>
+            <PageTitle>Not found</PageTitle>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p role="alert">Sorry, there's nothing at this address.</p>
+            </LayoutView>
+        </NotFound>
+    </Router>
+</CascadingValue>
+
+@code {
+    [Parameter] public bool IsMobileApp { get; set; }// = true;
+
+    public override async Task SetParametersAsync(ParameterView parameters)
+    {
+        await _webScopeManager.Init(_serviceProvider);
+
+        await base.SetParametersAsync(parameters);
+    }
+}

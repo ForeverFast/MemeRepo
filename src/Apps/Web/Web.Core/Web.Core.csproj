@@ -47,6 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Store\App\Actions\NativeActions\MobileAppActions\" />
     <Folder Include="Store\Content\Actions\" />
   </ItemGroup>
 

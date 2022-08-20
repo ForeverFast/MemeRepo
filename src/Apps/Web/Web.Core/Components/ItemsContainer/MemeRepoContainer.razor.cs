@@ -1,9 +1,9 @@
 ﻿using Web.Core.Enums.Components;
 using Web.Core.Models.Components;
-using Web.Core.Store.AppData.Actions.FolderActions.DeleteFolderActions;
-using Web.Core.Store.AppData.Actions.FolderActions.UpdateFolderActions;
-using Web.Core.Store.AppData.Actions.MemeActions.DeleteMemeActions;
-using Web.Core.Store.AppData.Actions.MemeActions.UpdateMemeActions;
+using Web.Core.Store.App.Actions.FolderActions.DeleteFolderActions;
+using Web.Core.Store.App.Actions.FolderActions.UpdateFolderActions;
+using Web.Core.Store.App.Actions.MemeActions.DeleteMemeActions;
+using Web.Core.Store.App.Actions.MemeActions.UpdateMemeActions;
 
 namespace Web.Core.Components.ItemsContainer
 {

@@ -1,9 +1,9 @@
 ﻿using Web.Core.Models;
-using Web.Core.Store.AppData;
-using Web.Core.Store.AppData.Actions.ChangeStateActions.SetCurrentContentActions;
-using Web.Core.Store.AppData.Actions.TagActions.CreateTagActions;
-using Web.Core.Store.AppData.Actions.TagActions.DeleteTagActions;
-using Web.Core.Store.AppData.Actions.TagActions.UpdateTagActions;
+using Web.Core.Store.App;
+using Web.Core.Store.App.Actions.DataActions.SetCurrentContentActions;
+using Web.Core.Store.App.Actions.TagActions.CreateTagActions;
+using Web.Core.Store.App.Actions.TagActions.DeleteTagActions;
+using Web.Core.Store.App.Actions.TagActions.UpdateTagActions;
 
 namespace Web.Core.Views.Shared.SideMenuComponents
 {
@@ -11,7 +11,7 @@ namespace Web.Core.Views.Shared.SideMenuComponents
     {
         #region Injects
 
-        [Inject] IState<AppDataState>? _appState { get; init; }
+        [Inject] IState<AppState>? _appState { get; init; }
         [Inject] IDispatcher? _dispatcher { get; init; }
         [Inject] NavigationManager? _navigationManager { get; init; }
 
@@ -39,11 +39,13 @@ namespace Web.Core.Views.Shared.SideMenuComponents
         #region Internal Events
 
         protected void OnTagClick(TagViewModel context)
-            => _navigationManager!.NavigateToTag(context.Id);
+           => _navigationManager!.NavigateToTag(context.Id);
 
         protected void OnCollectionViewContextMenuCreateTagClick()
             => _dispatcher!.Dispatch(new CreateTagAction());
 
+        protected void OnTagContextMenuNavigationClick(TagViewModel context)
+           => _navigationManager!.NavigateToTag(context.Id);
         protected void OnTagContextMenuUpdateTagClick(Guid tagId)
             => _dispatcher!.Dispatch(new UpdateTagAction(tagId));
         protected void OnTagContextMenuDeleteTagClick(Guid tagId)
