@@ -26,9 +26,7 @@
 
     .folder-empty-message {
         @include default-container;
-        position: absolute;
-        top: 45%;
-        left: 40%;
+        justify-content: center;
         background-color: transparent;
     }
 }

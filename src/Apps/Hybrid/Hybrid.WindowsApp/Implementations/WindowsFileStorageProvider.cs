@@ -1,6 +1,12 @@
 ﻿using Domain.Core.Interfaces;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
+using System.Linq;
+using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace Hybrid.WindowsApp.Implementations
 {
@@ -12,11 +18,21 @@ namespace Hybrid.WindowsApp.Implementations
         public string GetAbsolutePath(string path) => Path.Combine(RootPath, path);
         public string GetRelativePath(string path) => path.Replace(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"), "");
 
+        #region Folder
 
-        public void CreateFolder(string path)
+        public void ShowFolder(string relativePath)
         {
-            if (!Directory.Exists(path))
-                Directory.CreateDirectory(path);
+            using (var proc = Process.Start("explorer", GetAbsolutePath(relativePath))) { }
+        }
+
+        public string OpenFolderPicker()
+        {
+            var dlg = new CommonOpenFileDialog();
+            dlg.IsFolderPicker = true;
+            if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
+                return dlg.FileName;
+            else
+                return string.Empty;
         }
 
         public string CreateFolderPath(string? parentFolderPath = null, string? title = null)
@@ -38,6 +54,61 @@ namespace Hybrid.WindowsApp.Implementations
             while (true);
         }
 
+        public void CreateFolder(string path)
+        {
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+        }
+
+        public void DeleteFolder(string path, bool recursive = true)
+        {
+            if (Directory.Exists(path))
+                Directory.Delete(path, recursive);
+        }
+
+        public void CopyFolderTo(string sourceDirectory, string targetDirectory)
+        {
+            DirectoryInfo diSource = new DirectoryInfo(sourceDirectory);
+            DirectoryInfo diTarget = new DirectoryInfo(targetDirectory);
+
+            CopyAll(diSource, diTarget);
+
+            void CopyAll(DirectoryInfo source, DirectoryInfo target)
+            {
+                Directory.CreateDirectory(target.FullName);
+                target = Directory.CreateDirectory(Path.Combine(target.FullName, source.Name));
+
+                Array.ForEach(source.GetFiles(), fi => fi.CopyTo(Path.Combine(target.FullName, fi.Name), true));
+                Array.ForEach(source.GetDirectories(), diSourceSubDir => CopyAll(diSourceSubDir, target));
+            }
+        }
+
+        #endregion
+
+        #region File
+
+        public void OpenFile(string relativePath)
+        {
+            using (Process p = new Process())
+            {
+                p.StartInfo = new ProcessStartInfo("explorer", GetAbsolutePath(relativePath)); /*{ UseShellExecute = true }*/
+                p.Start();
+            }
+        }
+
+        public string OpenFilePicker(string? extension = null)
+        {
+            extension ??= "*.jpg;*.png";
+
+            var dlg = new CommonOpenFileDialog();
+            dlg.Multiselect = false;
+            dlg.Filters.Add(new CommonFileDialogFilter("Файлы", extension));
+            if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
+                return dlg.FileName;
+            else
+                return string.Empty;
+        }
+
         public string CreateFilePath(string parentFolderPath, string extension, string? title = null)
         {
             title ??= "Новый мем";
@@ -56,18 +127,11 @@ namespace Hybrid.WindowsApp.Implementations
             while (true);
         }
 
-        public void DeleteFolder(string path, bool recursive = true)
-        {
-            if (Directory.Exists(path))
-                Directory.Delete(path, recursive);
-        }
-
         public void DeleteFile(string path)
         {
             if (File.Exists(path))
                 File.Delete(path);
         }
-
 
         public string CopyFileToTmp(string sourceFile)
         {
@@ -84,32 +148,23 @@ namespace Hybrid.WindowsApp.Implementations
             File.Copy(sourceFile, targetFile);
         }
 
-        public void CopyDirectoryTo(string sourceDirectory, string targetDirectory)
+        public void CopyFileToClipboard(string relativePath)
         {
-            DirectoryInfo diSource = new DirectoryInfo(sourceDirectory);
-            DirectoryInfo diTarget = new DirectoryInfo(targetDirectory);
-
-            CopyAll(diSource, diTarget);
-        }
-
-        //public void CopyFileTo()
-
-        #region Private methods 
-
-        private void CopyAll(DirectoryInfo source, DirectoryInfo target)
-        {
-            Directory.CreateDirectory(target.FullName);
-            target = Directory.CreateDirectory(Path.Combine(target.FullName, source.Name));
-
-            Array.ForEach(source.GetFiles(), fi => fi.CopyTo(Path.Combine(target.FullName, fi.Name), true));
-            Array.ForEach(source.GetDirectories(), diSourceSubDir => CopyAll(diSourceSubDir, target));
+            Clipboard.SetImage(new BitmapImage(new Uri(GetAbsolutePath(relativePath))));
         }
 
         #endregion
+
+        public IEnumerable<string> OpenMultiselectPicker(bool folderPickerMode = false)
+        {
+            var dlg = new CommonOpenFileDialog();
+            dlg.Multiselect = true;
+            dlg.IsFolderPicker = folderPickerMode;
+
+            if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
+                return dlg.FileNames;
+            else
+                return Enumerable.Empty<string>();
+        }
     }
 }
-/*
-   using var newFileFS = new FileStream(newPath, FileMode.CreateNew, FileAccess.ReadWrite, FileShare.Delete);
-            using var sourceFileFS = new FileStream(sourceFile, FileMode.Open, FileAccess.ReadWrite, FileShare.ReadWrite);
-            sourceFileFS.CopyTo(newFileFS);
- */

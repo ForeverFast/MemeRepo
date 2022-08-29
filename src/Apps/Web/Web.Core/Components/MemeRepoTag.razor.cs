@@ -8,6 +8,7 @@ namespace Web.Core.Components
         #region Params
 
         [Parameter] public TagViewModel Data { get; set; } = new();
+        [Parameter] public EventCallback<TagViewModel> OnClickAction { get; set; }
 
         #endregion
 
@@ -20,6 +21,12 @@ namespace Web.Core.Components
         protected virtual string Stylename => new StyleBuilder()
             .AddStyle(Style)
             .Build();
+
+        #endregion
+
+        #region Internal events
+
+        private async Task OnClick() => await OnClickAction.InvokeAsync(Data);
 
         #endregion
     }

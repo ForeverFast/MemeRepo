@@ -54,7 +54,7 @@ namespace Web.Core.Store.App.Effects.MemeActionsEffects.CreateMemeActionsEffects
                 meme.Path = new FileInfo(absoluteFilePath).Name;
 
                 var createdMeme = await _dal.For<Meme>().Insert.InsertWithObjectAsync(meme);
-                var newTagCollection = memeDialogResult.Tags.Select(x => new MemeTag
+                var newTagCollection = memeDialogResult.Tags.SelectToList(x => new MemeTag
                 {
                     MemeId = createdMeme.Id,
                     TagId = x,

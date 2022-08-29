@@ -1,5 +1,4 @@
-﻿using Web.Core.Base.Components;
-using Web.Core.Enums.Components.StateContainer;
+﻿using Web.Core.Enums.Components.StateContainer;
 using Web.Core.Models.Components;
 using Web.Core.Store.App;
 using Web.Core.Store.App.Actions.DataActions.AddFilesFromDiskActions;
@@ -29,12 +28,11 @@ namespace Web.Core.Views.Pages
 
         #region UI Fields
 
-        protected Guid? currentFolderId;
-        protected ComponentState state = ComponentState.Loading;
-
-        protected List<MemeRepoItemViewModel> FolderObjects = new();
-        protected List<BreadcrumbItem> FolderBreadcrumbItems
-            => _appState!.Value.FolderPath.SelectToList(x => new BreadcrumbItem(x.Title, $"{x.Id}"));
+        private Guid? currentFolderId;
+        private ComponentState state = ComponentState.Loading;
+        
+        private List<MemeRepoItemViewModel> folderObjects = new();
+        private List<BreadcrumbItem> folderBreadcrumbItems => _appState!.Value.FolderPath.SelectToList(x => new BreadcrumbItem(x.Title, $"{x.Id}"));
 
         #endregion
 
@@ -59,7 +57,7 @@ namespace Web.Core.Views.Pages
                 state = ComponentState.Loading;
                 currentFolderId = Id;
                 this.StateHasChanged();
-                FolderObjects.Clear();
+                folderObjects.Clear();
 
                 _dispatcher!.Dispatch(new SetCurrentContentAction(ContentType.FolderPage)
                 {
@@ -76,7 +74,7 @@ namespace Web.Core.Views.Pages
 
         private void OnSetCurrentContentSuccessAction(SetCurrentContentSuccessAction action)
         {
-            FolderObjects = action.Items;
+            folderObjects = action.Items;
             state = ComponentState.Content;
         }
         private void OnSetCurrentContentFailureAction(SetCurrentContentFailureAction action)
@@ -89,7 +87,7 @@ namespace Web.Core.Views.Pages
 
         #region Internal Events
 
-        protected void OnFolderBreadcrumbItemClick(string folderId) => _navigationManager!.NavigateToFolder(Guid.Parse(folderId));
+        private void OnFolderBreadcrumbItemClick(string folderId) => _navigationManager!.NavigateToFolder(Guid.Parse(folderId));
 
         #endregion
     }

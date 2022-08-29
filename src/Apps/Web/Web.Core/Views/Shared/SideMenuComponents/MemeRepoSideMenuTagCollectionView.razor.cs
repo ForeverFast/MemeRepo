@@ -38,18 +38,7 @@ namespace Web.Core.Views.Shared.SideMenuComponents
 
         #region Internal Events
 
-        protected void OnTagClick(TagViewModel context)
-           => _navigationManager!.NavigateToTag(context.Id);
-
-        protected void OnCollectionViewContextMenuCreateTagClick()
-            => _dispatcher!.Dispatch(new CreateTagAction());
-
-        protected void OnTagContextMenuNavigationClick(TagViewModel context)
-           => _navigationManager!.NavigateToTag(context.Id);
-        protected void OnTagContextMenuUpdateTagClick(Guid tagId)
-            => _dispatcher!.Dispatch(new UpdateTagAction(tagId));
-        protected void OnTagContextMenuDeleteTagClick(Guid tagId)
-            => _dispatcher!.Dispatch(new DeleteTagAction(tagId));
+        private void OnTagClick(TagViewModel context) => _navigationManager!.NavigateToTag(context.Id);
 
         #endregion
     }

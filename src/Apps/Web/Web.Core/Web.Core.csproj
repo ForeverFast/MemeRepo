@@ -36,6 +36,7 @@
     <PackageReference Include="MediatR.Courier.DependencyInjection" Version="5.0.0" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.2.0" />
     <PackageReference Include="MudBlazor" Version="6.0.11" />
     <PackageReference Include="PrettyBlazor" Version="1.2.0" />
   </ItemGroup>

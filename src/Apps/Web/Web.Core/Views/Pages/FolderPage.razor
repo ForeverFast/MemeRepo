@@ -9,18 +9,18 @@
 
         <ContentFragment>
 
-            <MudBreadcrumbs Items="@FolderBreadcrumbItems" Class="folder-breadcrumbs">
+            <MudBreadcrumbs Items="@folderBreadcrumbItems" Class="folder-breadcrumbs">
                 <ItemTemplate Context="item">
                     <MudText Class="custom-breadcrumb-item" @onclick="_ => OnFolderBreadcrumbItemClick(item.Href)">@item.Text</MudText>
                 </ItemTemplate>
             </MudBreadcrumbs>
-            <ContextMenuTrigger MenuId="folder-context-menu" CssClass="w-100 h-100">
-                <MemeRepoContainer Items="FolderObjects">
+            <ContextMenuTrigger MenuId="@(ContextMemuAlias.FolderPage)" CssClass="w-100 h-100" Data="@(currentFolderId)">
+                <MemeRepoContainer Items="folderObjects">
                     <EmptyContent>
-                        <div class="folder-empty-message">
+                        <div class="folder-empty-message h-100">
                             <div class="d-flex flex-row align-center">
                                 <MudIcon Icon="@Icons.Filled.FolderOpen" Style="height: 70px; width: 70px;" />
-                                <MudText Style="font-size: 70px"> Мемчиков нема</MudText>
+                                <MudText Style="font-size: 50px"> Мемчиков нема</MudText>
                             </div>
                             <MudText Class="mt-0">Наполни меня (͡° ͜ʖ ͡°)</MudText>
                         </div>
@@ -36,7 +36,3 @@
 
     </MemeRepoStateContainer>
 </div>
-
-<ContextMenu Id="folder-context-menu" AutoHide="true">
-    <Item>Создать папку</Item>
-</ContextMenu>

@@ -33,9 +33,7 @@ namespace Web.Core.Components.DialogComponents
         private bool _isEditMode => Folder.Id != Guid.Empty;
         private string saveButtonText => _isEditMode ? "Сохранить" : "Создать";
 
-        private List<TagViewModel> AllTags => _appState!.Value.Tags;
-        private List<TagViewModel> CurrentFolderTags = new();
-        private List<TagViewModel> SelectedFolderTags = new();
+        private List<ItemTagViewModel> selectedTags = new();
 
         #endregion
 
@@ -53,6 +51,10 @@ namespace Web.Core.Components.DialogComponents
 
         protected void Cancel() => MudDialog!.Cancel();
 
-        protected void Save() => MudDialog!.Close(DialogResult.Ok(Folder));
+        protected void Save() 
+        {
+            Folder.Tags = selectedTags.Select(x => x.Id).ToList();
+            MudDialog!.Close(DialogResult.Ok(Folder));
+        } 
     }
 }

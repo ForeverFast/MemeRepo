@@ -68,10 +68,12 @@ namespace Web.Core.Store.App.Effects.DataActionsEffects.SetCurrentContentActions
         {
             var targetTag = await _dal.For<Tag>().Get
                .LoadWith(x => x.MemeTags)
+               .LoadWith(x => x.MemeTags.First().Meme)
                .LoadWith(x => x.FolderTags)
+               .LoadWith(x => x.FolderTags.First().Folder)
                .FirstOrDefaultAsync(x => x.Id == action.CurrentContentId);
             if (targetTag == null)
-                throw new Exception("Папка не найдена.");
+                throw new Exception("Тег не найден.");
 
             var folders = _mapper.Map<List<MemeRepoItemViewModel>>(targetTag.FolderTags.Select(x => x.Folder));
             var memes = _mapper.Map<List<MemeRepoItemViewModel>>(targetTag.MemeTags.Select(x => x.Meme));
@@ -111,6 +113,8 @@ namespace Web.Core.Store.App.Effects.DataActionsEffects.SetCurrentContentActions
                 var result = folders.Concat(memes).ToList();
 
                 dispatcher.Dispatch(new SetCurrentContentSuccessAction(result, action.CurrentContentType, action.CurrentContentId));
+
+                return;
             }
 
             throw new Exception("Укажите фильтры");

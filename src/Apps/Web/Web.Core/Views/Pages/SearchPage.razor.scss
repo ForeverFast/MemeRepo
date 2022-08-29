@@ -1,0 +1,6 @@
+﻿@import '../../wwwroot/css/_variables.scss';
+
+.search-page {
+    @include default-container;
+    height: 100%;
+}

@@ -50,7 +50,7 @@ namespace Web.Core.Store.App.Reducers.DataActionsReducers
                 {
                     case Enums.Components.MemeRepoItemType.Folder:
                         break;
-                    case Enums.Components.MemeRepoItemType.Img:
+                    case Enums.Components.MemeRepoItemType.Meme:
                     default:
                         var abslPath = state.GetFileRelativePath(x.ParentFolderId!.Value, x.Path);
                         x.Path = abslPath;//"data:image/png;base64, " + Convert.ToBase64String(File.ReadAllBytes(abslPath));

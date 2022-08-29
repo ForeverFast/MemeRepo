@@ -10,6 +10,9 @@
                     <MudTextField Label="Название" @bind-Value="Folder.Title" For="@(() => Folder.Title)" />
                     <MudTextField Label="Описание" @bind-Value="Folder.Description" For="@(() => Folder.Description)" Lines="5" />
                 </MudItem>
+                 <MudItem xs="12">
+                   <TagPicker SelectedTags="@selectedTags" CurrentItemTags="@Folder.Tags" />
+                </MudItem>
             </MudGrid>
         </DialogContent>
         <DialogActions>

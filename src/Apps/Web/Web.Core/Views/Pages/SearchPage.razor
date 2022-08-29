@@ -1,0 +1,19 @@
+﻿@inherits MemeRepoBaseFluxorComponent
+
+<div class="search-page">
+    <MemeRepoStateContainer State="@state">
+
+        <LoadingFragment>
+            <MemeRepoLoading />
+        </LoadingFragment>
+
+        <ContentFragment>
+            <MemeRepoContainer Items="searchObjects" />
+        </ContentFragment>
+
+        <ErrorFragment>
+
+        </ErrorFragment>
+
+    </MemeRepoStateContainer>
+</div>

@@ -1,5 +1,9 @@
 ﻿<div Class="tag-picker d-flex flex-column">
-    <MudPaper Class="d-flex flex-wrap">
+    <MudPaper Class="d-flex flex-row align-center">
+        <MudIcon Icon="@Icons.Filled.Tag" Size="Size.Large" />
+        <MudText Typo="Typo.h5">Теги</MudText>
+    </MudPaper>
+    <MudPaper Class="d-flex flex-wrap mt-2">
         <Iterations T="ItemTagViewModel" Items="SelectedTags" Context="selectedTagContext">
             <ItemTag Class="ms-2 mt-1" Data="selectedTagContext" OnActionButtonClick="OnItemTagClick" />
         </Iterations>

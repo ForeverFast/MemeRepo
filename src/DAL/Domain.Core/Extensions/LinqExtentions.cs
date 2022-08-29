@@ -62,12 +62,10 @@
         }
 
 
-        public static List<TSource> ReverseToList<TSource>(this IEnumerable<TSource> source) where TSource : class
+        public static List<TSource> ReverseToList<TSource>(this IEnumerable<TSource> source)
             => source.Reverse().ToList();
 
         public static List<TResult> SelectToList<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selectFunc)
-            where TSource : class
-            where TResult : class
-         => source.Select(selectFunc).ToList();
+            => source.Select(selectFunc).ToList();
     }
 }

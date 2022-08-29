@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using Web.Core;
 
 namespace Hybrid.WindowsApp
@@ -57,7 +58,9 @@ namespace Hybrid.WindowsApp
 
             _host.Start();
 
-            _host.Services.GetRequiredService<Window>().Show();
+            var window = _host.Services.GetRequiredService<Window>();
+            window.Icon = BitmapFrame.Create(new Uri("pack://application:,,,/favicon.png", UriKind.RelativeOrAbsolute));
+            window.Show();
         }
     }
 }

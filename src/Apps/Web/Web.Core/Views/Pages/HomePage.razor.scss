@@ -1,2 +1,13 @@
-﻿body {
+﻿@import '../../wwwroot/css/_variables.scss';
+
+.home-page {
+    @include default-container;
+    justify-content: center;
+    height: 100%;
+
+    .message {
+        @include default-container;
+        justify-content: center;
+        background-color: transparent;
+    }
 }

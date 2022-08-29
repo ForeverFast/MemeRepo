@@ -2,28 +2,20 @@
 @inherits MemeRepoBaseFluxorComponent
 
 <div class="tag-collectionview">
-    <MudPaper Class="memerepo-tag-view-switcher d-flex flex-row align-center">
+  @*  <MudPaper Class="memerepo-tag-view-switcher d-flex flex-row align-center">
         <div class="btn-tag-sort btn-tag-sort__by-alphv">
             <MudIcon Class="rotate-arrow" Icon="@Icons.Filled.ArrowRightAlt" />
             <MudIcon Class="sort-icon" Icon="@Icons.Filled.SortByAlpha" />
         </div>
-    </MudPaper>
+    </MudPaper>*@
 
-    <ContextMenuTrigger MenuId="memerepo-tag-collectionview-context-menu" CssClass="h-100">
+    <ContextMenuTrigger MenuId="@(ContextMemuAlias.TagListView)" CssClass="h-100">
         <div class="inner-container d-flex flex-wrap  ">
             <Iterations T="TagViewModel" Items="@_appState!.Value.Tags">
-                <MemeRepoTag Class="ms-1 mt-1" Data="@context" />
+                <MemeRepoTag Class="ms-1 mt-1" Data="@context" OnClickAction="OnTagClick" />
             </Iterations>
         </div>
     </ContextMenuTrigger>
 </div>
 
-<ContextMenu Id="memerepo-tag-collectionview-context-menu" AutoHide="true">
-    <Item OnClick="OnCollectionViewContextMenuCreateTagClick">Создать тег</Item>
-</ContextMenu>
 
-<ContextMenu Id="memerepo-tag-context-menu" AutoHide="true">
-    <Item OnClick="_ => OnTagContextMenuNavigationClick((TagViewModel)context.Data)">Перейти к тегу</Item>
-    <Item OnClick="_ => OnTagContextMenuUpdateTagClick(((TagViewModel)context.Data).Id)">Изменить тег</Item>
-    <Item OnClick="_ => OnTagContextMenuDeleteTagClick(((TagViewModel)context.Data).Id)">Удалить тег</Item>
-</ContextMenu>

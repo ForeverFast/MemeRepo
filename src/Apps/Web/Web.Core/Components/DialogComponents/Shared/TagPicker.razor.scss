@@ -6,6 +6,10 @@
         color: $StandartLightColor2;
         border-color: $StandartLightColor2;
 
+        &:hover{
+            border-color: $Primary;
+        }
+
         &:focus-visible {
             outline: none;
         }

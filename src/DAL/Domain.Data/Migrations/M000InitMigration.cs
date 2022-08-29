@@ -20,11 +20,10 @@ namespace Domain.Data.Migrations
                 .WithFolderObjectColumns();
 
             Create.Table("FolderTags")
-                .WithIdGuidColumn()
                 .WithColumn("FolderId").AsGuid().NotNullable().ForeignKey("Folders", "Id")
                 .WithColumn("TagId").AsGuid().NotNullable().ForeignKey("Tags", "Id");
 
-            Create.UniqueConstraint("UQ_FolderId_TagId").OnTable("FolderTags").Columns("FolderId", "TagId");
+            Create.PrimaryKey("PK_FolderId_TagId").OnTable("FolderTags").Columns("FolderId", "TagId");
 
             Create.Table("Memes")
                 .WithIdGuidColumn()
@@ -32,11 +31,10 @@ namespace Domain.Data.Migrations
                 .WithFolderObjectColumns();
 
             Create.Table("MemeTags")
-               .WithIdGuidColumn()
                .WithColumn("MemeId").AsGuid().NotNullable().ForeignKey("Memes", "Id")
                .WithColumn("TagId").AsGuid().NotNullable().ForeignKey("Tags", "Id");
 
-            Create.UniqueConstraint("UQ_MemeId_TagId").OnTable("MemeTags").Columns("MemeId", "TagId");
+            Create.PrimaryKey("PK_MemeId_TagId").OnTable("MemeTags").Columns("MemeId", "TagId");
         }
 
         public override void Down()

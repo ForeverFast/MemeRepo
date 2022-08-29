@@ -6,7 +6,16 @@
     <UseWPF>true</UseWPF>
     <RootNamespace>Hybrid.WindowsApp</RootNamespace>
     <Nullable>enable</Nullable>
+    <Version>0.0.1</Version>
+    <PackageIcon>favicon.png</PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Resource Include="..\..\..\..\..\..\..\Media\Картинки\Иконки\favicon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </Resource>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="gong-wpf-dragdrop" Version="3.1.1" />

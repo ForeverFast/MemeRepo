@@ -17,7 +17,7 @@ namespace Web.Core.Store.App.Reducers.MemeActionsReducers
             {
                 Id = action.UpdatedMeme.Id,
                 ParentFolderId = action.UpdatedMeme.ParentFolderId,
-                FolderObjectType = MemeRepoItemType.Img,
+                FolderObjectType = MemeRepoItemType.Meme,
                 Path = state.GetFileRelativePath(action.UpdatedMeme.ParentFolderId, action.UpdatedMeme.Path),
                 Title = action.UpdatedMeme.Title,
             };

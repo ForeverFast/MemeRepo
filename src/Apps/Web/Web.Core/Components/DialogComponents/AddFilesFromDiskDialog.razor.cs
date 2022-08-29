@@ -22,7 +22,7 @@ namespace Web.Core.Components.DialogComponents
 
         #region Injects
 
-        [Inject] IFileStorageDialogProvider? _fileStorageDialogProvider { get; init; }
+        [Inject] IFileStorageProvider? _fileStorageProvider { get; init; }
 
         #endregion
 
@@ -37,7 +37,7 @@ namespace Web.Core.Components.DialogComponents
 
         private void AddFolders()
         {
-            var pack = _fileStorageDialogProvider!.OpenMultiselectPicker(true);
+            var pack = _fileStorageProvider!.OpenMultiselectPicker(true);
             if (pack != null)
                 folders.Add(new PathsPackViewModel { Paths = pack });
         }
@@ -46,7 +46,7 @@ namespace Web.Core.Components.DialogComponents
 
         private void AddMemes()
         {
-            var pack = _fileStorageDialogProvider!.OpenMultiselectPicker(false);
+            var pack = _fileStorageProvider!.OpenMultiselectPicker(false);
             if (pack != null)
                 memes.Add(new PathsPackViewModel { Paths = pack });
         }

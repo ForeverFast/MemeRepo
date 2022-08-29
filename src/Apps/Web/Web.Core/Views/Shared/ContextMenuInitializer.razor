@@ -1,0 +1,42 @@
+﻿
+<ContextMenu Id="@(ContextMemuAlias.Folder)" AutoHide="true">
+    <Item OnClick="_ => OnFolderContextMenuOpenClick((Guid?)context.Data)">Открыть папку</Item>
+    <Item OnClick="_ => OnFolderContextMenuOpenInExplorerClick((Guid?)context.Data)">Открыть папку в проводнике</Item>
+    <Item OnClick="_ => OnFolderContextMenuCreateFolderClick((Guid?)context.Data)">Добавить папку</Item>
+    <Item OnClick="_ => OnFolderContextMenuCreateMemeClick((Guid?)context.Data)">Добавить мем</Item>
+    <Item OnClick="_ => OnFolderContextMenuAddFilesFromDiskClick((Guid?)context.Data)">Добавить файлы</Item>
+    <Item OnClick="_ => OnFolderContextMenuUpdateClick((Guid)context.Data)">Изменить</Item>
+    <Item OnClick="_ => OnFolderContextMenuDeleteClick((Guid)context.Data)">Удалить</Item>
+</ContextMenu>
+
+<ContextMenu Id="@(ContextMemuAlias.FolderPage)" AutoHide="true">
+    <Item OnClick="_ => OnFolderContextMenuCreateFolderClick((Guid?)context.Data)">Добавить папку</Item>
+    <Item OnClick="_ => OnFolderContextMenuCreateMemeClick((Guid?)context.Data)">Добавить мем</Item>
+    <Item OnClick="_ => OnFolderContextMenuAddFilesFromDiskClick((Guid?)context.Data)">Добавить файлы</Item>
+</ContextMenu>
+
+<ContextMenu Id="@(ContextMemuAlias.FolderTreeView)" AutoHide="true">
+    <Item OnClick="_ => OnFolderContextMenuCreateFolderClick(null)">Добавить папку</Item>
+    <Item OnClick="_ => OnFolderContextMenuAddFilesFromDiskClick(null)">Добавить файлы</Item>
+    <Seperator />
+    <Item OnClick="_ => OnFolderContextMenuOpenInExplorerClick(null)">Открыть корневую папку</Item>
+</ContextMenu>
+
+
+<ContextMenu Id="@(ContextMemuAlias.Meme)" AutoHide="true">
+    <Item OnClick="_ => OnMemeContextMenuOpenClick((Guid)context.Data)">Открыть</Item>
+    <Item OnClick="_ => OnMemeContextMenuOpenInExplorerClick((Guid)context.Data)">Открыть в проводнике</Item>
+    <Item OnClick="_ => OnMemeContextMenuUpdateClick((Guid)context.Data)">Изменить</Item>
+    <Item OnClick="_ => OnMemeContextMenuDeleteClick((Guid)context.Data)">Удалить</Item>
+</ContextMenu>
+
+
+<ContextMenu Id="@(ContextMemuAlias.Tag)" AutoHide="true">
+    <Item OnClick="_ => OnTagContextMenuNavigationClick((Guid)context.Data)">Перейти к тегу</Item>
+    <Item OnClick="_ => OnTagContextMenuUpdateTagClick((Guid)context.Data)">Изменить тег</Item>
+    <Item OnClick="_ => OnTagContextMenuDeleteTagClick((Guid)context.Data)">Удалить тег</Item>
+</ContextMenu>
+
+<ContextMenu Id="@(ContextMemuAlias.TagListView)" AutoHide="true">
+    <Item OnClick="_ => OnTagContextMenuCreateTagClick()">Создать тег</Item>
+</ContextMenu>

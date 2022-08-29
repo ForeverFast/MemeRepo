@@ -119,9 +119,8 @@ namespace Domain.Data.Context
 	[Table("FolderTags")]
 	public class FolderTag : DomainEntity
 	{
-		[Column("Id"      , IsPrimaryKey = true)] public Guid Id       { get; set; } // uniqueidentifier
-		[Column("FolderId"                     )] public Guid FolderId { get; set; } // uniqueidentifier
-		[Column("TagId"                        )] public Guid TagId    { get; set; } // uniqueidentifier
+		[Column("FolderId")] public Guid FolderId { get; set; } // uniqueidentifier
+		[Column("TagId"   )] public Guid TagId    { get; set; } // uniqueidentifier
 
 		#region Associations
 		/// <summary>
@@ -168,9 +167,8 @@ namespace Domain.Data.Context
 	[Table("MemeTags")]
 	public class MemeTag : DomainEntity
 	{
-		[Column("Id"    , IsPrimaryKey = true)] public Guid Id     { get; set; } // uniqueidentifier
-		[Column("MemeId"                     )] public Guid MemeId { get; set; } // uniqueidentifier
-		[Column("TagId"                      )] public Guid TagId  { get; set; } // uniqueidentifier
+		[Column("MemeId")] public Guid MemeId { get; set; } // uniqueidentifier
+		[Column("TagId" )] public Guid TagId  { get; set; } // uniqueidentifier
 
 		#region Associations
 		/// <summary>

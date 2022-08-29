@@ -29,6 +29,7 @@ namespace Web.Core.Store.App
         public bool ShowFileDropBlock { get; init; }
 
         public IEnumerable<FolderTreeViewModel> FolderList => Folders.SelectManyRecursive(x => x.Folders);
+
         public string GetFolderRelativePath(Guid? folderId)
         {
             var pathParts = new List<string> { "user-files" };
@@ -47,6 +48,11 @@ namespace Web.Core.Store.App
         public string GetFileRelativePath(Guid? parentFolderId, string filePath)
             => Path.Combine(GetFolderRelativePath(parentFolderId), filePath);
 
+        public string GetFileFolderRelativePath(Guid id)
+        {
+            var targetItem = Items.First(x => x.Id == id);
+            return this.GetFolderRelativePath(targetItem.ParentFolderId);
+        }
 
         public bool Validate(MemeRepoItemViewModel item, List<Guid> tags)
         {
@@ -65,8 +71,6 @@ namespace Web.Core.Store.App
             {
                 return false;
             }
-
-
         }
     }
 }

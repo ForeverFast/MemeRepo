@@ -9,5 +9,7 @@ namespace Web.Core.Models.Components
         public string Title { get; set; } = "Untitled";
         public string Path { get; set; } = string.Empty;
         public MemeRepoItemType FolderObjectType { get; set; }
+
+        public bool IsSelected { get; set; }
     }
 }

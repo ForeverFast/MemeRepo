@@ -42,7 +42,7 @@ namespace Web.Core.Store.App.Reducers.DataActionsReducers
                     {
                         Id = newMeme.Id,
                         ParentFolderId = newMeme.ParentFolderId,
-                        FolderObjectType = MemeRepoItemType.Img,
+                        FolderObjectType = MemeRepoItemType.Meme,
                         Path = state.GetFileRelativePath(newMeme.ParentFolderId, newMeme.Path),
                         Title = newMeme.Title,
                     });

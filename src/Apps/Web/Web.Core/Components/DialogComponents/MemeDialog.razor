@@ -1,32 +1,34 @@
-﻿<EditForm Model="@Meme" OnValidSubmit="Save">
-    <DataAnnotationsValidator />
-    <MudDialog>
-        <DialogContent>
-            <MudGrid>
-                <MudItem xs="6">
-                    <Condition Evaluation="@(!string.IsNullOrEmpty(Meme.Path))">
-                        <Match>
-                            <MudImage Src="@Meme.Path" Style="height: 250px; width: 250px" @onclick="ChooseFile" />
-                        </Match>
-                        <NotMatch>
-                            <MudPaper>
-                                <MudIcon Icon="@Icons.Filled.Image" Style="height: 100%; width: 100%" @onclick="ChooseFile" />
+﻿<div class="memerepo-meme-dialog">
+    <EditForm Model="@Meme" OnValidSubmit="Save">
+        <DataAnnotationsValidator />
+        <MudDialog>
+            <DialogContent>
+                <MudGrid>
+                    <MudItem xs="12">
+                        <MudPaper Class="d-flex flex-row align-center w-100">
+                            <Condition Evaluation="@(!string.IsNullOrEmpty(Meme.Path))">
+                                <Match>
+                                    <MudImage Class="image-content" Src="@Meme.Path" @onclick="ChooseFile" />
+                                </Match>
+                                <NotMatch>
+                                    <MudIcon Class="image-content" Icon="@Icons.Filled.Image" @onclick="ChooseFile" />
+                                </NotMatch>
+                            </Condition>
+                            <MudPaper Class="w-100 ms-4">
+                                <MudTextField Label="Название" @bind-Value="Meme.Title" For="@(() => Meme.Title)" />
+                                <MudTextField Label="Описание" @bind-Value="Meme.Description" For="@(() => Meme.Description)" Lines="8" />
                             </MudPaper>
-                        </NotMatch>
-                    </Condition>
-                </MudItem>
-                <MudItem xs="6">
-                    <MudTextField Label="Название" @bind-Value="Meme.Title" For="@(() => Meme.Title)" />
-                    <MudTextField Label="Описание" @bind-Value="Meme.Description" For="@(() => Meme.Description)" Lines="7" Class="mt-1" />
-                </MudItem>
-                <MudItem xs="12">
-                    <TagPicker SelectedTags="@selectedTags" CurrentItemTags="@Meme.Tags" />
-                </MudItem>
-            </MudGrid>
-        </DialogContent>
-        <DialogActions>
-            <MudButton OnClick="Cancel">Отмена</MudButton>
-            <MudButton ButtonType="ButtonType.Submit">@saveButtonText</MudButton>
-        </DialogActions>
-    </MudDialog>
-</EditForm>
+                        </MudPaper>
+                    </MudItem>
+                    <MudItem xs="12">
+                        <TagPicker SelectedTags="@selectedTags" CurrentItemTags="@Meme.Tags" />
+                    </MudItem>
+                </MudGrid>
+            </DialogContent>
+            <DialogActions>
+                <MudButton OnClick="Cancel">Отмена</MudButton>
+                <MudButton ButtonType="ButtonType.Submit">@saveButtonText</MudButton>
+            </DialogActions>
+        </MudDialog>
+    </EditForm>
+</div>

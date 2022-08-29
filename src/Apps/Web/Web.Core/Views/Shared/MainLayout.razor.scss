@@ -12,20 +12,28 @@
         background-color: $SecondaryDarken;
 
         .info-block {
-            width: 235px;
+            flex: 0 0 235px;
             background-color: $SecondaryDarken;
         }
 
         .navigation-block {
+            flex: 0 0 80px;
             background-color: $SecondaryDarken;
         }
 
+        .search-block {
+           
+            display: flex;
+        }
+
         .tools-block {
+            flex: 0 0 30px;
             margin-top: 7px;
             background-color: $SecondaryDarken;
         }
 
         .window-buttons-block {
+            flex: 0 0 100px;
             background-color: $SecondaryDarken;
         }
 

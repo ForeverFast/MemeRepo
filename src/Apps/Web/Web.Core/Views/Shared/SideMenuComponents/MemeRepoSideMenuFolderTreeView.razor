@@ -1,6 +1,6 @@
 ﻿@inherits MemeRepoBaseFluxorComponent
 
-<ContextMenuTrigger MenuId="folder-treeview-context-menu" CssClass="h-100">
+<ContextMenuTrigger MenuId="@(ContextMemuAlias.FolderTreeView)" CssClass="h-100">
     <MudTreeView Items="_appState!.Value.Folders" T="FolderTreeViewModel" CanHover="true" Dense="true" ExpandOnClick="false"
                  Style="height: 100%;" Color="Color.Secondary">
         <ItemTemplate>
@@ -8,10 +8,9 @@
                              @bind-Expanded="context.IsExpanded"
                              OnClick="_ => OnFolderTreeViewItemClick(context)">
                 <Content>
-                    <ContextMenuTrigger MenuId="folder-treeview-item-context-menu" Data="context" CssClass="d-flex flex-row w-100">
+                    <ContextMenuTrigger MenuId="@(ContextMemuAlias.Folder)" Data="@context.Id" CssClass="d-flex flex-row w-100">
                         <MudTreeViewItemToggleButton @bind-Expanded="@context.IsExpanded" Visible="@context.HasChild" />
-                        <MudIcon Icon="@((context.IsExpanded && context.HasChild)
-                                     || context.PathFlag ? Icons.Filled.FolderOpen : Icons.Filled.Folder)"
+                        <MudIcon Icon="@((context.IsExpanded && context.HasChild) || context.PathFlag ? Icons.Filled.FolderOpen : Icons.Filled.Folder)"
                                  Color="@(context.PathFlag ? Color.Primary : Color.Default)" />
                         <MudText Class="ms-1" Color="@(context.PathFlag ? Color.Primary : Color.Default)">
                             @context.Title
@@ -22,19 +21,5 @@
         </ItemTemplate>
     </MudTreeView>
 </ContextMenuTrigger>
-
-<ContextMenu Id="folder-treeview-context-menu" AutoHide="true">
-    <Item OnClick="OnTreeViewContextMenuCreateFolderClick">Создать папку</Item>
-    <Item OnClick="OnTreeViewContextMenuAddFilesFromDiskClick">Добавить файлы с диска</Item>
-</ContextMenu>
-
-<ContextMenu Id="folder-treeview-item-context-menu" AutoHide="true">
-    <Item OnClick="_ => OnTreeViewItemContextMenuCreateFolderClick(((FolderTreeViewModel)context.Data).Id)">Создать новую папку</Item>
-    <Item OnClick="_ => OnTreeViewItemContextMenuCreateMemeClick(((FolderTreeViewModel)context.Data).Id)">Создать мем</Item>
-    <Item OnClick="_ => OnTreeViewItemContextMenuAddFilesFromDiskClick(((FolderTreeViewModel)context.Data).Id)">Добавить файлы с диска</Item>
-    <Item OnClick="_ => OnTreeViewItemContextMenuUpdateFolderClick(((FolderTreeViewModel)context.Data).Id)">Изменить</Item>
-    <Item OnClick="_ => OnTreeViewItemContextMenuDeleteFolderClick(((FolderTreeViewModel)context.Data).Id)">Удалить</Item>
-</ContextMenu>
-
 
 

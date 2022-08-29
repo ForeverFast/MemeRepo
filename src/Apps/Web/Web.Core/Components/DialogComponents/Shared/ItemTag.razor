@@ -2,6 +2,6 @@
 
 <div class="item-tag border-2 rounded-xl px-1 d-flex flex-row align-center @Class" style="@Style" @attributes="@UserAttributes">
     <MudIcon Icon="@Icons.Filled.Tag" />
-    <p class="marquee"><span>@Data.Title</span></p>
-    <MudIcon Icon="@iconType" @onclick="@(_ => OnActionButtonClick.InvokeAsync(Data))" />
+    <p class="marquee" style="user-select: none;"><span>@Data.Title</span></p>
+    <MudIcon Icon="@iconType" Style="cursor: pointer;" @onclick="@(_ => OnActionButtonClick.InvokeAsync(Data))" />
 </div>

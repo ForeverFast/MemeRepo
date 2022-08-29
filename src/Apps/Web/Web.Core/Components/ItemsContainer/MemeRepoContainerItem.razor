@@ -1,10 +1,18 @@
-﻿@inherits MemeRepoBaseComponent
+﻿@using Web.Core.Enums.Components
+@inherits MemeRepoBaseComponent
 
 <div class="memerepo-container-item @Classname" style="@Stylename" @attributes="UserAttributes">
-    <ContextMenuTrigger MenuId="memerepo-item-context-menu" CssClass="context-menu-trigger-block d-flex flex-column align-center" Data="Data">
-        <div class="inner-container d-flex flex-column align-center">
-            <img src="@(Data.Path)" />
-            <p class="marquee"><span>@Data.Title</span></p>
+    <ContextMenuTrigger MenuId="@(contextMenuType)" CssClass="context-menu-trigger-block d-flex flex-column align-center" Data="@Data.Id">
+        <div class="inner-img-container d-flex flex-column align-center">
+            <Condition Evaluation="@(Content != null)">
+                <Match>
+                    @Content
+                </Match>
+                <NotMatch>
+                    <MudIcon Icon="@Icons.Filled.QuestionMark" />
+                </NotMatch>
+            </Condition>
+            <p class="marquee text-align-center"><span>@Data.Title</span></p>
         </div>
     </ContextMenuTrigger>
 </div>

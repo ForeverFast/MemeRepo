@@ -46,7 +46,7 @@ namespace Web.Core.Store.App.Effects.MemeActionsEffects.UpdateMemeActionsEffects
                     .LoadWith(x => x.MemeTags)
                     .FirstOrDefaultAsync(x => x.Id == action.Id);
                 if (meme == null)
-                    throw new UpdateEntityException("Мем не найденеа в локальном хранилище.");
+                    throw new UpdateEntityException("Мем не найден в локальном хранилище.");
 
                 var memeDialogVM = _mapper!.Map<MemeDialogViewModel>(meme);
                 var dialopParams = new DialogParameters
@@ -84,14 +84,14 @@ namespace Web.Core.Store.App.Effects.MemeActionsEffects.UpdateMemeActionsEffects
                     updatedFromDialogMeme.Path = meme.Path;
                 }
 
+                await _dal.For<Meme>().Update.UpdateAsync(updatedFromDialogMeme);
                 await _dal.For<MemeTag>().Delete.BulkDeleteAsync(meme.MemeTags);
-                var newTagCollection = memeDialogResult.Tags.Select(x => new MemeTag
+                var newTagCollection = memeDialogResult.Tags.SelectToList(x => new MemeTag
                 {
                     MemeId = meme.Id,
                     TagId = x,
-                }).ToList();
+                });
                 await _dal.For<MemeTag>().Insert.BulkInsertAsync(newTagCollection);
-                await _dal.For<Meme>().Update.UpdateAsync(updatedFromDialogMeme);
 
                 if (newPathFlag)
                 {

@@ -3,6 +3,6 @@
     public enum MemeRepoItemType
     {
         Folder,
-        Img
+        Meme
     }
 }

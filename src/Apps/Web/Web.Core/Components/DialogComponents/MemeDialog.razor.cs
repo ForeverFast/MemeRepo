@@ -28,7 +28,6 @@ namespace Web.Core.Components.DialogComponents
         [Inject] IState<AppState>? _appState { get; init; }
 
         [Inject] IFileStorageProvider? _fileStorageProvider { get; init; }
-        [Inject] IFileStorageDialogProvider? _fileStorageDialogProvider { get; init; }
 
         #endregion
 
@@ -58,7 +57,7 @@ namespace Web.Core.Components.DialogComponents
 
         private void ChooseFile()
         {
-            var absoluteFilePath = _fileStorageDialogProvider!.OpenFilePicker();
+            var absoluteFilePath = _fileStorageProvider!.OpenFilePicker();
             if (string.IsNullOrEmpty(absoluteFilePath))
                 return;
 

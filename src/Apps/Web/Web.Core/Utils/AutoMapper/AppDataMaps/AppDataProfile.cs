@@ -36,7 +36,7 @@ namespace Web.Core.Utils.AutoMapper.AppDataMaps
             CreateMap<Meme, MemeViewModel>()
                 .ForMember(dst => dst.Tags, opt => opt.MapFrom(src => src.MemeTags.Select(x => x.TagId).ToList()));
             CreateMap<Meme, MemeRepoItemViewModel>()
-                .ForMember(x => x.FolderObjectType, opt => opt.MapFrom(src => MemeRepoItemType.Img))
+                .ForMember(x => x.FolderObjectType, opt => opt.MapFrom(src => MemeRepoItemType.Meme))
                 ;
             CreateMap<Meme, MemeDialogViewModel>()
                 .ForMember(dst => dst.Tags, opt => opt.MapFrom(src => src.MemeTags.Select(x => x.TagId).ToList()))

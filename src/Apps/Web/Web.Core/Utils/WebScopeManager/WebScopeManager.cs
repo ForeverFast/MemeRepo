@@ -23,6 +23,8 @@ namespace Web.Core.Utils.WebScopeManager
 
         #region Fields
 
+        private bool isInitialized;
+
         private IState<AppState>? appDataState;
         private IDispatcher? dispatcher;
         private IActionSubscriber? actionSubscriber;
@@ -47,14 +49,18 @@ namespace Web.Core.Utils.WebScopeManager
 
         public ValueTask Init(IServiceProvider serviceProvider)
         {
-            appDataState = serviceProvider.GetRequiredService<IState<AppState>>();
-            dispatcher = serviceProvider.GetRequiredService<IDispatcher>();
-            actionSubscriber = serviceProvider.GetRequiredService<IActionSubscriber>();
+            if (!isInitialized)
+            {
+                isInitialized = true;
 
-            _fileStorageProvider.DeleteFolder(_fileStorageProvider.TmpPath);
+                appDataState = serviceProvider.GetRequiredService<IState<AppState>>();
+                dispatcher = serviceProvider.GetRequiredService<IDispatcher>();
+                actionSubscriber = serviceProvider.GetRequiredService<IActionSubscriber>();
 
-            OnInitialized?.Invoke(this, new EventArgs { });
+                _fileStorageProvider.DeleteFolder(_fileStorageProvider.TmpPath);
 
+                OnInitialized?.Invoke(this, new EventArgs { });
+            }
             return ValueTask.CompletedTask;
         }
     }

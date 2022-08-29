@@ -1,5 +1,19 @@
-﻿<h3>TagPage</h3>
+﻿@inherits MemeRepoBaseFluxorComponent
 
-@code {
+<div class="search-page">
+    <MemeRepoStateContainer State="@state">
 
-}
+        <LoadingFragment>
+            <MemeRepoLoading />
+        </LoadingFragment>
+
+        <ContentFragment>
+            <MemeRepoContainer Items="tagObjects" />
+        </ContentFragment>
+
+        <ErrorFragment>
+
+        </ErrorFragment>
+
+    </MemeRepoStateContainer>
+</div>

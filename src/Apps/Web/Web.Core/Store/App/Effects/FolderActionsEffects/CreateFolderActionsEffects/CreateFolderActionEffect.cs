@@ -51,7 +51,7 @@ namespace Web.Core.Store.App.Effects.FolderActionsEffects.CreateFolderActionsEff
                 folder.Path = new DirectoryInfo(absoluteNewFolderPath).Name;
 
                 var createdFolder = await _dal.For<Folder>().Insert.InsertWithObjectAsync(folder);
-                var newTagCollection = folderDialogResult.Tags.Select(x => new FolderTag
+                var newTagCollection = folderDialogResult.Tags.SelectToList(x => new FolderTag
                 {
                     FolderId = createdFolder.Id,
                     TagId = x,

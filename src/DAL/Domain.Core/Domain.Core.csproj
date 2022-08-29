@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="DALQueryChain" Version="1.0.7" />
-    <PackageReference Include="DALQueryChain.Linq2Db" Version="1.0.7" />
+    <PackageReference Include="DALQueryChain" Version="1.0.8" />
+    <PackageReference Include="DALQueryChain.Linq2Db" Version="1.0.8" />
     <PackageReference Include="linq2db" Version="4.1.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />

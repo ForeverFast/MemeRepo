@@ -1,0 +1,9 @@
+﻿@inherits MemeRepoBaseComponent
+
+<div class="memerepo-container-meme-item" @onclick="OnClick" @ondblclick="OnDoubleClick">
+    <MemeRepoContainerItem Data="@Data" ContextMenuType="@(ContextMemuAlias.Meme)">
+        <Content>
+            <MudImage Src="@(Data.Path)" />
+        </Content>
+    </MemeRepoContainerItem>
+</div>

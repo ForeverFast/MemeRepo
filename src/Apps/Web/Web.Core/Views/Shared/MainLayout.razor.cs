@@ -1,10 +1,16 @@
 ﻿using Domain.Core.Enums;
+using Domain.Core.Interfaces;
 using Microsoft.AspNetCore.Components.Web;
 using MudBlazor.Utilities;
 using Web.Core.Enums.Components.StateContainer;
 using Web.Core.Services;
 using Web.Core.Store.App;
+using Web.Core.Store.App.Actions.DataActions.AddFilesFromDiskActions;
 using Web.Core.Store.App.Actions.DataActions.LoadAppDataActions;
+using Web.Core.Store.App.Actions.FolderActions.CreateFolderActions;
+using Web.Core.Store.App.Actions.FolderActions.DeleteFolderActions;
+using Web.Core.Store.App.Actions.FolderActions.UpdateFolderActions;
+using Web.Core.Store.App.Actions.MemeActions.CreateMemeActions;
 using Web.Core.Store.App.Actions.NativeActions;
 using Web.Core.Store.App.Actions.NativeActions.WindowAppActions;
 
@@ -22,15 +28,17 @@ namespace Web.Core.Views.Shared
 
         [Inject] IState<AppState>? _appState { get; init; }
         [Inject] IDispatcher? _dispatcher { get; init; }
-
         [Inject] NavigationManager? _navigationManager { get; init; }
         [Inject] ThemeService? _themeService { get; init; }
+
+        [Inject] IFileStorageProvider? _fileStorageProvider { get; init; }
 
         #endregion
 
         #region UI Fields
 
         private ComponentState state = ComponentState.Loading;
+
         private bool isFolderView = true;
         private bool isShellOpen = true;
 
@@ -135,5 +143,7 @@ namespace Web.Core.Views.Shared
         }
 
         #endregion
+
+       
     }
 }

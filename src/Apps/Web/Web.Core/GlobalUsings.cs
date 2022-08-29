@@ -10,4 +10,6 @@ global using Web.Core.Base.Store.Actions;
 global using Web.Core.Base.Store.Effects;
 global using Web.Core.Base.Store.States;
 global using Web.Core.Enums;
+global using Web.Core.Extensions;
 global using Web.Core.Helpers;
+global using Web.Core.Resources;

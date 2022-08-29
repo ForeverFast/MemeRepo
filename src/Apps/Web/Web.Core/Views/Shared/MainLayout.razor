@@ -16,18 +16,24 @@
 
             <ContentFragment>
 
+                <ContextMenuInitializer />
+
                 <MudPaper Class="page__header d-flex flex-row align-start">
                     <MudPaper Class="info-block">
-                         <MudButton OnClick="Test">Test</MudButton>
+                        <MudImage Src="_content/Web.Core/imgs/favicon.webp" Class="ms-2" />
+                        <MudButton OnClick="Test" Style="display: none;">Test</MudButton>
                     </MudPaper>
-                    <MudPaper Class="navigation-block">
-                        <MudButton Class="header-button"><MudIcon Icon="@Icons.Filled.ChevronLeft" Size="Size.Large" /></MudButton>
-                        <MudButton Class="header-button"><MudIcon Icon="@Icons.Filled.ChevronRight" Size="Size.Large" /></MudButton>
+                    @*<MudPaper Class="navigation-block">
+                    <MudButton Class="header-button"><MudIcon Icon="@Icons.Filled.ChevronLeft" Size="Size.Large" /></MudButton>
+                    <MudButton Class="header-button"><MudIcon Icon="@Icons.Filled.ChevronRight" Size="Size.Large" /></MudButton>
+                    </MudPaper>*@
+                    <MudPaper Class="search-block h-100">
+                        <MemeRepoGlobalSearch />
                     </MudPaper>
-                    <MudPaper Class="tools-block ms-auto me-2">
-                        <MudButton Class="header-button"><MudIcon Icon="@Icons.Filled.Menu" /></MudButton>
-                    </MudPaper>
-                    <MudPaper Class="window-buttons-block mt-1">
+                    @*<MudPaper Class="tools-block  me-2">
+                    <MudButton Class="header-button"><MudIcon Icon="@Icons.Filled.Menu" /></MudButton>
+                    </MudPaper>*@
+                    <MudPaper Class="window-buttons-block ms-auto mt-1">
                         <MudButton Class="header-button" OnClick="OnMinimizeWindowButtonClick"><MudIcon Icon="@Icons.Filled.Minimize" /></MudButton>
                         <MudButton Class="header-button" OnClick="OnResizeWindowButtonClick"><MudIcon Icon="@Icons.Filled.OpenInNew" Class="@ResizeIconClassname" /></MudButton>
                         <MudButton Class="header-button" OnClick="OnCloseWindowButtonClick"><MudIcon Icon="@Icons.Filled.Close" /></MudButton>

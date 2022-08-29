@@ -57,10 +57,11 @@ namespace Web.Core.Store.App.Effects.FolderActionsEffects.UpdateFolderActionsEff
 
                 var folderDialogResult = (FolderDialogViewModel)dialogResult.Data;
                 var updatedFromDialogFolder = _mapper.Map<Folder>(folderDialogResult);
+                updatedFromDialogFolder.Path = folder.Path;
 
                 await _dal.For<Folder>().Update.UpdateAsync(updatedFromDialogFolder);
                 await _dal.For<FolderTag>().Delete.BulkDeleteAsync(folder.FolderTags);
-                var newTagCollection = folderDialogResult.Tags.Select(x => new FolderTag
+                var newTagCollection = folderDialogResult.Tags.SelectToList(x => new FolderTag
                 {
                     FolderId = folder.Id,
                     TagId = x,
